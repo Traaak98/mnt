@@ -15,4 +15,4 @@ add_executable( # création de l’exécutable binaire du projet
   ${source_files} # liste des fichiers compilés pour le linking
         tests/random_img_pgm.cpp)
 
-#target_link_libraries(${PROJECT_NAME} Proj)
+target_link_libraries(${PROJECT_NAME} proj)
