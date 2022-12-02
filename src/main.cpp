@@ -2,30 +2,67 @@
 #include <bitset>
 #include <fstream>
 #include <proj.h>
+#include <vector>
+#include <string>
 
 using namespace std;
 
 void create_image();
-float projection(float lon, float lat, float z);
-
-struct point{
-    Cell *start;
-    Cell *end;
-    int larg;
-    int lon;
-};
+float projection(double lon, double lat, double z);
+void equation_plan(double xA, double yA,double zA,double xB,double yB,double zB,double xC,double yC,double zC);
+void read_file(vector<double> &coord, map<pair<double,double>, double> &hauteur, string filename);
 
 int main()
 {
+    vector<double> coord;
+    map<pair<double,double>, double> hauteur;
+    read_file(coord, hauteur, "rade_brest.txt");
 
-    float x=10, y=10;
-    [x, y] = projection(-4.4720707, 48.41908, 0.);
-    cout << "test : " << x << " et " << y <<endl;
+    for(double i : coord)
+    {
+        cout << i << endl;
+    }
+
+    for(auto item : hauteur)
+    {
+    	cout << item.first.first << item.first.second << " " << item.second << endl;
+    }
 
     return EXIT_SUCCESS;
 }
 
-float projection(float lon, float lat, float z){
+// fonction qui permet de sortir un vecteur de coordonnées et une map de hauteur à partir d'un fichier texte de données
+void read_file(vector<double> &coord, map<pair<double,double>, double> &hauteur, string filename)
+{
+    ifstream f(filename);
+    string line;
+    if(!f.is_open())
+    {
+        cout << "Erreur d'ouverture de " << filename << endl;
+    }
+    else
+    {
+        while(!f.eof()) {
+            double x, y;
+            getline(f, line, ' ');
+            double lat = stod(line);
+            getline(f, line, ' ');
+            double lon = stod(line);
+            getline(f, line);
+            double h = stod(line);
+
+            // projection
+            [x, y] = projection(lat, lon, h);
+
+
+            coord.push_back(x);
+            coord.push_back(y);
+            hauteur[pair<double,double>(x, y)] = h;
+        }
+    }
+}
+
+float projection(double lon, double lat, double z){
     // Initialisation des référentiels de coordonnées :
     PJ* P = proj_create_crs_to_crs(
             PJ_DEFAULT_CTX,
@@ -48,9 +85,9 @@ float projection(float lon, float lat, float z){
 
     // Projection géographique
     cartesian_coord = proj_trans(P, PJ_FWD, geo_coord);
-    cout << "(" << geo_coord.lpzt.lam << "," << geo_coord.lpzt.phi << ")"
-         << " -> "
-         << "(" << cartesian_coord.xy.x << "," << cartesian_coord.xy.y << ")";
+    //cout << "(" << geo_coord.lpzt.lam << "," << geo_coord.lpzt.phi << ")"
+    //     << " -> "
+    //     << "(" << cartesian_coord.xy.x << "," << cartesian_coord.xy.y << ")";
     return [cartesian_coord.xy.x, cartesian_coord.xy.y];
 }
 
@@ -82,4 +119,29 @@ void create_image()
 
     f.close();
 }
+
+void equation_plan(double xA, double yA,double zA,double xB,double yB,double zB,double xC,double yC,double zC)
+{
+
+    double xAb=0,yAb=0,zAb=0,xAc=0,yAc=0,zAc=0,mineurUne=0,mineurDeux=0,mineurTrois=0,termeIndependant=0,verification=0;
+
+    xAb=xB-xA;
+    yAb=yB-yA;
+    zAb=zB-zA;
+
+    xAc=xC-xA;
+    yAc=yC-yA;
+    zAc=zC-zA;
+
+    mineurUne=(yAb*zAc)-(zAb*yAc);
+    mineurDeux=(-1)*((xAb*zAc)-(zAb*xAc));
+    mineurTrois=(xAb*yAc)-(yAb*xAc);
+    termeIndependant=((-1*xA*mineurUne)+(-1*yA*mineurDeux)+(-1*zA*mineurTrois));
+
+    printf("L'equation cartesienne est \n\n %lf X + %lf Y + %lf Z + %lf\n\n",mineurUne,mineurDeux,mineurTrois,termeIndependant);
+    verification=(xA*mineurUne+yA*mineurDeux+zA*mineurTrois+termeIndependant+xB*mineurUne+yB*mineurDeux+zB*mineurTrois+termeIndependant+xC*mineurUne+yC*mineurDeux+zC*mineurTrois+termeIndependant);
+    printf("Verification : On injecte les coordonnees de A,B et C dans l'equation cartesienne, ce qui nous donne %lf (Si cette valeur vaut zero, alors c'est correct)\n\n",verification);
+
+}
+
 

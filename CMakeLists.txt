@@ -12,7 +12,6 @@ file( # liste des fichiers à compiler
 
 add_executable( # création de l’exécutable binaire du projet
   ${PROJECT_NAME} # contient le nom du binaire
-  ${source_files} # liste des fichiers compilés pour le linking
-        tests/random_img_pgm.cpp)
+  ${source_files} # liste des fichiers compilés pour le linking)
 
 target_link_libraries(${PROJECT_NAME} proj)
