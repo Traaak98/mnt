@@ -4,11 +4,12 @@
 #include <proj.h>
 #include <vector>
 #include <string>
+#include <map>
 
 using namespace std;
 
 void create_image();
-float projection(double lon, double lat, double z);
+bool projection(double lon, double lat, double z, double &x, double &y);
 void equation_plan(double xA, double yA,double zA,double xB,double yB,double zB,double xC,double yC,double zC);
 void read_file(vector<double> &coord, map<pair<double,double>, double> &hauteur, string filename);
 
@@ -36,6 +37,7 @@ void read_file(vector<double> &coord, map<pair<double,double>, double> &hauteur,
 {
     ifstream f(filename);
     string line;
+    int k = 0;
     if(!f.is_open())
     {
         cout << "Erreur d'ouverture de " << filename << endl;
@@ -43,18 +45,25 @@ void read_file(vector<double> &coord, map<pair<double,double>, double> &hauteur,
     else
     {
         while(!f.eof()) {
+            k=k+1;
+            cout << k<< endl;
             double x, y;
             getline(f, line, ' ');
+            cout << line << endl;
             double lat = stod(line);
             getline(f, line, ' ');
+            cout << line << endl;
             double lon = stod(line);
             getline(f, line);
+            cout << line << endl;
             double h = stod(line);
 
             // projection
-            [x, y] = projection(lat, lon, h);
-
-
+            if(!projection(lat, lon, h, x, y)){
+                cout<< "erreur creation projection" << endl;
+            }
+            cout << x << endl;
+            cout << y << endl;
             coord.push_back(x);
             coord.push_back(y);
             hauteur[pair<double,double>(x, y)] = h;
@@ -62,7 +71,7 @@ void read_file(vector<double> &coord, map<pair<double,double>, double> &hauteur,
     }
 }
 
-float projection(double lon, double lat, double z){
+bool projection(double lon, double lat, double z, double &x, double &y){
     // Initialisation des référentiels de coordonnées :
     PJ* P = proj_create_crs_to_crs(
             PJ_DEFAULT_CTX,
@@ -72,7 +81,7 @@ float projection(double lon, double lat, double z){
 
     if (P == 0) {
         fprintf(stderr, "Failed to create transformation object.\n");
-        return 1;
+        return false;
     }
 
     // Deux coordonnées à exprimer dans des référentiels différents
@@ -88,7 +97,9 @@ float projection(double lon, double lat, double z){
     //cout << "(" << geo_coord.lpzt.lam << "," << geo_coord.lpzt.phi << ")"
     //     << " -> "
     //     << "(" << cartesian_coord.xy.x << "," << cartesian_coord.xy.y << ")";
-    return [cartesian_coord.xy.x, cartesian_coord.xy.y];
+    x = cartesian_coord.xy.x;
+    y = cartesian_coord.xy.y;
+    return true;
 }
 
 void create_image()

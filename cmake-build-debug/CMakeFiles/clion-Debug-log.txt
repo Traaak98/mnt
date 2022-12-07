@@ -1,0 +1,7 @@
+/snap/clion/218/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/218/bin/ninja/linux/ninja -G Ninja -S /home/apolline/Documents/M1/C/Projet -B /home/apolline/Documents/M1/C/Projet/cmake-build-debug
+CMake Error at CMakeLists.txt:13:
+  Parse error.  Function missing ending ")".  End of file reached.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/apolline/Documents/M1/C/Projet/cmake-build-debug/CMakeFiles/CMakeOutput.log".
