@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.22.1)
 project(Projet)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_BUILD_TYPE debug)
+set(CMAKE_CXX_FLAGS "-g")
 
 file( # liste des fichiers à compiler
   GLOB_RECURSE # recherche récursive

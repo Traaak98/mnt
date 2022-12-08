@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/Projet.dir/src/main.cpp.o -o Projet  -lproj 
+/usr/bin/c++ -g -g CMakeFiles/Projet.dir/src/My_delaunay.cpp.o CMakeFiles/Projet.dir/src/image.cpp.o CMakeFiles/Projet.dir/src/main.cpp.o -o Projet  -lproj 

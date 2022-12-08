@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Projet.dir/src/My_delaunay.cpp.o"
+  "CMakeFiles/Projet.dir/src/My_delaunay.cpp.o.d"
+  "CMakeFiles/Projet.dir/src/image.cpp.o"
+  "CMakeFiles/Projet.dir/src/image.cpp.o.d"
   "CMakeFiles/Projet.dir/src/main.cpp.o"
   "CMakeFiles/Projet.dir/src/main.cpp.o.d"
   "Projet"

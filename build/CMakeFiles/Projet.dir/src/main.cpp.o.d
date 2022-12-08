@@ -159,4 +159,6 @@ CMakeFiles/Projet.dir/src/main.cpp.o: \
  /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /usr/include/c++/11/bits/erase_if.h
+ /usr/include/c++/11/bits/erase_if.h \
+ /home/apolline/Documents/M1/C/Projet/src/image.h \
+ /home/apolline/Documents/M1/C/Projet/src/My_delaunay.h

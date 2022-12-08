@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/apolline/Documents/M1/C/Projet/src/My_delaunay.cpp" "CMakeFiles/Projet.dir/src/My_delaunay.cpp.o" "gcc" "CMakeFiles/Projet.dir/src/My_delaunay.cpp.o.d"
+  "/home/apolline/Documents/M1/C/Projet/src/image.cpp" "CMakeFiles/Projet.dir/src/image.cpp.o" "gcc" "CMakeFiles/Projet.dir/src/image.cpp.o.d"
   "/home/apolline/Documents/M1/C/Projet/src/main.cpp" "CMakeFiles/Projet.dir/src/main.cpp.o" "gcc" "CMakeFiles/Projet.dir/src/main.cpp.o.d"
   )
 

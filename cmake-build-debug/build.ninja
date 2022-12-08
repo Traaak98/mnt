@@ -49,17 +49,23 @@ cmake_ninja_workdir = /home/apolline/Documents/M1/C/Projet/cmake-build-debug/
 
 build cmake_object_order_depends_target_Projet: phony || CMakeFiles/Projet.dir
 
+build CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: CXX_COMPILER__Projet_Debug /home/apolline/Documents/M1/C/Projet/src/My_delaunay.cpp || cmake_object_order_depends_target_Projet
+  DEP_FILE = CMakeFiles/Projet.dir/src/My_delaunay.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  OBJECT_DIR = CMakeFiles/Projet.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projet.dir/src
+
+build CMakeFiles/Projet.dir/src/image.cpp.o: CXX_COMPILER__Projet_Debug /home/apolline/Documents/M1/C/Projet/src/image.cpp || cmake_object_order_depends_target_Projet
+  DEP_FILE = CMakeFiles/Projet.dir/src/image.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  OBJECT_DIR = CMakeFiles/Projet.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projet.dir/src
+
 build CMakeFiles/Projet.dir/src/main.cpp.o: CXX_COMPILER__Projet_Debug /home/apolline/Documents/M1/C/Projet/src/main.cpp || cmake_object_order_depends_target_Projet
   DEP_FILE = CMakeFiles/Projet.dir/src/main.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
   OBJECT_DIR = CMakeFiles/Projet.dir
   OBJECT_FILE_DIR = CMakeFiles/Projet.dir/src
-
-build CMakeFiles/Projet.dir/tests/random_img_pgm.cpp.o: CXX_COMPILER__Projet_Debug /home/apolline/Documents/M1/C/Projet/tests/random_img_pgm.cpp || cmake_object_order_depends_target_Projet
-  DEP_FILE = CMakeFiles/Projet.dir/tests/random_img_pgm.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
-  OBJECT_DIR = CMakeFiles/Projet.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projet.dir/tests
 
 
 # =============================================================================
@@ -69,7 +75,7 @@ build CMakeFiles/Projet.dir/tests/random_img_pgm.cpp.o: CXX_COMPILER__Projet_Deb
 #############################################
 # Link the executable Projet
 
-build Projet: CXX_EXECUTABLE_LINKER__Projet_Debug CMakeFiles/Projet.dir/src/main.cpp.o CMakeFiles/Projet.dir/tests/random_img_pgm.cpp.o
+build Projet: CXX_EXECUTABLE_LINKER__Projet_Debug CMakeFiles/Projet.dir/src/My_delaunay.cpp.o CMakeFiles/Projet.dir/src/image.cpp.o CMakeFiles/Projet.dir/src/main.cpp.o
   FLAGS = -g
   LINK_LIBRARIES = -lproj
   OBJECT_DIR = CMakeFiles/Projet.dir

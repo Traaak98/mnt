@@ -129,6 +129,54 @@ Projet/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/build
 .PHONY : Projet/fast
 
+src/My_delaunay.o: src/My_delaunay.cpp.o
+.PHONY : src/My_delaunay.o
+
+# target to build an object file
+src/My_delaunay.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/My_delaunay.cpp.o
+.PHONY : src/My_delaunay.cpp.o
+
+src/My_delaunay.i: src/My_delaunay.cpp.i
+.PHONY : src/My_delaunay.i
+
+# target to preprocess a source file
+src/My_delaunay.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/My_delaunay.cpp.i
+.PHONY : src/My_delaunay.cpp.i
+
+src/My_delaunay.s: src/My_delaunay.cpp.s
+.PHONY : src/My_delaunay.s
+
+# target to generate assembly for a file
+src/My_delaunay.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/My_delaunay.cpp.s
+.PHONY : src/My_delaunay.cpp.s
+
+src/image.o: src/image.cpp.o
+.PHONY : src/image.o
+
+# target to build an object file
+src/image.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/image.cpp.o
+.PHONY : src/image.cpp.o
+
+src/image.i: src/image.cpp.i
+.PHONY : src/image.i
+
+# target to preprocess a source file
+src/image.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/image.cpp.i
+.PHONY : src/image.cpp.i
+
+src/image.s: src/image.cpp.s
+.PHONY : src/image.s
+
+# target to generate assembly for a file
+src/image.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/image.cpp.s
+.PHONY : src/image.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -162,6 +210,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Projet"
+	@echo "... src/My_delaunay.o"
+	@echo "... src/My_delaunay.i"
+	@echo "... src/My_delaunay.s"
+	@echo "... src/image.o"
+	@echo "... src/image.i"
+	@echo "... src/image.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

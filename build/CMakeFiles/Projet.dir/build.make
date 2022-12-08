@@ -69,10 +69,38 @@ include CMakeFiles/Projet.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Projet.dir/flags.make
 
+CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: CMakeFiles/Projet.dir/flags.make
+CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: ../src/My_delaunay.cpp
+CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: CMakeFiles/Projet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/apolline/Documents/M1/C/Projet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Projet.dir/src/My_delaunay.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projet.dir/src/My_delaunay.cpp.o -MF CMakeFiles/Projet.dir/src/My_delaunay.cpp.o.d -o CMakeFiles/Projet.dir/src/My_delaunay.cpp.o -c /home/apolline/Documents/M1/C/Projet/src/My_delaunay.cpp
+
+CMakeFiles/Projet.dir/src/My_delaunay.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projet.dir/src/My_delaunay.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/apolline/Documents/M1/C/Projet/src/My_delaunay.cpp > CMakeFiles/Projet.dir/src/My_delaunay.cpp.i
+
+CMakeFiles/Projet.dir/src/My_delaunay.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projet.dir/src/My_delaunay.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/apolline/Documents/M1/C/Projet/src/My_delaunay.cpp -o CMakeFiles/Projet.dir/src/My_delaunay.cpp.s
+
+CMakeFiles/Projet.dir/src/image.cpp.o: CMakeFiles/Projet.dir/flags.make
+CMakeFiles/Projet.dir/src/image.cpp.o: ../src/image.cpp
+CMakeFiles/Projet.dir/src/image.cpp.o: CMakeFiles/Projet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/apolline/Documents/M1/C/Projet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Projet.dir/src/image.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projet.dir/src/image.cpp.o -MF CMakeFiles/Projet.dir/src/image.cpp.o.d -o CMakeFiles/Projet.dir/src/image.cpp.o -c /home/apolline/Documents/M1/C/Projet/src/image.cpp
+
+CMakeFiles/Projet.dir/src/image.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projet.dir/src/image.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/apolline/Documents/M1/C/Projet/src/image.cpp > CMakeFiles/Projet.dir/src/image.cpp.i
+
+CMakeFiles/Projet.dir/src/image.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projet.dir/src/image.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/apolline/Documents/M1/C/Projet/src/image.cpp -o CMakeFiles/Projet.dir/src/image.cpp.s
+
 CMakeFiles/Projet.dir/src/main.cpp.o: CMakeFiles/Projet.dir/flags.make
 CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/Projet.dir/src/main.cpp.o: CMakeFiles/Projet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/apolline/Documents/M1/C/Projet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Projet.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/apolline/Documents/M1/C/Projet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Projet.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Projet.dir/src/main.cpp.o -MF CMakeFiles/Projet.dir/src/main.cpp.o.d -o CMakeFiles/Projet.dir/src/main.cpp.o -c /home/apolline/Documents/M1/C/Projet/src/main.cpp
 
 CMakeFiles/Projet.dir/src/main.cpp.i: cmake_force
@@ -85,15 +113,19 @@ CMakeFiles/Projet.dir/src/main.cpp.s: cmake_force
 
 # Object files for target Projet
 Projet_OBJECTS = \
+"CMakeFiles/Projet.dir/src/My_delaunay.cpp.o" \
+"CMakeFiles/Projet.dir/src/image.cpp.o" \
 "CMakeFiles/Projet.dir/src/main.cpp.o"
 
 # External object files for target Projet
 Projet_EXTERNAL_OBJECTS =
 
+Projet: CMakeFiles/Projet.dir/src/My_delaunay.cpp.o
+Projet: CMakeFiles/Projet.dir/src/image.cpp.o
 Projet: CMakeFiles/Projet.dir/src/main.cpp.o
 Projet: CMakeFiles/Projet.dir/build.make
 Projet: CMakeFiles/Projet.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/apolline/Documents/M1/C/Projet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Projet"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/apolline/Documents/M1/C/Projet/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Projet"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Projet.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
