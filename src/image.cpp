@@ -16,18 +16,23 @@ using namespace std;
 image::image(int nb_pixels, int nb_zones) : nb_pixel_h(nb_pixels), nb_zone(nb_zones) {
     nb_pixel_l = 0;
     densite = 0;
-    max_x = 0;
-    max_y = 0;
-    min_x = 0;
-    min_y = 0;
+    max_x = -1e10;
+    max_y = -1e10;
+    min_x = 1e10;
+    min_y = 1e10;
+    max_z = -1e10;
+    min_z = 1e10;
     nb_donnee = 0;
 }
 
-void image::update_min_max(double x, double y){
-    if(x<min_x){min_x = x;}
-    if(x>max_x){max_x = x;}
-    if(y<min_y){min_y = y;}
-    if(y>max_y){max_y = y;}
+void image::update_min_max(double x, double y, double z){
+    if(x<min_x){min_x = floor(x);}
+    if(x>max_x){max_x = ceil(x);}
+    if(y<min_y){min_y = floor(y);}
+    if(y>max_y){max_y = ceil(y);}
+    if(y<min_z){min_z = floor(z);}
+    if(y>max_z){max_z = ceil(z);}
+
 }
 
 void image::update_densite()
@@ -100,7 +105,7 @@ void image::read_file(My_delaunay &dt, string filename){
             pts.push_back(y);
 
             hts.push_back(h);
-            update_min_max(x, y);
+            update_min_max(x, y, h);
         }
 
         vector<double> transforme_pts(pts.begin(), pts.end());
@@ -114,5 +119,33 @@ void image::read_file(My_delaunay &dt, string filename){
 
 }
 
+void image::find_zone(double x, double y, int &zone){
+
+    //conversion coord to pixel
+    int x_p = ceil((x-min_x)*densite);
+    int y_p = ceil((y-min_y)*densite);
+
+    // Trouver zone
+    int part_x = x_p/(nb_pixel_h/(nb_zone-1));
+    int part_y = y_p/(nb_pixel_l/(nb_zone-1));
+    zone = (part_y+(part_x)*nb_zone)+1;
+
+}
+
+void image::find_zone(int x_p, int y_p, int &zone){
+    int part_x = x_p/(nb_pixel_h/(nb_zone-1));
+    int part_y = y_p/(nb_pixel_l/(nb_zone-1));
+    zone = (part_y+(part_x)*nb_zone)+1;
+}
+
+void image::build_img(My_delaunay &dt, string filename){
+    int zone_p;
+    for(int py = 0; py < nb_pixel_l+1; py++){
+        for(int px = 0; px < nb_pixel_h+1; px++){
+            find_zone(px, py, zone_p);
+
+        }
+    }
+}
 
 image::~image(){}

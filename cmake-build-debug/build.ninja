@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: Projet
-# Configurations: Debug
+# Configurations: debug
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Debug
+CONFIGURATION = debug
 # =============================================================================
 # Include auxiliary files.
 
@@ -49,21 +49,21 @@ cmake_ninja_workdir = /home/apolline/Documents/M1/C/Projet/cmake-build-debug/
 
 build cmake_object_order_depends_target_Projet: phony || CMakeFiles/Projet.dir
 
-build CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: CXX_COMPILER__Projet_Debug /home/apolline/Documents/M1/C/Projet/src/My_delaunay.cpp || cmake_object_order_depends_target_Projet
+build CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: CXX_COMPILER__Projet_debug /home/apolline/Documents/M1/C/Projet/src/My_delaunay.cpp || cmake_object_order_depends_target_Projet
   DEP_FILE = CMakeFiles/Projet.dir/src/My_delaunay.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  FLAGS = -g -g -fdiagnostics-color=always -std=gnu++14
   OBJECT_DIR = CMakeFiles/Projet.dir
   OBJECT_FILE_DIR = CMakeFiles/Projet.dir/src
 
-build CMakeFiles/Projet.dir/src/image.cpp.o: CXX_COMPILER__Projet_Debug /home/apolline/Documents/M1/C/Projet/src/image.cpp || cmake_object_order_depends_target_Projet
+build CMakeFiles/Projet.dir/src/image.cpp.o: CXX_COMPILER__Projet_debug /home/apolline/Documents/M1/C/Projet/src/image.cpp || cmake_object_order_depends_target_Projet
   DEP_FILE = CMakeFiles/Projet.dir/src/image.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  FLAGS = -g -g -fdiagnostics-color=always -std=gnu++14
   OBJECT_DIR = CMakeFiles/Projet.dir
   OBJECT_FILE_DIR = CMakeFiles/Projet.dir/src
 
-build CMakeFiles/Projet.dir/src/main.cpp.o: CXX_COMPILER__Projet_Debug /home/apolline/Documents/M1/C/Projet/src/main.cpp || cmake_object_order_depends_target_Projet
+build CMakeFiles/Projet.dir/src/main.cpp.o: CXX_COMPILER__Projet_debug /home/apolline/Documents/M1/C/Projet/src/main.cpp || cmake_object_order_depends_target_Projet
   DEP_FILE = CMakeFiles/Projet.dir/src/main.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  FLAGS = -g -g -fdiagnostics-color=always -std=gnu++14
   OBJECT_DIR = CMakeFiles/Projet.dir
   OBJECT_FILE_DIR = CMakeFiles/Projet.dir/src
 
@@ -75,8 +75,8 @@ build CMakeFiles/Projet.dir/src/main.cpp.o: CXX_COMPILER__Projet_Debug /home/apo
 #############################################
 # Link the executable Projet
 
-build Projet: CXX_EXECUTABLE_LINKER__Projet_Debug CMakeFiles/Projet.dir/src/My_delaunay.cpp.o CMakeFiles/Projet.dir/src/image.cpp.o CMakeFiles/Projet.dir/src/main.cpp.o
-  FLAGS = -g
+build Projet: CXX_EXECUTABLE_LINKER__Projet_debug CMakeFiles/Projet.dir/src/My_delaunay.cpp.o CMakeFiles/Projet.dir/src/image.cpp.o CMakeFiles/Projet.dir/src/main.cpp.o
+  FLAGS = -g -g
   LINK_LIBRARIES = -lproj
   OBJECT_DIR = CMakeFiles/Projet.dir
   POST_BUILD = :

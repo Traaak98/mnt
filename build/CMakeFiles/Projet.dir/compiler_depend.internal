@@ -170,6 +170,10 @@ CMakeFiles/Projet.dir/src/My_delaunay.cpp.o
  /usr/include/c++/11/bits/charconv.h
  /usr/include/c++/11/bits/basic_string.tcc
  /usr/include/proj.h
+ /usr/include/c++/11/list
+ /usr/include/c++/11/bits/stl_list.h
+ /usr/include/c++/11/bits/allocated_ptr.h
+ /usr/include/c++/11/bits/list.tcc
  /home/apolline/Documents/M1/C/Projet/src/delaunator.hpp
  /usr/include/c++/11/algorithm
  /usr/include/c++/11/bits/stl_algo.h
@@ -225,13 +229,17 @@ CMakeFiles/Projet.dir/src/My_delaunay.cpp.o
  /usr/include/c++/11/bits/unique_ptr.h
  /usr/include/c++/11/bits/shared_ptr.h
  /usr/include/c++/11/bits/shared_ptr_base.h
- /usr/include/c++/11/bits/allocated_ptr.h
  /usr/include/c++/11/bits/refwrap.h
  /usr/include/c++/11/ext/concurrence.h
  /usr/include/c++/11/bits/shared_ptr_atomic.h
  /usr/include/c++/11/bits/atomic_base.h
  /usr/include/c++/11/bits/atomic_lockfree_defines.h
  /usr/include/c++/11/backward/auto_ptr.h
+ /usr/include/c++/11/fstream
+ /usr/include/c++/11/bits/codecvt.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h
+ /usr/include/c++/11/bits/fstream.tcc
 
 CMakeFiles/Projet.dir/src/image.cpp.o
  /home/apolline/Documents/M1/C/Projet/src/image.cpp
@@ -298,6 +306,10 @@ CMakeFiles/Projet.dir/src/image.cpp.o
  /usr/include/c++/11/bits/invoke.h
  /usr/include/c++/11/bits/stl_multimap.h
  /usr/include/c++/11/bits/erase_if.h
+ /usr/include/c++/11/list
+ /usr/include/c++/11/bits/stl_list.h
+ /usr/include/c++/11/bits/allocated_ptr.h
+ /usr/include/c++/11/bits/list.tcc
  /usr/include/c++/11/string
  /usr/include/c++/11/bits/stringfwd.h
  /usr/include/c++/11/bits/char_traits.h
@@ -447,10 +459,6 @@ CMakeFiles/Projet.dir/src/image.cpp.o
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h
  /usr/include/c++/11/bits/fstream.tcc
- /usr/include/c++/11/list
- /usr/include/c++/11/bits/stl_list.h
- /usr/include/c++/11/bits/allocated_ptr.h
- /usr/include/c++/11/bits/list.tcc
 
 CMakeFiles/Projet.dir/src/main.cpp.o
  /home/apolline/Documents/M1/C/Projet/src/main.cpp
@@ -656,4 +664,8 @@ CMakeFiles/Projet.dir/src/main.cpp.o
  /usr/include/c++/11/bits/erase_if.h
  /home/apolline/Documents/M1/C/Projet/src/image.h
  /home/apolline/Documents/M1/C/Projet/src/My_delaunay.h
+ /usr/include/c++/11/list
+ /usr/include/c++/11/bits/stl_list.h
+ /usr/include/c++/11/bits/allocated_ptr.h
+ /usr/include/c++/11/bits/list.tcc
 

@@ -24,13 +24,20 @@ public:
     double max_y;
     double min_x;
     double min_y;
+    double max_z;
+    double min_z;
     std::vector<double> points;
-    void update_min_max(double x, double y);
+
+    void update_min_max(double x, double y, double z);
     void update_densite();
     void update_nb_pixel_l();
     void projection(double lon, double lat, double z, double &x, double &y, PJ* P);
     PJ* init_proj();
     void read_file(My_delaunay &dt, std::string filename);
+    void find_zone(double x, double y, int &zone);
+    void find_zone(int x_p, int y_p, int &zone);
+    void build_img(My_delaunay &dt, std::string filename);
+
     ~image();
 
 };
