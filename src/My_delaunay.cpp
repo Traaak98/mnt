@@ -76,20 +76,10 @@ void My_delaunay::find_plane(double x1, double y1, double z1, double x2, double 
     d = (- a * x1 - b * y1 - c * z1);
 }
 
-bool My_delaunay::in_triangle(double px, double py, double x1, double y1, double x2, double y2, double x3, double y3){
-    double a11 = x2-x1;
-    double a21 = y2-y1;
-    double a12 = x3-x1;
-    double a22 = y3-y1;
-    double det = a11*a22-a21*a12;
-    if(det==0){return false;}
-    else{
-        double px_new = px-x1;
-        double py_new = py-y1;
-        double sauv = (px_new*a22-py_new*a12)/det;
-        py_new = (-px_new*a21+py_new*a11)/det;
-        px_new = sauv;
-        if(px_new>0 && py_new>0 && px_new+py_new<1){return true;}
-        else{return false;}
-    }
+bool My_delaunay::in_triangle(int px, int py, int x1, int y1, int x2, int y2, int x3, int y3){
+    int det1 = (x2-px)*(y1-py)-(y2-py)*(x1-px);
+    int det2 = (x3-px)*(y2-py)-(y3-py)*(x2-px);
+    int det3 = (x1-px)*(y3-py)-(y1-py)*(x3-px);
+    if(det1<= 0 && det2<=0 && det3<=0){return true;}
+    else{return false;}
 }

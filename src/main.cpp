@@ -17,7 +17,7 @@ void create_image();
 int main()
 {
     string name = "rade_brest.txt";
-    image img(720, 20);
+    image img(720, 50);
     My_delaunay dt;
 
     img.read_file(dt, name);

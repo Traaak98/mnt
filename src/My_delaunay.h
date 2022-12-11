@@ -22,7 +22,7 @@ public:
 
     void build_map(image &img);
     void find_plane(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3, double &a, double &b, double &c, double &d);
-    bool in_triangle(double px, double py, double x1, double y1, double x2, double y2, double x3, double y3);
+    bool in_triangle(int px, int py, int x1, int y1, int x2, int y2, int x3, int y3);
 
 };
 #endif //PROJET_MY_DELAUNAY_H

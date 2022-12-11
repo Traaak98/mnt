@@ -140,7 +140,12 @@ void image::find_zone(int x_p, int y_p, int &zone){
 }
 
 void image::find_color(double pz, int &val1, int &val2, int &val3){
+    cout << "PZ = " << pz << endl;
+    cout << "PZ min = " << min_z << endl;
+    cout << "PZ max = " << max_z << endl;
+
     int pos = round(255*(pz-min_z)/(max_z-min_z));
+    cout << pos << endl;
     val1 = round(haxby[pos][0]*255);
     val2 = round(haxby[pos][1]*255);
     val3 = round(haxby[pos][2]*255);
@@ -171,13 +176,23 @@ void image::build_img(My_delaunay &dt, string filename){
             else{
                 for(int i=0; i<dt.zones[zone_p].size(); i+=3){
 
-                    // Coins du triangle
-                    double p1x = points[2 * dt.vect_triangles[i]];
-                    double p1y = points[2 * dt.vect_triangles[i]+1];
-                    double p2x = points[2 * dt.vect_triangles[i+1]];
-                    double p2y = points[2 * dt.vect_triangles[i+1]+1];
-                    double p3x = points[2 * dt.vect_triangles[i+2]];
-                    double p3y = points[2 * dt.vect_triangles[i+2]+1];
+                    // Coins du triangle version x,y
+                    double x1 = points[2 * dt.vect_triangles[i]];
+                    double y1 = points[2 * dt.vect_triangles[i]+1];
+                    double x2 = points[2 * dt.vect_triangles[i+1]];
+                    double y2 = points[2 * dt.vect_triangles[i+1]+1];
+                    double x3 = points[2 * dt.vect_triangles[i+2]];
+                    double y3 = points[2 * dt.vect_triangles[i+2]+1];
+
+                    // Coins du triangle version pixel
+                    int p1x = ceil((points[2 * dt.vect_triangles[i]]-min_x)*densite);
+                    int p1y = ceil((points[2 * dt.vect_triangles[i]+1]-min_y)*densite);
+                    int p2x = ceil((points[2 * dt.vect_triangles[i+1]]-min_x)*densite);
+                    int p2y = ceil((points[2 * dt.vect_triangles[i+1]+1]-min_y)*densite);
+                    int p3x = ceil((points[2 * dt.vect_triangles[i+2]]-min_x)*densite);
+                    int p3y = ceil((points[2 * dt.vect_triangles[i+2]+1]-min_y)*densite);
+
+
 
                     if(dt.in_triangle(px, py, p1x, p1y, p2x, p2y, p3x, p3y)){
 
@@ -186,7 +201,7 @@ void image::build_img(My_delaunay &dt, string filename){
                         double p2z = dt.hauteurs[i+1];
                         double p3z = dt.hauteurs[i+3];
 
-                        dt.find_plane(p1x, p1y, p1z, p2x, p2y, p2z, p3x, p3y, p3z, a, b, c, d);
+                        dt.find_plane(x1, y1, p1z, x2, y2, p2z, x3, y3, p3z, a, b, c, d);
                         double pz = (-d-a*px-b*py)/c;
                         find_color(pz, val1, val2, val3);
                         break;
