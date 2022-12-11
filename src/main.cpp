@@ -25,6 +25,8 @@ int main()
     dt.make_delaunator(img);
     dt.build_map(img);
 
+    img.build_img(dt, "rade_brest.pgm");
+
     return EXIT_SUCCESS;
 }
 

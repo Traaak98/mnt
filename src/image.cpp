@@ -23,6 +23,7 @@ image::image(int nb_pixels, int nb_zones) : nb_pixel_h(nb_pixels), nb_zone(nb_zo
     max_z = -1e10;
     min_z = 1e10;
     nb_donnee = 0;
+
 }
 
 void image::update_min_max(double x, double y, double z){
@@ -138,14 +139,70 @@ void image::find_zone(int x_p, int y_p, int &zone){
     zone = (part_y+(part_x)*nb_zone)+1;
 }
 
+void image::find_color(double pz, int &val1, int &val2, int &val3){
+    int pos = round(255*(pz-min_z)/(max_z-min_z));
+    val1 = round(haxby[pos][0]*255);
+    val2 = round(haxby[pos][1]*255);
+    val3 = round(haxby[pos][2]*255);
+}
+
 void image::build_img(My_delaunay &dt, string filename){
     int zone_p;
+    int val1;
+    int val2;
+    int val3;
+
+    double a;
+    double b;
+    double c;
+    double d;
+
+    ofstream f(filename);
+    f << "P3\n" << nb_pixel_l << " " << nb_pixel_h << "\n" <<"255\n";
     for(int py = 0; py < nb_pixel_l+1; py++){
         for(int px = 0; px < nb_pixel_h+1; px++){
+            cout << " PX = " << px << " PY = " << py << endl;
             find_zone(px, py, zone_p);
+            if(!dt.zones.count(zone_p)){
+                val1 = 1;
+                val2 = 1;
+                val3 = 1;
+            }
+            else{
+                for(int i=0; i<dt.zones[zone_p].size(); i+=3){
 
+                    // Coins du triangle
+                    double p1x = points[2 * dt.vect_triangles[i]];
+                    double p1y = points[2 * dt.vect_triangles[i]+1];
+                    double p2x = points[2 * dt.vect_triangles[i+1]];
+                    double p2y = points[2 * dt.vect_triangles[i+1]+1];
+                    double p3x = points[2 * dt.vect_triangles[i+2]];
+                    double p3y = points[2 * dt.vect_triangles[i+2]+1];
+
+                    if(dt.in_triangle(px, py, p1x, p1y, p2x, p2y, p3x, p3y)){
+
+                        // On recupere les hauteurs
+                        double p1z = dt.hauteurs[i];
+                        double p2z = dt.hauteurs[i+1];
+                        double p3z = dt.hauteurs[i+3];
+
+                        dt.find_plane(p1x, p1y, p1z, p2x, p2y, p2z, p3x, p3y, p3z, a, b, c, d);
+                        double pz = (-d-a*px-b*py)/c;
+                        find_color(pz, val1, val2, val3);
+                        break;
+                    }
+                    if(i == dt.zones[zone_p].size() - 3){
+                        cout << "Bizarre pas de point dans les triangles alors que meme zone"<< endl;
+                        val1 = 1;
+                        val2 = 1;
+                        val3 = 1;
+                    }
+                }
+            }
+            f << val1 << " " << val2 << " " << val3 << "\n";
         }
     }
+    f.close();
 }
 
 image::~image(){}
