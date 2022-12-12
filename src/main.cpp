@@ -17,15 +17,16 @@ void create_image();
 int main()
 {
     string name = "rade_brest.txt";
-    image img(720, 50);
+    image img(720, 10);
     My_delaunay dt;
 
     img.read_file(dt, name);
 
     dt.make_delaunator(img);
-    dt.build_map(img);
+    //dt.build_map(img);
 
-    img.build_img(dt, "rade_brest.pgm");
+    //img.build_img(dt, "rade_brest.pgm");
+    img.build_img_pas_opti(dt, "rade_brest_t.pgm");
 
     return EXIT_SUCCESS;
 }

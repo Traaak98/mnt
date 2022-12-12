@@ -38,6 +38,7 @@ public:
     void find_zone(int x_p, int y_p, int &zone);
     void find_color(double pz, int &val1, int &val2, int &val3);
     void build_img(My_delaunay &dt, std::string filename);
+    void build_img_pas_opti(My_delaunay &dt, std::string filename);
 
     ~image();
 
