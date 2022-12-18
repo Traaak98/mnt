@@ -9,12 +9,14 @@
 #include"My_delaunay.h"
 #include<string>
 #include <proj.h>
+#include <iostream>
 
 class My_delaunay;
 
 class image{
 public:
     image(int nb_pixels, int nb_zones);
+    image(int nb_pixels, int nb_zones, double max_x, double max_y, double min_x, double min_y);
     int nb_pixel_h;
     int nb_pixel_l;
     int nb_zone;
@@ -26,7 +28,16 @@ public:
     double min_y;
     double max_z;
     double min_z;
+    double max_area;
     std::vector<double> points;
+
+    struct intervale{
+        int nb_passe;
+        double xmin;
+        double xmax;
+        double ymin;
+        double ymax;
+    };
 
     void update_min_max(double x, double y, double z);
     void update_densite();
@@ -35,10 +46,13 @@ public:
     PJ* init_proj();
     void read_file(My_delaunay &dt, std::string filename);
     void find_zone(double x, double y, int &zone);
-    void find_zone(int x_p, int y_p, int &zone);
     void find_color(double pz, int &val1, int &val2, int &val3);
     void build_img(My_delaunay &dt, std::string filename);
     void build_img_pas_opti(My_delaunay &dt, std::string filename);
+    bool find_zone(intervale inter, std::string &key, double &x1, double &y1, My_delaunay &dt, std::ofstream &f);
+    bool in_intervale(intervale &inter, bool cote, double &range_x, double &range_y, double &x1, double &y1);
+    void build_img_2(My_delaunay &dt, std::string filename);
+
 
     ~image();
 

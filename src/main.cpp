@@ -7,6 +7,7 @@
 #include <map>
 #include "image.h"
 #include "My_delaunay.h"
+#include <list>
 
 using namespace std;
 
@@ -17,16 +18,16 @@ void create_image();
 int main()
 {
     string name = "rade_brest.txt";
-    image img(720, 10);
+    image img(720, 6);
     My_delaunay dt;
 
     img.read_file(dt, name);
 
     dt.make_delaunator(img);
-    //dt.build_map(img);
+    //dt.build_map_b(img);
 
-    //img.build_img(dt, "rade_brest.pgm");
-    img.build_img_pas_opti(dt, "rade_brest_t.pgm");
+    //img.build_img_2(dt, "rade_brest.pgm");
+    img.build_img_pas_opti(dt, "rade_t.pgm");
 
     return EXIT_SUCCESS;
 }
@@ -50,7 +51,7 @@ void create_image()
             { 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191},
             { 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207}};
 
-    ofstream f("img_test.pgm", ios::binary);
+    ofstream f("img_test.ppm", ios::binary);
     f << "P5\n" << width << " " << height << "\n" <<"255\n";
     for(int i = 0; i< height; i++)
     {

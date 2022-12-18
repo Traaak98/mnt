@@ -169,6 +169,35 @@ CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: ../src/My_delaunay.cpp \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
   /usr/include/proj.h \
+  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/exception \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/bits/istream.tcc \
   /usr/include/c++/11/list \
   /usr/include/c++/11/bits/stl_list.h \
   /usr/include/c++/11/bits/allocated_ptr.h \
@@ -191,35 +220,6 @@ CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: ../src/My_delaunay.cpp \
   /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
-  /usr/include/c++/11/exception \
-  /usr/include/c++/11/bits/exception_ptr.h \
-  /usr/include/c++/11/bits/cxxabi_init_exception.h \
-  /usr/include/c++/11/typeinfo \
-  /usr/include/c++/11/bits/nested_exception.h \
-  /usr/include/c++/11/iostream \
-  /usr/include/c++/11/ostream \
-  /usr/include/c++/11/ios \
-  /usr/include/c++/11/bits/ios_base.h \
-  /usr/include/c++/11/bits/locale_classes.h \
-  /usr/include/c++/11/bits/locale_classes.tcc \
-  /usr/include/c++/11/system_error \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
-  /usr/include/c++/11/stdexcept \
-  /usr/include/c++/11/streambuf \
-  /usr/include/c++/11/bits/streambuf.tcc \
-  /usr/include/c++/11/bits/basic_ios.h \
-  /usr/include/c++/11/bits/locale_facets.h \
-  /usr/include/c++/11/cwctype \
-  /usr/include/wctype.h \
-  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
-  /usr/include/c++/11/bits/streambuf_iterator.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
-  /usr/include/c++/11/bits/locale_facets.tcc \
-  /usr/include/c++/11/bits/basic_ios.tcc \
-  /usr/include/c++/11/bits/ostream.tcc \
-  /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -238,7 +238,20 @@ CMakeFiles/Projet.dir/src/My_delaunay.cpp.o: ../src/My_delaunay.cpp \
   /usr/include/c++/11/bits/codecvt.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
-  /usr/include/c++/11/bits/fstream.tcc
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/math.h
 
 CMakeFiles/Projet.dir/src/image.cpp.o: ../src/image.cpp \
   /usr/include/stdc-predef.h \
@@ -412,17 +425,6 @@ CMakeFiles/Projet.dir/src/image.cpp.o: ../src/image.cpp \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
   /usr/include/proj.h \
-  /usr/include/c++/11/cmath \
-  /usr/include/math.h \
-  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
-  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
-  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
-  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
-  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
-  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/ostream \
   /usr/include/c++/11/ios \
@@ -452,11 +454,35 @@ CMakeFiles/Projet.dir/src/image.cpp.o: ../src/image.cpp \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/cmath \
+  /usr/include/math.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/bits/codecvt.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
-  /usr/include/c++/11/bits/fstream.tcc
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc
 
 CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/stdc-predef.h \
@@ -669,6 +695,16 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 ../src/main.cpp:
 
+/usr/include/c++/11/sstream:
+
+/usr/include/c++/11/bits/locale_conv.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.h:
+
 /usr/include/c++/11/bits/fstream.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
@@ -685,6 +721,28 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/limits:
 
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
+/usr/include/c++/11/bits/quoted_string.h:
+
+/usr/include/math.h:
+
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/c++/11/bits/algorithmfwd.h:
+
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/include/c++/11/bits/stl_algo.h:
+
+/usr/include/c++/11/bits/stl_list.h:
+
 /usr/include/c++/11/bits/istream.tcc:
 
 /usr/include/c++/11/istream:
@@ -692,6 +750,10 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/bits/basic_ios.tcc:
 
 /usr/include/c++/11/bits/locale_facets.tcc:
+
+/usr/include/c++/11/bits/list.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
 /usr/include/c++/11/bits/streambuf_iterator.h:
 
@@ -709,11 +771,15 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
 
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+
+/usr/include/c++/11/bits/locale_classes.tcc:
+
 /usr/include/c++/11/bits/locale_classes.h:
 
-/usr/include/c++/11/bits/unique_ptr.h:
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
-/usr/include/c++/11/ostream:
+/usr/include/c++/11/bits/ios_base.h:
 
 /usr/include/c++/11/bits/nested_exception.h:
 
@@ -721,37 +787,9 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/exception:
 
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+/usr/include/c++/11/bits/unique_ptr.h:
 
-/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
-
-/usr/include/c++/11/bits/locale_classes.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
-
-/usr/include/c++/11/bits/ios_base.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
-
-/usr/include/math.h:
-
-/usr/include/c++/11/bits/stl_heap.h:
-
-/usr/include/c++/11/bits/algorithmfwd.h:
-
-/usr/include/x86_64-linux-gnu/bits/math-vector.h:
-
-/usr/include/c++/11/bits/stl_algo.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
-
-/usr/include/c++/11/bits/list.tcc:
-
-/usr/include/c++/11/bits/stl_list.h:
+/usr/include/c++/11/ostream:
 
 /usr/include/proj.h:
 
@@ -791,19 +829,23 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
+/usr/include/c++/11/math.h:
+
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
 /usr/include/stdlib.h:
 
-/usr/include/c++/11/bits/exception_ptr.h:
-
 /usr/include/c++/11/list:
+
+/usr/include/c++/11/bits/exception_ptr.h:
 
 /usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
 /usr/include/c++/11/bitset:
+
+/usr/include/c++/11/locale:
 
 /usr/include/linux/errno.h:
 
@@ -827,15 +869,17 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/ext/aligned_buffer.h:
 
+/usr/include/c++/11/ctime:
+
 /usr/include/c++/11/bits/codecvt.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
 /usr/include/c++/11/iosfwd:
 
-/usr/include/c++/11/iostream:
-
 /usr/include/c++/11/algorithm:
+
+/usr/include/c++/11/iostream:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
@@ -868,6 +912,8 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/system_error:
 
 /usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/libintl.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -1017,6 +1063,8 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/string:
 
+/usr/include/c++/11/bits/sstream.tcc:
+
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
@@ -1035,9 +1083,9 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
-/usr/include/c++/11/bits/cxxabi_init_exception.h:
-
 /usr/include/c++/11/bits/uniform_int_dist.h:
+
+/usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/include/wchar.h:
 
@@ -1137,6 +1185,8 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/time.h:
 
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
+
 /usr/include/c++/11/bits/stl_pair.h:
 
 /usr/include/c++/11/ext/atomicity.h:
@@ -1144,6 +1194,8 @@ CMakeFiles/Projet.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/c++/11/iomanip:
 
 /usr/include/c++/11/ext/new_allocator.h:
 
