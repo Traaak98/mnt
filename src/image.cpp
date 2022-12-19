@@ -86,9 +86,7 @@ void image::projection(double lon, double lat, double z, double &x, double &y, P
 
     // Projection géographique
     cartesian_coord = proj_trans(P, PJ_FWD, geo_coord);
-    //cout << "(" << geo_coord.lpzt.lam << "," << geo_coord.lpzt.phi << ")"
-    //     << " -> "
-    //     << "(" << cartesian_coord.xy.x << "," << cartesian_coord.xy.y << ")";
+
     x = cartesian_coord.xy.x;
     y = cartesian_coord.xy.y;
 }
@@ -138,309 +136,111 @@ void image::read_file(My_delaunay &dt, string filename){
 
 }
 
-void image::find_zone(double x, double y, int &zone){
-
-    //conversion coord to pixel
-    //int x_p = ceil((x-min_x)*densite);
-    //int y_p = ceil((y-min_y)*densite);
-
-    // Trouver zone
-    int part_x = floor((x-min_x)/((max_x-min_x)/nb_zone));
-    int part_y = floor((y-min_y)/((max_y-min_y)/nb_zone));
-    if(part_y>= nb_zone){part_y=nb_zone-1;}
-    if(part_x>= nb_zone){part_x=nb_zone-1;}
-    cout << "part x = " << (x-min_x)/((max_x-min_x)/nb_zone) << " part y = " << (y-min_y)/((max_y-min_y)/nb_zone) <<endl;
-    cout << "part x = " << part_x << " part y = " << part_y <<endl;
-    zone = (part_x+part_y*nb_zone)+1;
-
-}
-
-
-
 void image::find_color(double pz, int &val1, int &val2, int &val3){
-    cout << "PZ = " << pz << endl;
-    cout << "PZ min = " << min_z << endl;
-    cout << "PZ max = " << max_z << endl;
-
     int pos = round(255*(pz-min_z)/(max_z-min_z));
-    cout << pos << endl;
     val1 = round(haxby[pos][0]*255);
     val2 = round(haxby[pos][1]*255);
     val3 = round(haxby[pos][2]*255);
 }
 
-void image::build_img(My_delaunay &dt, string filename) {
-    int zone_p;
-    int val1 = 1;
-    int val2 = 1;
-    int val3 = 1;
-
-    double a;
-    double b;
-    double c;
-    double d;
-
-    double area;
-
-    bool first = 0;
-
-    ofstream f(filename);
-    f << "P3\n" << nb_pixel_l << " " << nb_pixel_h << "\n" << "255\n";
-    ofstream m("pixel_zone.txt");
-    m<<"[";
-    for (int py = 0; py < nb_pixel_h; py++) {
-        for (int px = 0; px < nb_pixel_l; px++) {
-            cout.precision(17);
-            double x = px/densite+min_x;
-            double y = max_y-py/densite ;
-
-            cout << " PX = " << px << " PY = " << py << endl;
-            cout << " Xmax = " << max_x << " Xmin = " << min_x << " Ymax = " << max_y << " Ymin = " << min_y << endl;
-            find_zone(x, y, zone_p);
-            if (dt.zones.count(zone_p)) {
-                if(zone_p == 24){
-                    m<<setprecision(17) << px / densite + min_x<<","<<py / densite + min_y<<",";
-                }
-                for (int i = 0; i < dt.zones[zone_p].size(); i += 3) {
-
-                    // Coins du triangle version x,y
-                    double x1 = points[2 * dt.vect_triangles[i]];
-                    double y1 = points[2 * dt.vect_triangles[i] + 1];
-                    double x2 = points[2 * dt.vect_triangles[i + 1]];
-                    double y2 = points[2 * dt.vect_triangles[i + 1] + 1];
-                    double x3 = points[2 * dt.vect_triangles[i + 2]];
-                    double y3 = points[2 * dt.vect_triangles[i + 2] + 1];
-
-                    // Pour les bords de l'image
-                    dt.area(x1, y1, x2, y2, x3, y3, area);
-                    if(area>max_area){break;}
-
-                    if (dt.in_triangle(x, y, x1, y1, x2, y2, x3, y3)) {
-
-                        // On recupere les hauteurs
-                        double p1z = dt.hauteurs[dt.vect_triangles[i]];
-                        double p2z = dt.hauteurs[dt.vect_triangles[i + 1]];
-                        double p3z = dt.hauteurs[dt.vect_triangles[i + 2]];
-
-                        dt.find_plane(x1, y1, p1z, x2, y2, p2z, x3, y3, p3z, a, b, c, d);
-                        double z = (-d + a * x + b * y) / c;
-                        cout << " VRAI Z = " << z << endl;
-                        if (z < min_z) { z = min_z; }
-                        if (z > max_z) { z = max_z; }
-
-                        break;
-                    }
-                    if (i == dt.zones[zone_p].size() - 3) {
-                        cout << "Bizarre pas de point dans les triangles alors que meme zone" << endl;
-                        if(first==0){
-                            ofstream g("zone_tri.txt");
-                            first = 1;
-                            g << zone_p << "\n";
-                            for (int l = 0; l < dt.zones[zone_p].size(); l += 3){
-                                double x1b = points[2 * dt.vect_triangles[l]];
-                                double y1b = points[2 * dt.vect_triangles[l] + 1];
-                                double x2b = points[2 * dt.vect_triangles[l + 1]];
-                                double y2b = points[2 * dt.vect_triangles[l + 1] + 1];
-                                double x3b = points[2 * dt.vect_triangles[l + 2]];
-                                double y3b = points[2 * dt.vect_triangles[l + 2] + 1];
-                                g<<setprecision(15)<<x1b<<","<<y1b<<","<<x2b<<","<<y2b<<","<<x3b<<","<<y3b<<",";
-                            }
-                            g.close();
-                        }
-                    }
-                }
-                f << val1 << " " << val2 << " " << val3 << "\n";
-            }
-        }
-    }
-    m.close();
-    f.close();
-}
-
-void image::build_img_pas_opti(My_delaunay &dt, string filename){
-
-    double a;
-    double b;
-    double c;
-    double d;
-
-    ofstream f(filename, ios::binary);
-    f << "P6\n" << nb_pixel_l << " " << nb_pixel_h << "\n" <<"255\n";
-    for(int py = 0; py < nb_pixel_h; py++){
-        for(int px = 0; px < nb_pixel_l; px++){
-            int val1 = 1;
-            int val2 = 1;
-            int val3 = 1;
-
-            double area;
-
-            cout.precision(17);
-            cout << " px = " << px << " py = " << py << endl;
-                for(int i=0; i<dt.vect_triangles.size(); i+=3){
-
-                    // Coins du triangle version x,y
-                    double x1 = points[2 * dt.vect_triangles[i]];
-                    double y1 = points[2 * dt.vect_triangles[i]+1];
-                    double x2 = points[2 * dt.vect_triangles[i+1]];
-                    double y2 = points[2 * dt.vect_triangles[i+1]+1];
-                    double x3 = points[2 * dt.vect_triangles[i+2]];
-                    double y3 = points[2 * dt.vect_triangles[i+2]+1];
-
-                    double x = px/densite+min_x;
-                    double y = max_y-py/densite;
-
-                    if(dt.in_triangle(x, y, x1, y1, x2, y2, x3, y3)){
-
-                        // Pour les bords de l'image
-                        dt.area(x1, y1, x2, y2, x3, y3, area);
-                        cout << "area = " << area << endl;
-                        if(area>max_area){cout << " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!out!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"<<endl;break;}
-
-                        cout << " ind tri 1 = " << dt.vect_triangles[i] << " ind tri 2 = " << dt.vect_triangles[i+1] << " ind tri 3 = " << dt.vect_triangles[i+2] << endl;
-
-                        // On recupere les hauteurs
-                        double p1z = dt.hauteurs[dt.vect_triangles[i]];
-                        double p2z = dt.hauteurs[dt.vect_triangles[i+1]];
-                        double p3z = dt.hauteurs[dt.vect_triangles[i+2]];
-
-                        cout << " Z1 = " << p1z << " Z2 = " << p2z << " Z3 = " << p3z << endl;
-                        cout << " X1 = " << x1 << " X2 = " << x2 << " X3 = " << x3 << endl;
-                        cout << " Y1 = " << y1 << " Y2 = " << y2 << " Y3 = " << y3 << endl;
-                        cout << " X = " << x << " Y = " << y << endl;
-
-                        dt.find_plane(x1, y1, p1z, x2, y2, p2z, x3, y3, p3z, a, b, c, d);
-                        double z = (-d+a*x+b*y)/c;
-                        if(z < min_z){z=min_z;}
-                        if(z > max_z){z=max_z;}
-                        cout << " VRAI Z = " << z << endl;
-                        find_color(z, val1, val2, val3);
-                        break;
-                    }
-                }
-            f << reinterpret_cast<char*>(&val1) << reinterpret_cast<char*>(&val2) << reinterpret_cast<char*>(&val3);
-            //f << val1 << " " << val2 << " " << val3 << "\n";
-        }
-    }
-    f.close();
-}
-
-bool image::find_zone(intervale inter, string &key, double &x, double &y, My_delaunay &dt, ofstream &f){
-    //cout << " passe " << endl;
+bool image::find_zone(intervale inter, string &key, double &x, double &y, My_delaunay &dt, int &val1, int &val2, int &val3){
     if(inter.nb_passe == 0){
         string key = "";
     }
     double range_x;
     double range_y;
-    //cout << inter.nb_passe << endl;
-    //cout<< key << endl;
 
     //Condition arret:
     if(nb_zone == inter.nb_passe){
-        int val1 = 1;
-        int val2 = 1;
-        int val3 = 1;
 
         double a;
         double b;
         double c;
         double d;
 
-        if(!dt.zones_b.count(key)){f << val1 << " " << val2 << " " << val3 << "\n";}
-        else {
-            for (int i = 0; i < dt.zones_b[key].size(); i += 3) {
+        if(dt.zones_b.count(key)>0){
+            vector<long unsigned int> transforme_map_list(dt.zones_b[key].begin(), dt.zones_b[key].end());
+            for (int i = 0; i < transforme_map_list.size(); i += 3) {
                 // Coins du triangle version x,y
-                double x1 = points[2 * dt.vect_triangles[i]];
-                double y1 = points[2 * dt.vect_triangles[i] + 1];
-                double x2 = points[2 * dt.vect_triangles[i + 1]];
-                double y2 = points[2 * dt.vect_triangles[i + 1] + 1];
-                double x3 = points[2 * dt.vect_triangles[i + 2]];
-                double y3 = points[2 * dt.vect_triangles[i + 2] + 1];
+                double x1 = points[2 * transforme_map_list[i]];
+                double y1 = points[2 * transforme_map_list[i]+ 1];
+                double x2 = points[2 * transforme_map_list[i+1]];
+                double y2 = points[2 * transforme_map_list[i+1] + 1];
+                double x3 = points[2 * transforme_map_list[i+2]];
+                double y3 = points[2 * transforme_map_list[i+2]+ 1];
 
                 if (dt.in_triangle(x, y, x1, y1, x2, y2, x3, y3)) {
 
                     // On recupere les hauteurs
-                    double z1 = dt.hauteurs[dt.vect_triangles[i]];
-                    double z2 = dt.hauteurs[dt.vect_triangles[i + 1]];
-                    double z3 = dt.hauteurs[dt.vect_triangles[i + 2]];
+                    double z1 = dt.hauteurs[transforme_map_list[i]];
+                    double z2 = dt.hauteurs[transforme_map_list[i+1]];
+                    double z3 = dt.hauteurs[transforme_map_list[i+2]];
 
                     dt.find_plane(x1, y1, z1, x2, y2, z2, x3, y3, z3, a, b, c, d);
-                    cout << a << " " << b << " " << c << " " << d <<endl;
                     double z = (-d + a * x + b * y) / c;
-                    cout << " VRAI Z = " << z << endl;
                     if (z < min_z) { z = min_z; }
                     if (z > max_z) { z = max_z; }
                     find_color(z, val1, val2, val3);
                     break;
                 }
             }
-            f << val1 << " " << val2 << " " << val3 << "\n";
         }
-        //cout << " STOP" << endl;
         return true;
     }
 
     //Quel cote on coupe
-    if(inter.nb_passe%2==0){range_x = (inter.xmax-inter.xmin)/2; range_y=0;
-        //cout << " passage X" <<endl
-        ;}
-    else{range_y = (inter.ymax-inter.ymin)/2; range_x=0;
-        //cout << " passage y "<< endl;
-    }
+    if(inter.nb_passe%2==0){range_x = (inter.xmax-inter.xmin)/2; range_y=0;}
+    else{range_y = (inter.ymax-inter.ymin)/2; range_x=0;}
 
     //On se balade dans l'arbre
     for(int k=0; k<2; k++){
-        //cout << " GO " << k << endl;
+        bool cote;
         intervale new_int;
         new_int.xmin = inter.xmin+k*range_x;
         new_int.xmax = inter.xmax-(1-k)*range_x;
         new_int.ymin = inter.ymin+k*range_y;
         new_int.ymax = inter.ymax-(1-k)*range_y;
         new_int.nb_passe = inter.nb_passe+1;
-        if(in_intervale(new_int, true, range_x, range_y, x, y)){
-            //cout << " innnnnn"<<endl;
+        if(k==0){cote=true;}
+        if(k==1){cote=false;}
+        if(in_intervale(new_int, cote, range_x, range_y, x, y)){
             if(k==0){key.append("a");}
             if(k==1){key.append("b");}
-            if(find_zone(new_int, key, x, y,dt, f)){}
+            if(find_zone(new_int, key, x, y,dt, val1, val2, val3)){}
             key=key.substr(0, key.size()-1);
         }
     }
-    //cout << " false " << endl;
     return false;
 }
 
 bool image::in_intervale(intervale &inter, bool cote, double &range_x, double &range_y, double &x1, double &y1){
-    //cout << " Xmax = " << inter.xmax << " Xmin = " << inter.xmin << " Ymax = " << inter.ymax << " Ymin = " << inter.ymin << endl;
-    //cout << " X1 = " << x1 << " Y1 = " << y1 << " X2 = " << x2 << " Y2 = " << y2 << " X3 = " << x3 << " Y3 = " << y3 << endl;
-    // cote : true -> gauche/haut false -> droite/bas
+     //cote : true -> gauche/haut false -> droite/bas
     if(range_x!=0){
-        if(cote){
-            if(x1<=inter.xmax){return true;}
-        }
-        else{
-            if(x1>=inter.xmin){return true;}
-        }
+        if(cote){if(x1<=inter.xmax){return true;}}
+        else{if(x1>=inter.xmin){return true;}}
     }
     if(range_y!=0){
-        if(cote){
-            if(y1<=inter.ymax){return true;}
-        }
-        else{
-            if(y1>=inter.ymin){return true;}
-        }
+        if(cote){if(y1<=inter.ymax){return true;}}
+        else{if(y1>=inter.ymin){return true;}}
     }
     return false;
 }
 
-void image::build_img_2(My_delaunay &dt, std::string filename){
-    ofstream f(filename);
-    f << "P3\n" << nb_pixel_l << " " << nb_pixel_h << "\n" <<"255\n";
+void image::build_img(My_delaunay &dt, string filename){
+    ofstream f(filename, ios::binary);
+    f << "P6\n" << nb_pixel_l << " " << nb_pixel_h << "\n" <<"255\n";
     for(int py = 0; py < nb_pixel_h; py++) {
         for (int px = 0; px < nb_pixel_l; px++) {
+
+            int val1 = 1;
+            int val2 = 1;
+            int val3 = 1;
 
             cout << " px = " << px << " py = " << py << endl;
 
             double x = px/densite+min_x;
             double y = max_y-py/densite;
+
             string key;
 
             intervale inter_init;
@@ -450,7 +250,9 @@ void image::build_img_2(My_delaunay &dt, std::string filename){
             inter_init.ymax = max_y;
             inter_init.nb_passe = 0;
 
-            find_zone(inter_init, key, x, y, dt, f);
+            find_zone(inter_init, key, x, y, dt, val1, val2, val3);
+
+            f << reinterpret_cast<char*>(&val1) << reinterpret_cast<char*>(&val2) << reinterpret_cast<char*>(&val3);
         }
     }
 }

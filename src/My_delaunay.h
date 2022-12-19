@@ -20,7 +20,7 @@ public:
     std::vector<double> hauteurs;
     std::vector<long unsigned int> vect_triangles;
     std::map<int, std::list<long unsigned int>> zones;
-    std::map<std::string, std::list<int>> zones_b;
+    std::map<std::string, std::list<long unsigned int>> zones_b;
 
     struct intervale{
         int nb_passe;
@@ -30,12 +30,11 @@ public:
         double ymax;
     };
 
-    void build_map(image &img);
     void find_plane(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3, double &a, double &b, double &c, double &d);
     bool in_triangle(double px, double py, double x1, double y1, double x2, double y2, double x3, double y3);
     bool in_intervale(intervale &inter, bool cote, double &range_x, double &range_y, double &x1, double &y1, double &x2, double &y2, double &x3, double &y3);
     bool find_zone(intervale inter, std::string &key, double &x1, double &y1, double &x2, double &y2, double &x3, double &y3, image &img, int &i);
-    void build_map_b(image &img);
+    void build_map(image &img);
     void area(double x1, double y1, double x2, double y2, double x3, double y3, double &area);
 
 };

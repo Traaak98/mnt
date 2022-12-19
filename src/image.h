@@ -45,14 +45,10 @@ public:
     void projection(double lon, double lat, double z, double &x, double &y, PJ* P);
     PJ* init_proj();
     void read_file(My_delaunay &dt, std::string filename);
-    void find_zone(double x, double y, int &zone);
     void find_color(double pz, int &val1, int &val2, int &val3);
-    void build_img(My_delaunay &dt, std::string filename);
-    void build_img_pas_opti(My_delaunay &dt, std::string filename);
-    bool find_zone(intervale inter, std::string &key, double &x1, double &y1, My_delaunay &dt, std::ofstream &f);
+    bool find_zone(intervale inter, std::string &key, double &x1, double &y1, My_delaunay &dt, int &val1, int &val2, int &val3);
     bool in_intervale(intervale &inter, bool cote, double &range_x, double &range_y, double &x1, double &y1);
-    void build_img_2(My_delaunay &dt, std::string filename);
-
+    void build_img(My_delaunay &dt, std::string filename);
 
     ~image();
 
