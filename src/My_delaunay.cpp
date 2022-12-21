@@ -115,12 +115,10 @@ bool My_delaunay::in_intervale(intervale &inter, bool cote, double &range_x, dou
 }
 
 void My_delaunay::build_map(image &img){
-    int k = 0;
     double t_area;
-    time_t init_t = time(NULL);
     for(int i=0; i<vect_triangles.size(); i+=3) {
-        time_t to = time(NULL);
-        k=k+1;
+
+        cout <<"\r Creation arbre binaire pour les triangles :  " <<i << " / " << vect_triangles.size()<< " triangles realises" << flush;
 
         // Coins du triangle version x,y
         double x1 = img.points[2 * vect_triangles[i]];
@@ -131,8 +129,9 @@ void My_delaunay::build_map(image &img){
         double y3 = img.points[2 * vect_triangles[i + 2] + 1];
 
         area(x1, y1, x2, y2, x3, y3, t_area);
-        cout <<i << " / " << vect_triangles.size()<<endl;
-        if(t_area<=img.max_area){intervale inter_init;
+
+        if(t_area<=img.max_area){
+            intervale inter_init;
             inter_init.xmin = img.min_x;
             inter_init.xmax = img.max_x;
             inter_init.ymin = img.min_y;
@@ -141,15 +140,7 @@ void My_delaunay::build_map(image &img){
             string key;
 
             find_zone(inter_init,key, x1, y1, x2, y2, x3, y3, img, i);}
-
-        int p = floor(i/(vect_triangles.size()-1)*100);
-        //time_t t_now = time(NULL);
-        //time_t gap = t_now - to;
-        //int estimation = ceil((gap*(vect_triangles.size()-1-i)));
-        //cout << "\r[" << p << " %]" << " Taille map = " << zones_b.size() << "      "  << i << " / " << vect_triangles.size() << flush;
     }
-    //time_t t_end = time(NULL);
-    //cout << " temps total = " << t_end - init_t<< endl;
 }
 
 void My_delaunay::area(double x1, double y1, double x2, double y2, double x3, double y3, double &area){

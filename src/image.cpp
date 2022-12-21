@@ -11,6 +11,7 @@
 #include <proj.h>
 #include "My_delaunay.h"
 #include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -136,14 +137,14 @@ void image::read_file(My_delaunay &dt, string filename){
 
 }
 
-void image::find_color(double pz, int &val1, int &val2, int &val3){
+void image::find_color(double pz, int &val1, int &val2, int &val3, double &shadow){
     int pos = round(255*(pz-min_z)/(max_z-min_z));
-    val1 = round(haxby[pos][0]*255);
-    val2 = round(haxby[pos][1]*255);
-    val3 = round(haxby[pos][2]*255);
+    val1 = round(haxby[pos][0]*255*shadow);
+    val2 = round(haxby[pos][1]*255*shadow);
+    val3 = round(haxby[pos][2]*255*shadow);
 }
 
-bool image::find_zone(intervale inter, string &key, double &x, double &y, My_delaunay &dt, int &val1, int &val2, int &val3){
+bool image::find_zone(intervale inter, string &key, double &x, double &y, My_delaunay &dt, int &val1, int &val2, int &val3, double &shadow){
     if(inter.nb_passe == 0){
         string key = "";
     }
@@ -180,7 +181,8 @@ bool image::find_zone(intervale inter, string &key, double &x, double &y, My_del
                     double z = (-d + a * x + b * y) / c;
                     if (z < min_z) { z = min_z; }
                     if (z > max_z) { z = max_z; }
-                    find_color(z, val1, val2, val3);
+                    find_shadow(shadow, x1, y1, z1, x2, y2, z2, x3, y3, z3);
+                    find_color(z, val1, val2, val3, shadow);
                     break;
                 }
             }
@@ -206,7 +208,7 @@ bool image::find_zone(intervale inter, string &key, double &x, double &y, My_del
         if(in_intervale(new_int, cote, range_x, range_y, x, y)){
             if(k==0){key.append("a");}
             if(k==1){key.append("b");}
-            if(find_zone(new_int, key, x, y,dt, val1, val2, val3)){}
+            if(find_zone(new_int, key, x, y,dt, val1, val2, val3, shadow)){}
             key=key.substr(0, key.size()-1);
         }
     }
@@ -227,16 +229,21 @@ bool image::in_intervale(intervale &inter, bool cote, double &range_x, double &r
 }
 
 void image::build_img(My_delaunay &dt, string filename){
+    cout << endl;
     ofstream f(filename, ios::binary);
     f << "P6\n" << nb_pixel_l << " " << nb_pixel_h << "\n" <<"255\n";
     for(int py = 0; py < nb_pixel_h; py++) {
         for (int px = 0; px < nb_pixel_l; px++) {
 
+            cout.precision(3);
+            float p = (float(px + py + 1 +1)/float(nb_pixel_l+nb_pixel_h))*100;
+            cout << "\r Pourcentage de pixel realise : " << p << " % " << flush;
+
             int val1 = 1;
             int val2 = 1;
             int val3 = 1;
 
-            cout << " px = " << px << " py = " << py << endl;
+            double shadow;
 
             double x = px/densite+min_x;
             double y = max_y-py/densite;
@@ -250,11 +257,29 @@ void image::build_img(My_delaunay &dt, string filename){
             inter_init.ymax = max_y;
             inter_init.nb_passe = 0;
 
-            find_zone(inter_init, key, x, y, dt, val1, val2, val3);
+            find_zone(inter_init, key, x, y, dt, val1, val2, val3, shadow);
 
             f << reinterpret_cast<char*>(&val1) << reinterpret_cast<char*>(&val2) << reinterpret_cast<char*>(&val3);
         }
     }
+}
+
+void image::find_shadow(double &shadow, double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3){
+    double altitude = (90-45)*M_PI/180;
+    double azimuth = (360-315+90)*M_PI/180;
+
+    double n1 = (y2-y1)*(z3-z1)-(z2-z1)*(y3-y1);
+    double n2 = (z2-z1)*(x3-x1)-(x2-x1)*(z3-z1);
+    double n3 = (x2-x1)*(y3-y1)-(y2-y1)*(x3-x1);
+
+    cout.precision(15);
+
+    shadow = (cos(azimuth)*cos(altitude)*n1+sin(azimuth)*cos(altitude)*n2-sin(altitude)*n3)
+            /(sqrt(pow(n1,2)+pow(n2, 2)+pow(n3,2))*sqrt(pow(cos(azimuth)*cos(altitude),2)+pow(sin(azimuth)*cos(altitude),2)+pow(-sin(altitude),2)));
+    shadow = (1+shadow)/2;
+
+    if(shadow<0){shadow=0;}
+    if(shadow>1){shadow=1;}
 }
 
 image::~image(){}
