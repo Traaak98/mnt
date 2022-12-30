@@ -1,0 +1,848 @@
+\hypertarget{classimage}{}\doxysection{Référence de la classe image}
+\label{classimage}\index{image@{image}}
+
+
+{\ttfamily \#include $<$image.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structimage_1_1intervale}{intervale}}
+\begin{DoxyCompactList}\small\item\em Strcuture de class \+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classimage_ad6c6caf8597377eafc9edd0b868acb73}{image}} (int nb\+\_\+pixels, int nb\+\_\+zones)
+\begin{DoxyCompactList}\small\item\em Constructeur \+: Prend en compte les parametres d\textquotesingle{}entree nombre de pixel en largeur et nombre de passe a realiser dans l\textquotesingle{}arbre. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classimage_a143dcc04d122b3a88d6d99a9384794e7}{image}} (int nb\+\_\+pixels, int nb\+\_\+zones, double \mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\+\_\+x}}, double \mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\+\_\+y}}, double \mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\+\_\+x}}, double \mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\+\_\+y}})
+\begin{DoxyCompactList}\small\item\em Constructeur \+: Deuxieme constructeur qui permet d\textquotesingle{}effectuer les cas tests. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a6184aa7e2fad66431568899069fa455b}{update\+\_\+min\+\_\+max}} (double x, double y, double z)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Mise a jour des bornes pour un nouveau trio x, y, z. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a05d3ca010caeba0efde47ec3912f275b}{update\+\_\+densite}} ()
+\begin{DoxyCompactList}\small\item\em Fonction \+: Calcul la densite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_ad7e696cfa174729e06d500f9aaf5edf6}{update\+\_\+nb\+\_\+pixel\+\_\+h}} ()
+\begin{DoxyCompactList}\small\item\em Fonction \+: Calcul le nombre de pixel dans la hauteur. \end{DoxyCompactList}\item 
+PJ $\ast$ \mbox{\hyperlink{classimage_ad1aa302fc1ab6aa548d5c4475d46dadf}{init\+\_\+proj}} ()
+\begin{DoxyCompactList}\small\item\em Fonction \+: Initialise la projection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a1215029e85c64aec53079897a3cba41f}{projection}} (double lon, double lat, double z, double \&x, double \&y, PJ $\ast$P)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Realise la projection sur une longitude et latitue, avec pour entree la projection initialisee. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a9d15720a20e7e0d7d9fedf5268ba7630}{read\+\_\+file}} (\mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}} \&dt, std\+::string filename)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Lecture du fichier d\textquotesingle{}entree. Cette fonction effectue la projection et complete les differentes variable de l\textquotesingle{}image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_acd44762b73d4d695feba28f1cc0613f3}{find\+\_\+color}} (double pz, int \&val1, int \&val2, int \&val3, double \&shadow)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Pour une hauteur, renvoie les couleurs du pixel dans la colormap haxby. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classimage_a50ae20e4cec68b6fef02cba7d49f07c1}{find\+\_\+zone}} (\mbox{\hyperlink{structimage_1_1intervale}{intervale}} inter, std\+::string \&key, double \&x1, double \&y1, \mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}} \&dt, int \&val1, int \&val2, int \&val3, double \&shadow)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Fonction recursive, permet de trouver la zone d\textquotesingle{}un point à partir de l\textquotesingle{}arbre binaire. Une fois la zone trouvé, on trouve le triangle associé au point et on obtient sa couleur. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classimage_a3313e6aa98705206845a4ef069247be2}{in\+\_\+intervale}} (\mbox{\hyperlink{structimage_1_1intervale}{intervale}} \&inter, bool cote, double \&range\+\_\+x, double \&range\+\_\+y, double \&x1, double \&y1)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Booleen qui identifie si le point est dans l\textquotesingle{}intervale ou non. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a2a2092747195b60c5056533c9bce2bb1}{build\+\_\+img}} (\mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}} \&dt, std\+::string filename)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Fonction qui boucle sur tous les pixels afin de leur associer une couleur à partir des fonctions find\+\_\+zone et find\+\_\+color. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a4f0cc423bd8854759adf9bd7ba526034}{find\+\_\+shadow}} (double \&shadow, double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Calcul le parametre associe à l\textquotesingle{}ombrage. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classimage_aee5ce698112b4d75cfc1b2a3b354c1c5}{$\sim$image}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur \+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classimage_a968f5dcdd8d5a269bf85745843cd23f5}{nb\+\_\+pixel\+\_\+h}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Nombre de pixel dans la hauteur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classimage_a627b1c5fd7cf66c189e4b1c00160468e}{nb\+\_\+pixel\+\_\+l}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Nombre de pixel dans la largeur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classimage_afeb453d60d8b59da884f612ff2f304e6}{nb\+\_\+zone}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Nombre de passe dans l\textquotesingle{}arbre. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classimage_aedeec5f1e01789c80d447accbbc0ae4c}{densite}}
+\begin{DoxyCompactList}\small\item\em Variable \+: densite de l\textquotesingle{}image en pixel/m. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\+\_\+x}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Borne x sup. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\+\_\+y}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Borne y sup. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\+\_\+x}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Borne x inf. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\+\_\+y}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Borne y inf. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classimage_a74f987ff1c12981e2b0d89b278e1e924}{max\+\_\+z}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Borne z sup. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\+\_\+z}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Borne z inf. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classimage_a1c9c35e1de0b12f1c6f00e281258cbf6}{max\+\_\+area}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Aire maximale d\textquotesingle{}un triangle autorisee. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}
+\begin{DoxyCompactList}\small\item\em Variable \+: Vecteur qui contient les coordonnés des points sans leur information de hauteur de type (X1, Y1, X2, Y2,...) \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classimage_a8ee23c9661a6277b2613934b74fde8a8}{hauteurs}}
+\begin{DoxyCompactList}\small\item\em Variable \+: vecteur contenant les hauteurs des points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+Apolline de Vaulchier du Deschaux 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+08/12/2022
+\end{DoxyDate}
+Permet de creer un objet image. Cet objet permet de travailler plus facilement sur l\textquotesingle{}image en pixel et de garder les paramètres clés comme les coordonnés des points, le nombre de pixels, les bornes, etc.
+
+\begin{DoxyAuthor}{Auteur}
+Apolline de Vaulchier du Deschaux 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+08/12/2022
+\end{DoxyDate}
+Permet de creer un objet image. Cet objet permet de travailler plus facilement sur l\textquotesingle{}image en pixel et de garder les parametres cles comme les coordonnes des points, le nombre de pixels, les bornes, etc. 
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00021}{21}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classimage_ad6c6caf8597377eafc9edd0b868acb73}\label{classimage_ad6c6caf8597377eafc9edd0b868acb73}} 
+\index{image@{image}!image@{image}}
+\index{image@{image}!image@{image}}
+\doxysubsubsection{\texorpdfstring{image()}{image()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily image\+::image (\begin{DoxyParamCaption}\item[{int}]{nb\+\_\+pixels,  }\item[{int}]{nb\+\_\+zones }\end{DoxyParamCaption})}
+
+
+
+Constructeur \+: Prend en compte les parametres d\textquotesingle{}entree nombre de pixel en largeur et nombre de passe a realiser dans l\textquotesingle{}arbre. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00022}{22}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022                                         : \mbox{\hyperlink{classimage_a627b1c5fd7cf66c189e4b1c00160468e}{nb\_pixel\_l}}(nb\_pixels), \mbox{\hyperlink{classimage_afeb453d60d8b59da884f612ff2f304e6}{nb\_zone}}(nb\_zones) \{}
+\DoxyCodeLine{00023     \mbox{\hyperlink{classimage_a968f5dcdd8d5a269bf85745843cd23f5}{nb\_pixel\_h}} = 0;}
+\DoxyCodeLine{00024     \mbox{\hyperlink{classimage_aedeec5f1e01789c80d447accbbc0ae4c}{densite}} = 0;}
+\DoxyCodeLine{00025     \mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}} = -\/1e10;}
+\DoxyCodeLine{00026     \mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}} = -\/1e10;}
+\DoxyCodeLine{00027     \mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}} = 1e10;}
+\DoxyCodeLine{00028     \mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}} = 1e10;}
+\DoxyCodeLine{00029     \mbox{\hyperlink{classimage_a74f987ff1c12981e2b0d89b278e1e924}{max\_z}} = -\/1e10;}
+\DoxyCodeLine{00030     \mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\_z}} = 1e10;}
+\DoxyCodeLine{00031     \mbox{\hyperlink{classimage_a1c9c35e1de0b12f1c6f00e281258cbf6}{max\_area}} = 1;}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_a143dcc04d122b3a88d6d99a9384794e7}\label{classimage_a143dcc04d122b3a88d6d99a9384794e7}} 
+\index{image@{image}!image@{image}}
+\index{image@{image}!image@{image}}
+\doxysubsubsection{\texorpdfstring{image()}{image()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily image\+::image (\begin{DoxyParamCaption}\item[{int}]{nb\+\_\+pixels,  }\item[{int}]{nb\+\_\+zones,  }\item[{double}]{max\+\_\+x,  }\item[{double}]{max\+\_\+y,  }\item[{double}]{min\+\_\+x,  }\item[{double}]{min\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Constructeur \+: Deuxieme constructeur qui permet d\textquotesingle{}effectuer les cas tests. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00036}{36}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036                                                                                                 :}
+\DoxyCodeLine{00037             \mbox{\hyperlink{classimage_a627b1c5fd7cf66c189e4b1c00160468e}{nb\_pixel\_l}}(nb\_pixels), \mbox{\hyperlink{classimage_afeb453d60d8b59da884f612ff2f304e6}{nb\_zone}}(nb\_zones) , \mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}}(\mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}}), \mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}}(\mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}}), \mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}}(\mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}}), \mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}}(\mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}})\{}
+\DoxyCodeLine{00038     \mbox{\hyperlink{classimage_a74f987ff1c12981e2b0d89b278e1e924}{max\_z}} = -\/1e10;}
+\DoxyCodeLine{00039     \mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\_z}} = 1e10;}
+\DoxyCodeLine{00040     \mbox{\hyperlink{classimage_a05d3ca010caeba0efde47ec3912f275b}{update\_densite}}();}
+\DoxyCodeLine{00041     \mbox{\hyperlink{classimage_ad7e696cfa174729e06d500f9aaf5edf6}{update\_nb\_pixel\_h}}();}
+\DoxyCodeLine{00042 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_aee5ce698112b4d75cfc1b2a3b354c1c5}\label{classimage_aee5ce698112b4d75cfc1b2a3b354c1c5}} 
+\index{image@{image}!````~image@{$\sim$image}}
+\index{````~image@{$\sim$image}!image@{image}}
+\doxysubsubsection{\texorpdfstring{$\sim$image()}{~image()}}
+{\footnotesize\ttfamily image\+::$\sim$image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur \+: 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00346}{346}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00346 \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classimage_a2a2092747195b60c5056533c9bce2bb1}\label{classimage_a2a2092747195b60c5056533c9bce2bb1}} 
+\index{image@{image}!build\_img@{build\_img}}
+\index{build\_img@{build\_img}!image@{image}}
+\doxysubsubsection{\texorpdfstring{build\_img()}{build\_img()}}
+{\footnotesize\ttfamily void image\+::build\+\_\+img (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}} \&}]{dt,  }\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Fonction qui boucle sur tous les pixels afin de leur associer une couleur à partir des fonctions find\+\_\+zone et find\+\_\+color. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00277}{277}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00277                                                      \{}
+\DoxyCodeLine{00278 }
+\DoxyCodeLine{00279     \textcolor{comment}{// Affichage de la progression}}
+\DoxyCodeLine{00280     cout<<endl;}
+\DoxyCodeLine{00281     \textcolor{keywordtype}{int} count = 0;}
+\DoxyCodeLine{00282 }
+\DoxyCodeLine{00283     \textcolor{comment}{// Ouverture et initialisation du fichier associe a l'image}}
+\DoxyCodeLine{00284     ofstream f(filename, ios::binary);}
+\DoxyCodeLine{00285     f << \textcolor{stringliteral}{"{}P6\(\backslash\)n"{}} << \mbox{\hyperlink{classimage_a627b1c5fd7cf66c189e4b1c00160468e}{nb\_pixel\_l}} << \textcolor{stringliteral}{"{} "{}} << \mbox{\hyperlink{classimage_a968f5dcdd8d5a269bf85745843cd23f5}{nb\_pixel\_h}} << \textcolor{stringliteral}{"{}\(\backslash\)n"{}} <<\textcolor{stringliteral}{"{}255\(\backslash\)n"{}};}
+\DoxyCodeLine{00286 }
+\DoxyCodeLine{00287     \textcolor{comment}{// Boucle sur tous les pixels de l'image}}
+\DoxyCodeLine{00288     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} py = 0; py < \mbox{\hyperlink{classimage_a968f5dcdd8d5a269bf85745843cd23f5}{nb\_pixel\_h}}; py++) \{}
+\DoxyCodeLine{00289         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} px = 0; px < \mbox{\hyperlink{classimage_a627b1c5fd7cf66c189e4b1c00160468e}{nb\_pixel\_l}}; px++) \{}
+\DoxyCodeLine{00290 }
+\DoxyCodeLine{00291             \textcolor{comment}{// Affichage de la progression}}
+\DoxyCodeLine{00292             cout.precision(3);}
+\DoxyCodeLine{00293             \textcolor{keywordtype}{float} p = (float(count + 1 +1)/float(\mbox{\hyperlink{classimage_a627b1c5fd7cf66c189e4b1c00160468e}{nb\_pixel\_l}}*\mbox{\hyperlink{classimage_a968f5dcdd8d5a269bf85745843cd23f5}{nb\_pixel\_h}}))*100;}
+\DoxyCodeLine{00294             cout<<\textcolor{stringliteral}{"{}\(\backslash\)rPourcentage de pixel realise : "{}}<<p<<\textcolor{stringliteral}{"{} \% "{}}<<flush;}
+\DoxyCodeLine{00295             count=count+1;}
+\DoxyCodeLine{00296 }
+\DoxyCodeLine{00297             \textcolor{comment}{// Initialisation de la couleur sur le noir}}
+\DoxyCodeLine{00298             \textcolor{keywordtype}{int} val1 = 1;}
+\DoxyCodeLine{00299             \textcolor{keywordtype}{int} val2 = 1;}
+\DoxyCodeLine{00300             \textcolor{keywordtype}{int} val3 = 1;}
+\DoxyCodeLine{00301 }
+\DoxyCodeLine{00302             \textcolor{keywordtype}{double} shadow; \textcolor{comment}{// Initialisation de l'ombrage}}
+\DoxyCodeLine{00303 }
+\DoxyCodeLine{00304             \textcolor{comment}{// Conversion pixel en m}}
+\DoxyCodeLine{00305             \textcolor{keywordtype}{double} x = px/\mbox{\hyperlink{classimage_aedeec5f1e01789c80d447accbbc0ae4c}{densite}}+\mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}};}
+\DoxyCodeLine{00306             \textcolor{keywordtype}{double} y = \mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}}-\/py/\mbox{\hyperlink{classimage_aedeec5f1e01789c80d447accbbc0ae4c}{densite}};}
+\DoxyCodeLine{00307 }
+\DoxyCodeLine{00308             \textcolor{keywordtype}{string} key; \textcolor{comment}{// Initialisation de la cle de la map}}
+\DoxyCodeLine{00309 }
+\DoxyCodeLine{00310             \textcolor{comment}{// Initialisation de l'intervale de depart}}
+\DoxyCodeLine{00311             intervale inter\_init;}
+\DoxyCodeLine{00312             inter\_init.xmin = \mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}};}
+\DoxyCodeLine{00313             inter\_init.xmax = \mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}};}
+\DoxyCodeLine{00314             inter\_init.ymin = \mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}};}
+\DoxyCodeLine{00315             inter\_init.ymax = \mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}};}
+\DoxyCodeLine{00316             inter\_init.nb\_passe = 0;}
+\DoxyCodeLine{00317 }
+\DoxyCodeLine{00318             \mbox{\hyperlink{classimage_a50ae20e4cec68b6fef02cba7d49f07c1}{find\_zone}}(inter\_init, key, x, y, dt, val1, val2, val3, shadow);}
+\DoxyCodeLine{00319 }
+\DoxyCodeLine{00320             \textcolor{comment}{// Ecriture de la couleur dans le fichier associe a l'image}}
+\DoxyCodeLine{00321             f << reinterpret\_cast<char*>(\&val1) << \textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&val2) << \textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&val3);}
+\DoxyCodeLine{00322         \}}
+\DoxyCodeLine{00323     \}}
+\DoxyCodeLine{00324 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_acd44762b73d4d695feba28f1cc0613f3}\label{classimage_acd44762b73d4d695feba28f1cc0613f3}} 
+\index{image@{image}!find\_color@{find\_color}}
+\index{find\_color@{find\_color}!image@{image}}
+\doxysubsubsection{\texorpdfstring{find\_color()}{find\_color()}}
+{\footnotesize\ttfamily void image\+::find\+\_\+color (\begin{DoxyParamCaption}\item[{double}]{pz,  }\item[{int \&}]{val1,  }\item[{int \&}]{val2,  }\item[{int \&}]{val3,  }\item[{double \&}]{shadow }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Pour une hauteur, renvoie les couleurs du pixel dans la colormap haxby. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00161}{161}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00161                                                                                 \{}
+\DoxyCodeLine{00162     \textcolor{comment}{// Pour une heuteur et une ombre, calcul les indices associes a la bonne couleur dans la colormap haxby.}}
+\DoxyCodeLine{00163     \textcolor{comment}{// Puis renvoie les bonnes couleurs RVB}}
+\DoxyCodeLine{00164     \textcolor{keywordtype}{int} pos = round(255*(pz-\/\mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\_z}})/(\mbox{\hyperlink{classimage_a74f987ff1c12981e2b0d89b278e1e924}{max\_z}}-\/\mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\_z}})); \textcolor{comment}{// indice}}
+\DoxyCodeLine{00165     val1 = round(haxby[pos][0]*255*shadow); \textcolor{comment}{// R}}
+\DoxyCodeLine{00166     val2 = round(haxby[pos][1]*255*shadow); \textcolor{comment}{// V}}
+\DoxyCodeLine{00167     val3 = round(haxby[pos][2]*255*shadow); \textcolor{comment}{// B}}
+\DoxyCodeLine{00168 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_a4f0cc423bd8854759adf9bd7ba526034}\label{classimage_a4f0cc423bd8854759adf9bd7ba526034}} 
+\index{image@{image}!find\_shadow@{find\_shadow}}
+\index{find\_shadow@{find\_shadow}!image@{image}}
+\doxysubsubsection{\texorpdfstring{find\_shadow()}{find\_shadow()}}
+{\footnotesize\ttfamily void image\+::find\+\_\+shadow (\begin{DoxyParamCaption}\item[{double \&}]{shadow,  }\item[{double}]{x1,  }\item[{double}]{y1,  }\item[{double}]{z1,  }\item[{double}]{x2,  }\item[{double}]{y2,  }\item[{double}]{z2,  }\item[{double}]{x3,  }\item[{double}]{y3,  }\item[{double}]{z3 }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Calcul le parametre associe à l\textquotesingle{}ombrage. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00326}{326}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00326                                                                                                                                         \{}
+\DoxyCodeLine{00327 }
+\DoxyCodeLine{00328     \textcolor{comment}{// CHoix du cote d'ou vient la lumiere}}
+\DoxyCodeLine{00329     \textcolor{keywordtype}{double} altitude = (90-\/45)*M\_PI/180;}
+\DoxyCodeLine{00330     \textcolor{keywordtype}{double} azimuth = (360-\/315+90)*M\_PI/180;}
+\DoxyCodeLine{00331 }
+\DoxyCodeLine{00332     \textcolor{comment}{// Calcul du vecteur normal au triangle}}
+\DoxyCodeLine{00333     \textcolor{keywordtype}{double} n1 = (y2-\/y1)*(z3-\/z1)-\/(z2-\/z1)*(y3-\/y1);}
+\DoxyCodeLine{00334     \textcolor{keywordtype}{double} n2 = (z2-\/z1)*(x3-\/x1)-\/(x2-\/x1)*(z3-\/z1);}
+\DoxyCodeLine{00335     \textcolor{keywordtype}{double} n3 = (x2-\/x1)*(y3-\/y1)-\/(y2-\/y1)*(x3-\/x1);}
+\DoxyCodeLine{00336 }
+\DoxyCodeLine{00337     shadow = (cos(azimuth)*cos(altitude)*n1+sin(azimuth)*cos(altitude)*n2-\/sin(altitude)*n3)}
+\DoxyCodeLine{00338             /(sqrt(pow(n1,2)+pow(n2, 2)+pow(n3,2))*sqrt(pow(cos(azimuth)*cos(altitude),2)+pow(sin(azimuth)*cos(altitude),2)+pow(-\/sin(altitude),2)));}
+\DoxyCodeLine{00339     shadow = (1+shadow)/2; \textcolor{comment}{// Normalisation}}
+\DoxyCodeLine{00340 }
+\DoxyCodeLine{00341     \textcolor{keywordflow}{if}(shadow<0)\{shadow=0;\}}
+\DoxyCodeLine{00342     \textcolor{keywordflow}{if}(shadow>1)\{shadow=1;\}}
+\DoxyCodeLine{00343 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_a50ae20e4cec68b6fef02cba7d49f07c1}\label{classimage_a50ae20e4cec68b6fef02cba7d49f07c1}} 
+\index{image@{image}!find\_zone@{find\_zone}}
+\index{find\_zone@{find\_zone}!image@{image}}
+\doxysubsubsection{\texorpdfstring{find\_zone()}{find\_zone()}}
+{\footnotesize\ttfamily bool image\+::find\+\_\+zone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structimage_1_1intervale}{intervale}}}]{inter,  }\item[{std\+::string \&}]{key,  }\item[{double \&}]{x1,  }\item[{double \&}]{y1,  }\item[{\mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}} \&}]{dt,  }\item[{int \&}]{val1,  }\item[{int \&}]{val2,  }\item[{int \&}]{val3,  }\item[{double \&}]{shadow }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Fonction recursive, permet de trouver la zone d\textquotesingle{}un point à partir de l\textquotesingle{}arbre binaire. Une fois la zone trouvé, on trouve le triangle associé au point et on obtient sa couleur. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00170}{170}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00170                                                                                                                                          \{}
+\DoxyCodeLine{00171 }
+\DoxyCodeLine{00172     \textcolor{comment}{// Initialisation de la cle de la map}}
+\DoxyCodeLine{00173     \textcolor{keywordflow}{if}(inter.nb\_passe == 0)\{}
+\DoxyCodeLine{00174         \textcolor{keywordtype}{string} key = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00175     \}}
+\DoxyCodeLine{00176 }
+\DoxyCodeLine{00177     \textcolor{comment}{// Variables qui correspond à la partie tronquee de l'intervale}}
+\DoxyCodeLine{00178     \textcolor{keywordtype}{double} range\_x;}
+\DoxyCodeLine{00179     \textcolor{keywordtype}{double} range\_y;}
+\DoxyCodeLine{00180 }
+\DoxyCodeLine{00181     \textcolor{comment}{//Condition arret:}}
+\DoxyCodeLine{00182     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classimage_afeb453d60d8b59da884f612ff2f304e6}{nb\_zone}} == inter.nb\_passe)\{}
+\DoxyCodeLine{00183 }
+\DoxyCodeLine{00184         \textcolor{comment}{// Parametre du plan associe a un triangle}}
+\DoxyCodeLine{00185         \textcolor{keywordtype}{double} a;}
+\DoxyCodeLine{00186         \textcolor{keywordtype}{double} b;}
+\DoxyCodeLine{00187         \textcolor{keywordtype}{double} c;}
+\DoxyCodeLine{00188         \textcolor{keywordtype}{double} d;}
+\DoxyCodeLine{00189 }
+\DoxyCodeLine{00190         \textcolor{comment}{// si la zone existe alors :}}
+\DoxyCodeLine{00191         \textcolor{keywordflow}{if}(dt.\mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}.count(key)>0)\{}
+\DoxyCodeLine{00192             \textcolor{comment}{// Transformation de la liste en vecteur pour avoir acces au indices facilement}}
+\DoxyCodeLine{00193             vector<long unsigned int> transforme\_map\_list(dt.\mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key].begin(), dt.\mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key].end());}
+\DoxyCodeLine{00194 }
+\DoxyCodeLine{00195             \textcolor{comment}{// On parcours les triangles de la zone et on regarde si le pixel est dedans :}}
+\DoxyCodeLine{00196             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < transforme\_map\_list.size(); i += 3) \{}
+\DoxyCodeLine{00197 }
+\DoxyCodeLine{00198                 \textcolor{comment}{// Coins du triangle version x,y}}
+\DoxyCodeLine{00199                 \textcolor{keywordtype}{double} x1 = \mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * transforme\_map\_list[i]];}
+\DoxyCodeLine{00200                 \textcolor{keywordtype}{double} y1 = \mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * transforme\_map\_list[i]+ 1];}
+\DoxyCodeLine{00201                 \textcolor{keywordtype}{double} x2 = \mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * transforme\_map\_list[i+1]];}
+\DoxyCodeLine{00202                 \textcolor{keywordtype}{double} y2 = \mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * transforme\_map\_list[i+1] + 1];}
+\DoxyCodeLine{00203                 \textcolor{keywordtype}{double} x3 = \mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * transforme\_map\_list[i+2]];}
+\DoxyCodeLine{00204                 \textcolor{keywordtype}{double} y3 = \mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * transforme\_map\_list[i+2]+ 1];}
+\DoxyCodeLine{00205 }
+\DoxyCodeLine{00206                 \textcolor{keywordflow}{if} (dt.\mbox{\hyperlink{classMy__delaunay_aafe184a8ada9cccf68a986b46c4c3438}{in\_triangle}}(x, y, x1, y1, x2, y2, x3, y3)) \{}
+\DoxyCodeLine{00207 }
+\DoxyCodeLine{00208                     \textcolor{comment}{// On recupere les hauteurs}}
+\DoxyCodeLine{00209                     \textcolor{keywordtype}{double} z1 = \mbox{\hyperlink{classimage_a8ee23c9661a6277b2613934b74fde8a8}{hauteurs}}[transforme\_map\_list[i]];}
+\DoxyCodeLine{00210                     \textcolor{keywordtype}{double} z2 = \mbox{\hyperlink{classimage_a8ee23c9661a6277b2613934b74fde8a8}{hauteurs}}[transforme\_map\_list[i+1]];}
+\DoxyCodeLine{00211                     \textcolor{keywordtype}{double} z3 = \mbox{\hyperlink{classimage_a8ee23c9661a6277b2613934b74fde8a8}{hauteurs}}[transforme\_map\_list[i+2]];}
+\DoxyCodeLine{00212 }
+\DoxyCodeLine{00213                     \textcolor{comment}{// Calcul du plan associé au triangle}}
+\DoxyCodeLine{00214                     dt.\mbox{\hyperlink{classMy__delaunay_a74cd669a3e094bdbc8d3ac39afc1b062}{find\_plane}}(x1, y1, z1, x2, y2, z2, x3, y3, z3, a, b, c, d);}
+\DoxyCodeLine{00215 }
+\DoxyCodeLine{00216                     \textcolor{comment}{// Calcul de la hauteur du pixel}}
+\DoxyCodeLine{00217                     \textcolor{keywordtype}{double} z = (-\/d + a * x + b * y) / c;}
+\DoxyCodeLine{00218                     \textcolor{keywordflow}{if} (z < \mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\_z}}) \{ z = \mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\_z}}; \}}
+\DoxyCodeLine{00219                     \textcolor{keywordflow}{if} (z > \mbox{\hyperlink{classimage_a74f987ff1c12981e2b0d89b278e1e924}{max\_z}}) \{ z = \mbox{\hyperlink{classimage_a74f987ff1c12981e2b0d89b278e1e924}{max\_z}}; \}}
+\DoxyCodeLine{00220 }
+\DoxyCodeLine{00221                     \textcolor{comment}{// Calcul de l'ombrage}}
+\DoxyCodeLine{00222                     \mbox{\hyperlink{classimage_a4f0cc423bd8854759adf9bd7ba526034}{find\_shadow}}(shadow, x1, y1, z1, x2, y2, z2, x3, y3, z3);}
+\DoxyCodeLine{00223 }
+\DoxyCodeLine{00224                     \textcolor{comment}{// On trouve la couleur associe a ce pixel}}
+\DoxyCodeLine{00225                     \mbox{\hyperlink{classimage_acd44762b73d4d695feba28f1cc0613f3}{find\_color}}(z, val1, val2, val3, shadow);}
+\DoxyCodeLine{00226                     \textcolor{keywordflow}{break}; \textcolor{comment}{// Sortie de la boucle}}
+\DoxyCodeLine{00227                 \}}
+\DoxyCodeLine{00228             \}}
+\DoxyCodeLine{00229         \}}
+\DoxyCodeLine{00230         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00231     \}}
+\DoxyCodeLine{00232 }
+\DoxyCodeLine{00233     \textcolor{comment}{//Quel cote on coupe : Soit intervale en X, soit intervale en Y}}
+\DoxyCodeLine{00234     \textcolor{keywordflow}{if}(inter.nb\_passe\%2==0)\{range\_x = (inter.xmax-\/inter.xmin)/2; range\_y=0;\}}
+\DoxyCodeLine{00235     \textcolor{keywordflow}{else}\{range\_y = (inter.ymax-\/inter.ymin)/2; range\_x=0;\}}
+\DoxyCodeLine{00236 }
+\DoxyCodeLine{00237     \textcolor{comment}{//On se balade dans l'arbre}}
+\DoxyCodeLine{00238     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} k=0; k<2; k++)\{}
+\DoxyCodeLine{00239 }
+\DoxyCodeLine{00240         \textcolor{comment}{// Indique le cote}}
+\DoxyCodeLine{00241         \textcolor{keywordtype}{bool} cote;}
+\DoxyCodeLine{00242         \textcolor{keywordflow}{if}(k==0)\{cote=\textcolor{keyword}{true};\}}
+\DoxyCodeLine{00243         \textcolor{keywordflow}{if}(k==1)\{cote=\textcolor{keyword}{false};\}}
+\DoxyCodeLine{00244 }
+\DoxyCodeLine{00245         \textcolor{comment}{// Creation du nouvel intervale}}
+\DoxyCodeLine{00246         intervale new\_int;}
+\DoxyCodeLine{00247         new\_int.xmin = inter.xmin+k*range\_x;}
+\DoxyCodeLine{00248         new\_int.xmax = inter.xmax-\/(1-\/k)*range\_x;}
+\DoxyCodeLine{00249         new\_int.ymin = inter.ymin+k*range\_y;}
+\DoxyCodeLine{00250         new\_int.ymax = inter.ymax-\/(1-\/k)*range\_y;}
+\DoxyCodeLine{00251         new\_int.nb\_passe = inter.nb\_passe+1;}
+\DoxyCodeLine{00252 }
+\DoxyCodeLine{00253         \textcolor{comment}{// Est ce que le pixel se trouve dans le nouvel intervale ?}}
+\DoxyCodeLine{00254         \textcolor{keywordflow}{if}(\mbox{\hyperlink{classimage_a3313e6aa98705206845a4ef069247be2}{in\_intervale}}(new\_int, cote, range\_x, range\_y, x, y))\{}
+\DoxyCodeLine{00255             \textcolor{keywordflow}{if}(k==0)\{key.append(\textcolor{stringliteral}{"{}a"{}});\}}
+\DoxyCodeLine{00256             \textcolor{keywordflow}{if}(k==1)\{key.append(\textcolor{stringliteral}{"{}b"{}});\}}
+\DoxyCodeLine{00257             \textcolor{keywordflow}{if}(\mbox{\hyperlink{classimage_a50ae20e4cec68b6fef02cba7d49f07c1}{find\_zone}}(new\_int, key, x, y,dt, val1, val2, val3, shadow))\{\}}
+\DoxyCodeLine{00258             key=key.substr(0, key.size()-\/1);}
+\DoxyCodeLine{00259         \}}
+\DoxyCodeLine{00260     \}}
+\DoxyCodeLine{00261     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00262 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_a3313e6aa98705206845a4ef069247be2}\label{classimage_a3313e6aa98705206845a4ef069247be2}} 
+\index{image@{image}!in\_intervale@{in\_intervale}}
+\index{in\_intervale@{in\_intervale}!image@{image}}
+\doxysubsubsection{\texorpdfstring{in\_intervale()}{in\_intervale()}}
+{\footnotesize\ttfamily bool image\+::in\+\_\+intervale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structimage_1_1intervale}{intervale}} \&}]{inter,  }\item[{bool}]{cote,  }\item[{double \&}]{range\+\_\+x,  }\item[{double \&}]{range\+\_\+y,  }\item[{double \&}]{x1,  }\item[{double \&}]{y1 }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Booleen qui identifie si le point est dans l\textquotesingle{}intervale ou non. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00264}{264}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00264                                                                                                              \{}
+\DoxyCodeLine{00265      \textcolor{comment}{//cote : true -\/> gauche/haut false -\/> droite/bas}}
+\DoxyCodeLine{00266     \textcolor{keywordflow}{if}(range\_x!=0)\{}
+\DoxyCodeLine{00267         \textcolor{keywordflow}{if}(cote)\{\textcolor{keywordflow}{if}(x1<=inter.xmax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}\}}
+\DoxyCodeLine{00268         \textcolor{keywordflow}{else}\{\textcolor{keywordflow}{if}(x1>=inter.xmin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}\}}
+\DoxyCodeLine{00269     \}}
+\DoxyCodeLine{00270     \textcolor{keywordflow}{if}(range\_y!=0)\{}
+\DoxyCodeLine{00271         \textcolor{keywordflow}{if}(cote)\{\textcolor{keywordflow}{if}(y1<=inter.ymax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}\}}
+\DoxyCodeLine{00272         \textcolor{keywordflow}{else}\{\textcolor{keywordflow}{if}(y1>=inter.ymin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}\}}
+\DoxyCodeLine{00273     \}}
+\DoxyCodeLine{00274     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00275 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_ad1aa302fc1ab6aa548d5c4475d46dadf}\label{classimage_ad1aa302fc1ab6aa548d5c4475d46dadf}} 
+\index{image@{image}!init\_proj@{init\_proj}}
+\index{init\_proj@{init\_proj}!image@{image}}
+\doxysubsubsection{\texorpdfstring{init\_proj()}{init\_proj()}}
+{\footnotesize\ttfamily PJ $\ast$ image\+::init\+\_\+proj (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Initialise la projection. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00068}{68}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00068                     \{}
+\DoxyCodeLine{00069     \textcolor{comment}{// Initialisation de la projection}}
+\DoxyCodeLine{00070     PJ* P = proj\_create\_crs\_to\_crs(}
+\DoxyCodeLine{00071             PJ\_DEFAULT\_CTX,}
+\DoxyCodeLine{00072             \textcolor{stringliteral}{"{}+proj=longlat +datum=WGS84"{}},}
+\DoxyCodeLine{00073             \textcolor{stringliteral}{"{}+proj=lcc +lat\_1=49 +lat\_2=44 +lat\_0=46.5 +lon\_0=3 +x\_0=700000 +y\_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no\_defs"{}},}
+\DoxyCodeLine{00074             NULL);}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076     \textcolor{keywordflow}{if} (P == 0) \{}
+\DoxyCodeLine{00077         \textcolor{comment}{// Identifie si la projection est bien initialisee}}
+\DoxyCodeLine{00078         cout << \textcolor{stringliteral}{"{}Failed to create transformation object."{}} << endl;}
+\DoxyCodeLine{00079     \}}
+\DoxyCodeLine{00080     \textcolor{keywordflow}{return} P;}
+\DoxyCodeLine{00081 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_a1215029e85c64aec53079897a3cba41f}\label{classimage_a1215029e85c64aec53079897a3cba41f}} 
+\index{image@{image}!projection@{projection}}
+\index{projection@{projection}!image@{image}}
+\doxysubsubsection{\texorpdfstring{projection()}{projection()}}
+{\footnotesize\ttfamily void image\+::projection (\begin{DoxyParamCaption}\item[{double}]{lon,  }\item[{double}]{lat,  }\item[{double}]{z,  }\item[{double \&}]{x,  }\item[{double \&}]{y,  }\item[{PJ $\ast$}]{P }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Realise la projection sur une longitude et latitue, avec pour entree la projection initialisee. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00083}{83}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00083                                                                                    \{}
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085     \textcolor{comment}{// Deux coordonnees a exprimer dans des referentiels differents}}
+\DoxyCodeLine{00086     PJ\_COORD geo\_coord, cartesian\_coord;}
+\DoxyCodeLine{00087 }
+\DoxyCodeLine{00088     \textcolor{comment}{// Position geographique en latitude/longitude de l'ENSTA}}
+\DoxyCodeLine{00089     geo\_coord.lpzt.lam = lon; \textcolor{comment}{// longitude}}
+\DoxyCodeLine{00090     geo\_coord.lpzt.phi = lat; \textcolor{comment}{// latitude}}
+\DoxyCodeLine{00091     geo\_coord.lpzt.z = z; \textcolor{comment}{// le z dans le referentiel ellipsoidale n'est pas necessaire pour la projection}}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093     \textcolor{comment}{// Projection geographique}}
+\DoxyCodeLine{00094     cartesian\_coord = proj\_trans(P, PJ\_FWD, geo\_coord);}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096     x = cartesian\_coord.xy.x;}
+\DoxyCodeLine{00097     y = cartesian\_coord.xy.y;}
+\DoxyCodeLine{00098 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_a9d15720a20e7e0d7d9fedf5268ba7630}\label{classimage_a9d15720a20e7e0d7d9fedf5268ba7630}} 
+\index{image@{image}!read\_file@{read\_file}}
+\index{read\_file@{read\_file}!image@{image}}
+\doxysubsubsection{\texorpdfstring{read\_file()}{read\_file()}}
+{\footnotesize\ttfamily void image\+::read\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}} \&}]{dt,  }\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Lecture du fichier d\textquotesingle{}entree. Cette fonction effectue la projection et complete les differentes variable de l\textquotesingle{}image. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00100}{100}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100                                                      \{}
+\DoxyCodeLine{00101     \textcolor{comment}{// Initialisation des listes (push\_bach plus efficace que pour les vectors)}}
+\DoxyCodeLine{00102     list<double> pts;}
+\DoxyCodeLine{00103     list<double> hts;}
+\DoxyCodeLine{00104 }
+\DoxyCodeLine{00105     \textcolor{comment}{//Ouverture du fichier de donnnee}}
+\DoxyCodeLine{00106     ifstream f(filename);}
+\DoxyCodeLine{00107     \textcolor{keywordtype}{string} line;}
+\DoxyCodeLine{00108 }
+\DoxyCodeLine{00109     \textcolor{comment}{// Initialisation de la projection}}
+\DoxyCodeLine{00110     PJ* P = \mbox{\hyperlink{classimage_ad1aa302fc1ab6aa548d5c4475d46dadf}{init\_proj}}();}
+\DoxyCodeLine{00111 }
+\DoxyCodeLine{00112     \textcolor{keywordflow}{if}(!f.is\_open())}
+\DoxyCodeLine{00113     \{}
+\DoxyCodeLine{00114         \textcolor{comment}{// Verification de l'ouverture du fichier de donneee}}
+\DoxyCodeLine{00115         cout << \textcolor{stringliteral}{"{}Erreur d'ouverture de "{}} << filename << endl;}
+\DoxyCodeLine{00116     \}}
+\DoxyCodeLine{00117     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00118     \{}
+\DoxyCodeLine{00119         \textcolor{keywordflow}{while}(!f.eof()) \{}
+\DoxyCodeLine{00120             \textcolor{comment}{// On parcours le fichier}}
+\DoxyCodeLine{00121             cout << \textcolor{stringliteral}{"{}\(\backslash\)rLecture du fichier /"{}} << flush;}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123             \textcolor{keywordtype}{double} x, y;}
+\DoxyCodeLine{00124             getline(f, line, \textcolor{charliteral}{' '});}
+\DoxyCodeLine{00125             \textcolor{keywordtype}{double} lat = stod(line); \textcolor{comment}{// latitude}}
+\DoxyCodeLine{00126             getline(f, line, \textcolor{charliteral}{' '});}
+\DoxyCodeLine{00127             \textcolor{keywordtype}{double} lon = stod(line); \textcolor{comment}{// longitude}}
+\DoxyCodeLine{00128             getline(f, line);}
+\DoxyCodeLine{00129             \textcolor{keywordtype}{double} h = abs(stod(line)); \textcolor{comment}{// hauteur}}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131             \mbox{\hyperlink{classimage_a1215029e85c64aec53079897a3cba41f}{projection}}(lon, lat, h, x, y, P); \textcolor{comment}{// Projection realisee pour obtenir x et y}}
+\DoxyCodeLine{00132 }
+\DoxyCodeLine{00133             \textcolor{comment}{// Mise a jour des listes}}
+\DoxyCodeLine{00134             pts.push\_back(x);}
+\DoxyCodeLine{00135             pts.push\_back(y);}
+\DoxyCodeLine{00136             hts.push\_back(h);}
+\DoxyCodeLine{00137 }
+\DoxyCodeLine{00138             \textcolor{comment}{// Mise a jour des bornes}}
+\DoxyCodeLine{00139             \mbox{\hyperlink{classimage_a6184aa7e2fad66431568899069fa455b}{update\_min\_max}}(x, y, h);}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141             cout << \textcolor{stringliteral}{"{}\(\backslash\)rLecture du fichier -\/"{}} << flush;}
+\DoxyCodeLine{00142 }
+\DoxyCodeLine{00143         \}}
+\DoxyCodeLine{00144 }
+\DoxyCodeLine{00145         \textcolor{comment}{// Transformation des listes en vecteur}}
+\DoxyCodeLine{00146         vector<double> transforme\_pts(pts.begin(), pts.end());}
+\DoxyCodeLine{00147         vector<double> transforme\_hts(hts.begin(), hts.end());}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149         \textcolor{comment}{// Mise a jour des variables points, hauteurs, densite et nb\_pixel\_h de la class image}}
+\DoxyCodeLine{00150         \mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}} = transforme\_pts;}
+\DoxyCodeLine{00151         \mbox{\hyperlink{classimage_a8ee23c9661a6277b2613934b74fde8a8}{hauteurs}} = transforme\_hts;}
+\DoxyCodeLine{00152         \mbox{\hyperlink{classimage_a05d3ca010caeba0efde47ec3912f275b}{update\_densite}}();}
+\DoxyCodeLine{00153         \mbox{\hyperlink{classimage_ad7e696cfa174729e06d500f9aaf5edf6}{update\_nb\_pixel\_h}}();}
+\DoxyCodeLine{00154     \}}
+\DoxyCodeLine{00155 }
+\DoxyCodeLine{00156     proj\_destroy(P); \textcolor{comment}{// Destruction de la projection}}
+\DoxyCodeLine{00157     f.close(); \textcolor{comment}{// Ferme le fichier de donnee}}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_a05d3ca010caeba0efde47ec3912f275b}\label{classimage_a05d3ca010caeba0efde47ec3912f275b}} 
+\index{image@{image}!update\_densite@{update\_densite}}
+\index{update\_densite@{update\_densite}!image@{image}}
+\doxysubsubsection{\texorpdfstring{update\_densite()}{update\_densite()}}
+{\footnotesize\ttfamily void image\+::update\+\_\+densite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Calcul la densite. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00056}{56}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00057 \{}
+\DoxyCodeLine{00058     \textcolor{comment}{// Calcul densite (pixel/m)}}
+\DoxyCodeLine{00059     \mbox{\hyperlink{classimage_aedeec5f1e01789c80d447accbbc0ae4c}{densite}} = \mbox{\hyperlink{classimage_a627b1c5fd7cf66c189e4b1c00160468e}{nb\_pixel\_l}}/(\mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}} -\/ \mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}});}
+\DoxyCodeLine{00060 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_a6184aa7e2fad66431568899069fa455b}\label{classimage_a6184aa7e2fad66431568899069fa455b}} 
+\index{image@{image}!update\_min\_max@{update\_min\_max}}
+\index{update\_min\_max@{update\_min\_max}!image@{image}}
+\doxysubsubsection{\texorpdfstring{update\_min\_max()}{update\_min\_max()}}
+{\footnotesize\ttfamily void image\+::update\+\_\+min\+\_\+max (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{z }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Mise a jour des bornes pour un nouveau trio x, y, z. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00045}{45}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045                                                       \{}
+\DoxyCodeLine{00046     \textcolor{comment}{// Mise a jour des bornes}}
+\DoxyCodeLine{00047     \textcolor{keywordflow}{if}(x<\mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}})\{\mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}} = floor(x);\}}
+\DoxyCodeLine{00048     \textcolor{keywordflow}{if}(x>\mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}})\{\mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}} = ceil(x);\}}
+\DoxyCodeLine{00049     \textcolor{keywordflow}{if}(y<\mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}})\{\mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}} = floor(y);\}}
+\DoxyCodeLine{00050     \textcolor{keywordflow}{if}(y>\mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}})\{\mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}} = ceil(y);\}}
+\DoxyCodeLine{00051     \textcolor{keywordflow}{if}(z<\mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\_z}})\{\mbox{\hyperlink{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}{min\_z}} = floor(z);\}}
+\DoxyCodeLine{00052     \textcolor{keywordflow}{if}(z>\mbox{\hyperlink{classimage_a74f987ff1c12981e2b0d89b278e1e924}{max\_z}})\{\mbox{\hyperlink{classimage_a74f987ff1c12981e2b0d89b278e1e924}{max\_z}} = ceil(z);\}}
+\DoxyCodeLine{00053 }
+\DoxyCodeLine{00054 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classimage_ad7e696cfa174729e06d500f9aaf5edf6}\label{classimage_ad7e696cfa174729e06d500f9aaf5edf6}} 
+\index{image@{image}!update\_nb\_pixel\_h@{update\_nb\_pixel\_h}}
+\index{update\_nb\_pixel\_h@{update\_nb\_pixel\_h}!image@{image}}
+\doxysubsubsection{\texorpdfstring{update\_nb\_pixel\_h()}{update\_nb\_pixel\_h()}}
+{\footnotesize\ttfamily void image\+::update\+\_\+nb\+\_\+pixel\+\_\+h (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Calcul le nombre de pixel dans la hauteur. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8cpp_source_l00062}{62}} du fichier \mbox{\hyperlink{image_8cpp_source}{image.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063 \{}
+\DoxyCodeLine{00064     \textcolor{comment}{// Calcul nombre de pixel en hauteur en fonction de la densite et des bornes}}
+\DoxyCodeLine{00065     \mbox{\hyperlink{classimage_a968f5dcdd8d5a269bf85745843cd23f5}{nb\_pixel\_h}} = ceil(\mbox{\hyperlink{classimage_aedeec5f1e01789c80d447accbbc0ae4c}{densite}} * (\mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}} -\/ \mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}}));}
+\DoxyCodeLine{00066 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{classimage_aedeec5f1e01789c80d447accbbc0ae4c}\label{classimage_aedeec5f1e01789c80d447accbbc0ae4c}} 
+\index{image@{image}!densite@{densite}}
+\index{densite@{densite}!image@{image}}
+\doxysubsubsection{\texorpdfstring{densite}{densite}}
+{\footnotesize\ttfamily double image\+::densite}
+
+
+
+Variable \+: densite de l\textquotesingle{}image en pixel/m. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00039}{39}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a8ee23c9661a6277b2613934b74fde8a8}\label{classimage_a8ee23c9661a6277b2613934b74fde8a8}} 
+\index{image@{image}!hauteurs@{hauteurs}}
+\index{hauteurs@{hauteurs}!image@{image}}
+\doxysubsubsection{\texorpdfstring{hauteurs}{hauteurs}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ image\+::hauteurs}
+
+
+
+Variable \+: vecteur contenant les hauteurs des points. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00061}{61}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a1c9c35e1de0b12f1c6f00e281258cbf6}\label{classimage_a1c9c35e1de0b12f1c6f00e281258cbf6}} 
+\index{image@{image}!max\_area@{max\_area}}
+\index{max\_area@{max\_area}!image@{image}}
+\doxysubsubsection{\texorpdfstring{max\_area}{max\_area}}
+{\footnotesize\ttfamily double image\+::max\+\_\+area}
+
+
+
+Variable \+: Aire maximale d\textquotesingle{}un triangle autorisee. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00055}{55}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_aa89d91d278d34a426510d76cfad1279f}\label{classimage_aa89d91d278d34a426510d76cfad1279f}} 
+\index{image@{image}!max\_x@{max\_x}}
+\index{max\_x@{max\_x}!image@{image}}
+\doxysubsubsection{\texorpdfstring{max\_x}{max\_x}}
+{\footnotesize\ttfamily double image\+::max\+\_\+x}
+
+
+
+Variable \+: Borne x sup. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00042}{42}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a951e942fe62ec24c0443dc05f8c670c7}\label{classimage_a951e942fe62ec24c0443dc05f8c670c7}} 
+\index{image@{image}!max\_y@{max\_y}}
+\index{max\_y@{max\_y}!image@{image}}
+\doxysubsubsection{\texorpdfstring{max\_y}{max\_y}}
+{\footnotesize\ttfamily double image\+::max\+\_\+y}
+
+
+
+Variable \+: Borne y sup. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00044}{44}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a74f987ff1c12981e2b0d89b278e1e924}\label{classimage_a74f987ff1c12981e2b0d89b278e1e924}} 
+\index{image@{image}!max\_z@{max\_z}}
+\index{max\_z@{max\_z}!image@{image}}
+\doxysubsubsection{\texorpdfstring{max\_z}{max\_z}}
+{\footnotesize\ttfamily double image\+::max\+\_\+z}
+
+
+
+Variable \+: Borne z sup. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00050}{50}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a5d2125a144241d02f0ab08f92c64f4db}\label{classimage_a5d2125a144241d02f0ab08f92c64f4db}} 
+\index{image@{image}!min\_x@{min\_x}}
+\index{min\_x@{min\_x}!image@{image}}
+\doxysubsubsection{\texorpdfstring{min\_x}{min\_x}}
+{\footnotesize\ttfamily double image\+::min\+\_\+x}
+
+
+
+Variable \+: Borne x inf. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00046}{46}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a0096384d82da5a5661479c8675c74ea7}\label{classimage_a0096384d82da5a5661479c8675c74ea7}} 
+\index{image@{image}!min\_y@{min\_y}}
+\index{min\_y@{min\_y}!image@{image}}
+\doxysubsubsection{\texorpdfstring{min\_y}{min\_y}}
+{\footnotesize\ttfamily double image\+::min\+\_\+y}
+
+
+
+Variable \+: Borne y inf. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00048}{48}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}\label{classimage_a2f21ec9afb1542b043a16437d9ccd5c8}} 
+\index{image@{image}!min\_z@{min\_z}}
+\index{min\_z@{min\_z}!image@{image}}
+\doxysubsubsection{\texorpdfstring{min\_z}{min\_z}}
+{\footnotesize\ttfamily double image\+::min\+\_\+z}
+
+
+
+Variable \+: Borne z inf. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00052}{52}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a968f5dcdd8d5a269bf85745843cd23f5}\label{classimage_a968f5dcdd8d5a269bf85745843cd23f5}} 
+\index{image@{image}!nb\_pixel\_h@{nb\_pixel\_h}}
+\index{nb\_pixel\_h@{nb\_pixel\_h}!image@{image}}
+\doxysubsubsection{\texorpdfstring{nb\_pixel\_h}{nb\_pixel\_h}}
+{\footnotesize\ttfamily int image\+::nb\+\_\+pixel\+\_\+h}
+
+
+
+Variable \+: Nombre de pixel dans la hauteur. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00030}{30}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a627b1c5fd7cf66c189e4b1c00160468e}\label{classimage_a627b1c5fd7cf66c189e4b1c00160468e}} 
+\index{image@{image}!nb\_pixel\_l@{nb\_pixel\_l}}
+\index{nb\_pixel\_l@{nb\_pixel\_l}!image@{image}}
+\doxysubsubsection{\texorpdfstring{nb\_pixel\_l}{nb\_pixel\_l}}
+{\footnotesize\ttfamily int image\+::nb\+\_\+pixel\+\_\+l}
+
+
+
+Variable \+: Nombre de pixel dans la largeur. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00033}{33}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_afeb453d60d8b59da884f612ff2f304e6}\label{classimage_afeb453d60d8b59da884f612ff2f304e6}} 
+\index{image@{image}!nb\_zone@{nb\_zone}}
+\index{nb\_zone@{nb\_zone}!image@{image}}
+\doxysubsubsection{\texorpdfstring{nb\_zone}{nb\_zone}}
+{\footnotesize\ttfamily int image\+::nb\+\_\+zone}
+
+
+
+Variable \+: Nombre de passe dans l\textquotesingle{}arbre. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00036}{36}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+\mbox{\Hypertarget{classimage_a629794e1629f05226265e1eb1ce5bb79}\label{classimage_a629794e1629f05226265e1eb1ce5bb79}} 
+\index{image@{image}!points@{points}}
+\index{points@{points}!image@{image}}
+\doxysubsubsection{\texorpdfstring{points}{points}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ image\+::points}
+
+
+
+Variable \+: Vecteur qui contient les coordonnés des points sans leur information de hauteur de type (X1, Y1, X2, Y2,...) 
+
+
+
+Définition à la ligne \mbox{\hyperlink{image_8h_source_l00058}{58}} du fichier \mbox{\hyperlink{image_8h_source}{image.\+h}}.
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+image.\+h\item 
+image.\+cpp\end{DoxyCompactItemize}

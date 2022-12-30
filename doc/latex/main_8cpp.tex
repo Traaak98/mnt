@@ -1,0 +1,80 @@
+\hypertarget{main_8cpp}{}\doxysection{Référence du fichier main.\+cpp}
+\label{main_8cpp}\index{main.cpp@{main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$proj.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}image.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}My\+\_\+delaunay.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+Apolline de Vaulchier du Deschaux 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+08/12/2022
+\end{DoxyDate}
+Programme qui permet de generer une image 2D representant, par niveau de couleurs, les differentes altitudes d\textquotesingle{}un terrain 2.\+5D.
+
+Entree \+: argument 1 -\/-\/\texorpdfstring{$>$}{>} Nom/adresse du fichier de donnees argument 2 -\/-\/\texorpdfstring{$>$}{>} Nombre de pixel dans la largeur que l\textquotesingle{}on souhaite 
+
+Définition dans le fichier \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \mbox{\hyperlink{main_8cpp_source_l00023}{23}} du fichier \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024 \{}
+\DoxyCodeLine{00025     \textcolor{comment}{// Debut du chrono}}
+\DoxyCodeLine{00026     time\_t init\_t = time(NULL);}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028     \textcolor{comment}{// Variable d'entree}}
+\DoxyCodeLine{00029     \textcolor{keywordtype}{string} name = argv[1];   \textcolor{comment}{//Nom du fichier de donnees}}
+\DoxyCodeLine{00030     \textcolor{keywordtype}{string} name\_img = name.substr(0, name.size()-\/4) + \textcolor{stringliteral}{"{}.ppm"{}};  \textcolor{comment}{//Nom de l'image de sortie}}
+\DoxyCodeLine{00031     \textcolor{keywordtype}{int} nb\_pixel\_largeur = stoi(argv[2]); \textcolor{comment}{//Nombre de pixel dans la largeur}}
+\DoxyCodeLine{00032     \textcolor{keywordtype}{int} nb\_passe = 13;  \textcolor{comment}{//Nombre de passe effectue dans l'arbre binaire}}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034     \textcolor{comment}{// Creation de l'objet image}}
+\DoxyCodeLine{00035     \mbox{\hyperlink{classimage}{image}} img(nb\_pixel\_largeur, nb\_passe);}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037     \textcolor{comment}{// Creation de l'objet My\_delaunay}}
+\DoxyCodeLine{00038     \mbox{\hyperlink{classMy__delaunay}{My\_delaunay}} dt;}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040     \textcolor{comment}{// Lecture de fichier et projection des points}}
+\DoxyCodeLine{00041     img.read\_file(dt, name);}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043     \textcolor{comment}{// Triangulation de l'image}}
+\DoxyCodeLine{00044     dt.\mbox{\hyperlink{classMy__delaunay_a03b7234e31bc2bd340ead209910a24c1}{make\_delaunator}}(img);}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046     \textcolor{comment}{// Passage des triangles dans l'arbre binaire}}
+\DoxyCodeLine{00047     dt.\mbox{\hyperlink{classMy__delaunay_abf7640e84b21f85f2478eee685beb5c1}{build\_map}}(img);}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049     \textcolor{comment}{// Fabrication de l'image avec le calcul pour chaque pixel}}
+\DoxyCodeLine{00050     img.build\_img(dt, name\_img);}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052     \textcolor{comment}{// Fin du chrono}}
+\DoxyCodeLine{00053     time\_t end\_t = time(NULL);}
+\DoxyCodeLine{00054     cout << endl;}
+\DoxyCodeLine{00055     cout << \textcolor{stringliteral}{"{} Temps de calcul "{}} << end\_t -\/ init\_t << \textcolor{stringliteral}{"{} secondes"{}} << endl;}
+\DoxyCodeLine{00056 }
+\DoxyCodeLine{00057     \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{00058 \}}
+
+\end{DoxyCode}

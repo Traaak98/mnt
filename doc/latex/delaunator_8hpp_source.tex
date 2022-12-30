@@ -1,0 +1,590 @@
+\hypertarget{delaunator_8hpp_source}{}\doxysection{delaunator.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00001}00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00003}00003 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00004}00004 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00005}00005 \textcolor{preprocessor}{\#include <exception>}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00006}00006 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00007}00007 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00008}00008 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00009}00009 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00010}00010 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00012}00012 \textcolor{keyword}{namespace }delaunator \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00014}00014 \textcolor{comment}{//@see https://stackoverflow.com/questions/33333363/built-\/in-\/mod-\/vs-\/custom-\/mod-\/function-\/improve-\/the-\/performance-\/of-\/modulus-\/op/33333636\#33333636}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00015}00015     \textcolor{keyword}{inline} \textcolor{keywordtype}{size\_t} fast\_mod(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} i, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} c) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00016}00016         \textcolor{keywordflow}{return} i >= c ? i \% c : i;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00017}00017     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00019}00019 \textcolor{comment}{// Kahan and Babuska summation, Neumaier variant; accumulates less FP error}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00020}00020     \textcolor{keyword}{inline} \textcolor{keywordtype}{double} sum(\textcolor{keyword}{const} std::vector<double>\& x) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00021}00021         \textcolor{keywordtype}{double} sum = x[0];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00022}00022         \textcolor{keywordtype}{double} err = 0.0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00024}00024         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 1; i < x.size(); i++) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00025}00025             \textcolor{keyword}{const} \textcolor{keywordtype}{double} k = x[i];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00026}00026             \textcolor{keyword}{const} \textcolor{keywordtype}{double} m = sum + k;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00027}00027             err += std::fabs(sum) >= std::fabs(k) ? sum -\/ m + k : k -\/ m + sum;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00028}00028             sum = m;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00029}00029         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00030}00030         \textcolor{keywordflow}{return} sum + err;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00031}00031     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00033}00033     \textcolor{keyword}{inline} \textcolor{keywordtype}{double} dist(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00034}00034             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ax,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00035}00035             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ay,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00036}00036             \textcolor{keyword}{const} \textcolor{keywordtype}{double} bx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00037}00037             \textcolor{keyword}{const} \textcolor{keywordtype}{double} by) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00038}00038         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dx = ax -\/ bx;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00039}00039         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dy = ay -\/ by;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00040}00040         \textcolor{keywordflow}{return} dx * dx + dy * dy;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00041}00041     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00043}00043     \textcolor{keyword}{inline} \textcolor{keywordtype}{double} circumradius(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00044}00044             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ax,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00045}00045             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ay,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00046}00046             \textcolor{keyword}{const} \textcolor{keywordtype}{double} bx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00047}00047             \textcolor{keyword}{const} \textcolor{keywordtype}{double} by,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00048}00048             \textcolor{keyword}{const} \textcolor{keywordtype}{double} cx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00049}00049             \textcolor{keyword}{const} \textcolor{keywordtype}{double} cy) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00050}00050         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dx = bx -\/ ax;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00051}00051         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dy = by -\/ ay;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00052}00052         \textcolor{keyword}{const} \textcolor{keywordtype}{double} ex = cx -\/ ax;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00053}00053         \textcolor{keyword}{const} \textcolor{keywordtype}{double} ey = cy -\/ ay;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00055}00055         \textcolor{keyword}{const} \textcolor{keywordtype}{double} bl = dx * dx + dy * dy;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00056}00056         \textcolor{keyword}{const} \textcolor{keywordtype}{double} cl = ex * ex + ey * ey;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00057}00057         \textcolor{keyword}{const} \textcolor{keywordtype}{double} d = dx * ey -\/ dy * ex;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00059}00059         \textcolor{keyword}{const} \textcolor{keywordtype}{double} x = (ey * bl -\/ dy * cl) * 0.5 / d;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00060}00060         \textcolor{keyword}{const} \textcolor{keywordtype}{double} y = (dx * cl -\/ ex * bl) * 0.5 / d;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00062}00062         \textcolor{keywordflow}{if} ((bl > 0.0 || bl < 0.0) \&\& (cl > 0.0 || cl < 0.0) \&\& (d > 0.0 || d < 0.0)) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00063}00063             \textcolor{keywordflow}{return} x * x + y * y;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00064}00064         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00065}00065             \textcolor{keywordflow}{return} std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00066}00066         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00067}00067     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00069}00069     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} orient(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00070}00070             \textcolor{keyword}{const} \textcolor{keywordtype}{double} px,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00071}00071             \textcolor{keyword}{const} \textcolor{keywordtype}{double} py,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00072}00072             \textcolor{keyword}{const} \textcolor{keywordtype}{double} qx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00073}00073             \textcolor{keyword}{const} \textcolor{keywordtype}{double} qy,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00074}00074             \textcolor{keyword}{const} \textcolor{keywordtype}{double} rx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00075}00075             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ry) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00076}00076         \textcolor{keywordflow}{return} (qy -\/ py) * (rx -\/ qx) -\/ (qx -\/ px) * (ry -\/ qy) < 0.0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00077}00077     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00079}00079     \textcolor{keyword}{inline} std::pair<double, double> circumcenter(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00080}00080             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ax,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00081}00081             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ay,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00082}00082             \textcolor{keyword}{const} \textcolor{keywordtype}{double} bx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00083}00083             \textcolor{keyword}{const} \textcolor{keywordtype}{double} by,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00084}00084             \textcolor{keyword}{const} \textcolor{keywordtype}{double} cx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00085}00085             \textcolor{keyword}{const} \textcolor{keywordtype}{double} cy) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00086}00086         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dx = bx -\/ ax;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00087}00087         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dy = by -\/ ay;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00088}00088         \textcolor{keyword}{const} \textcolor{keywordtype}{double} ex = cx -\/ ax;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00089}00089         \textcolor{keyword}{const} \textcolor{keywordtype}{double} ey = cy -\/ ay;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00091}00091         \textcolor{keyword}{const} \textcolor{keywordtype}{double} bl = dx * dx + dy * dy;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00092}00092         \textcolor{keyword}{const} \textcolor{keywordtype}{double} cl = ex * ex + ey * ey;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00093}00093         \textcolor{keyword}{const} \textcolor{keywordtype}{double} d = dx * ey -\/ dy * ex;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00095}00095         \textcolor{keyword}{const} \textcolor{keywordtype}{double} x = ax + (ey * bl -\/ dy * cl) * 0.5 / d;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00096}00096         \textcolor{keyword}{const} \textcolor{keywordtype}{double} y = ay + (dx * cl -\/ ex * bl) * 0.5 / d;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00097}00097 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00098}00098         \textcolor{keywordflow}{return} std::make\_pair(x, y);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00099}00099     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00101}\mbox{\hyperlink{structdelaunator_1_1compare}{00101}}     \textcolor{keyword}{struct }\mbox{\hyperlink{structdelaunator_1_1compare}{compare}} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00103}00103         std::vector<double> \textcolor{keyword}{const}\& coords;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00104}00104         \textcolor{keywordtype}{double} cx;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00105}00105         \textcolor{keywordtype}{double} cy;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00107}00107         \textcolor{keywordtype}{bool} operator()(std::size\_t i, std::size\_t j) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00108}00108             \textcolor{keyword}{const} \textcolor{keywordtype}{double} d1 = dist(coords[2 * i], coords[2 * i + 1], cx, cy);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00109}00109             \textcolor{keyword}{const} \textcolor{keywordtype}{double} d2 = dist(coords[2 * j], coords[2 * j + 1], cx, cy);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00110}00110             \textcolor{keyword}{const} \textcolor{keywordtype}{double} diff1 = d1 -\/ d2;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00111}00111             \textcolor{keyword}{const} \textcolor{keywordtype}{double} diff2 = coords[2 * i] -\/ coords[2 * j];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00112}00112             \textcolor{keyword}{const} \textcolor{keywordtype}{double} diff3 = coords[2 * i + 1] -\/ coords[2 * j + 1];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00114}00114             \textcolor{keywordflow}{if} (diff1 > 0.0 || diff1 < 0.0) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00115}00115                 \textcolor{keywordflow}{return} diff1 < 0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00116}00116             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (diff2 > 0.0 || diff2 < 0.0) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00117}00117                 \textcolor{keywordflow}{return} diff2 < 0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00118}00118             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00119}00119                 \textcolor{keywordflow}{return} diff3 < 0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00120}00120             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00121}00121         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00122}00122     \};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00124}00124     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} in\_circle(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00125}00125             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ax,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00126}00126             \textcolor{keyword}{const} \textcolor{keywordtype}{double} ay,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00127}00127             \textcolor{keyword}{const} \textcolor{keywordtype}{double} bx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00128}00128             \textcolor{keyword}{const} \textcolor{keywordtype}{double} by,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00129}00129             \textcolor{keyword}{const} \textcolor{keywordtype}{double} cx,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00130}00130             \textcolor{keyword}{const} \textcolor{keywordtype}{double} cy,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00131}00131             \textcolor{keyword}{const} \textcolor{keywordtype}{double} px,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00132}00132             \textcolor{keyword}{const} \textcolor{keywordtype}{double} py) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00133}00133         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dx = ax -\/ px;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00134}00134         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dy = ay -\/ py;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00135}00135         \textcolor{keyword}{const} \textcolor{keywordtype}{double} ex = bx -\/ px;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00136}00136         \textcolor{keyword}{const} \textcolor{keywordtype}{double} ey = by -\/ py;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00137}00137         \textcolor{keyword}{const} \textcolor{keywordtype}{double} fx = cx -\/ px;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00138}00138         \textcolor{keyword}{const} \textcolor{keywordtype}{double} fy = cy -\/ py;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00139}00139 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00140}00140         \textcolor{keyword}{const} \textcolor{keywordtype}{double} ap = dx * dx + dy * dy;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00141}00141         \textcolor{keyword}{const} \textcolor{keywordtype}{double} bp = ex * ex + ey * ey;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00142}00142         \textcolor{keyword}{const} \textcolor{keywordtype}{double} cp = fx * fx + fy * fy;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00143}00143 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00144}00144         \textcolor{keywordflow}{return} (dx * (ey * cp -\/ bp * fy) -\/}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00145}00145                 dy * (ex * cp -\/ bp * fx) +}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00146}00146                 ap * (ex * fy -\/ ey * fx)) < 0.0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00147}00147     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00149}00149     \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} EPSILON = std::numeric\_limits<double>::epsilon();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00150}00150     \textcolor{keyword}{constexpr} std::size\_t INVALID\_INDEX = std::numeric\_limits<std::size\_t>::max();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00152}00152     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} check\_pts\_equal(\textcolor{keywordtype}{double} x1, \textcolor{keywordtype}{double} y1, \textcolor{keywordtype}{double} x2, \textcolor{keywordtype}{double} y2) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00153}00153         \textcolor{keywordflow}{return} std::fabs(x1 -\/ x2) <= EPSILON \&\&}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00154}00154                std::fabs(y1 -\/ y2) <= EPSILON;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00155}00155     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00157}00157 \textcolor{comment}{// monotonically increases with real angle, but doesn't need expensive trigonometry}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00158}00158     \textcolor{keyword}{inline} \textcolor{keywordtype}{double} pseudo\_angle(\textcolor{keyword}{const} \textcolor{keywordtype}{double} dx, \textcolor{keyword}{const} \textcolor{keywordtype}{double} dy) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00159}00159         \textcolor{keyword}{const} \textcolor{keywordtype}{double} p = dx / (std::abs(dx) + std::abs(dy));}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00160}00160         \textcolor{keywordflow}{return} (dy > 0.0 ? 3.0 -\/ p : 1.0 + p) / 4.0; \textcolor{comment}{// [0..1)}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00161}00161     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00163}\mbox{\hyperlink{structdelaunator_1_1DelaunatorPoint}{00163}}     \textcolor{keyword}{struct }\mbox{\hyperlink{structdelaunator_1_1DelaunatorPoint}{DelaunatorPoint}} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00164}00164         std::size\_t i;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00165}00165         \textcolor{keywordtype}{double} x;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00166}00166         \textcolor{keywordtype}{double} y;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00167}00167         std::size\_t t;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00168}00168         std::size\_t prev;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00169}00169         std::size\_t next;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00170}00170         \textcolor{keywordtype}{bool} removed;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00171}00171     \};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00172}00172 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00173}\mbox{\hyperlink{classdelaunator_1_1Delaunator}{00173}}     \textcolor{keyword}{class }\mbox{\hyperlink{classdelaunator_1_1Delaunator}{Delaunator}} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00175}00175     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00176}00176         std::vector<double> \textcolor{keyword}{const}\& coords;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00177}00177         std::vector<std::size\_t> triangles;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00178}00178         std::vector<std::size\_t> halfedges;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00179}00179         std::vector<std::size\_t> hull\_prev;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00180}00180         std::vector<std::size\_t> hull\_next;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00181}00181         std::vector<std::size\_t> hull\_tri;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00182}00182         std::size\_t hull\_start;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00183}00183 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00184}00184         \mbox{\hyperlink{classdelaunator_1_1Delaunator}{Delaunator}}(std::vector<double> \textcolor{keyword}{const}\& in\_coords);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00185}00185 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00186}00186         \textcolor{keywordtype}{double} get\_hull\_area();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00187}00187 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00188}00188     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00189}00189         std::vector<std::size\_t> m\_hash;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00190}00190         \textcolor{keywordtype}{double} m\_center\_x;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00191}00191         \textcolor{keywordtype}{double} m\_center\_y;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00192}00192         std::size\_t m\_hash\_size;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00193}00193         std::vector<std::size\_t> m\_edge\_stack;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00195}00195         std::size\_t legalize(std::size\_t a);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00196}00196         std::size\_t hash\_key(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y) \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00197}00197         std::size\_t add\_triangle(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00198}00198                 std::size\_t i0,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00199}00199                 std::size\_t i1,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00200}00200                 std::size\_t i2,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00201}00201                 std::size\_t a,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00202}00202                 std::size\_t b,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00203}00203                 std::size\_t c);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00204}00204         \textcolor{keywordtype}{void} link(std::size\_t a, std::size\_t b);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00205}00205     \};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00206}00206 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00207}00207     Delaunator::Delaunator(std::vector<double> \textcolor{keyword}{const}\& in\_coords)}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00208}00208             : coords(in\_coords),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00209}00209               triangles(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00210}00210               halfedges(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00211}00211               hull\_prev(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00212}00212               hull\_next(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00213}00213               hull\_tri(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00214}00214               hull\_start(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00215}00215               m\_hash(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00216}00216               m\_center\_x(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00217}00217               m\_center\_y(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00218}00218               m\_hash\_size(),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00219}00219               m\_edge\_stack() \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00220}00220         std::size\_t n = coords.size() >> 1;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00221}00221 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00222}00222         \textcolor{keywordtype}{double} max\_x = std::numeric\_limits<double>::min();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00223}00223         \textcolor{keywordtype}{double} max\_y = std::numeric\_limits<double>::min();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00224}00224         \textcolor{keywordtype}{double} min\_x = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00225}00225         \textcolor{keywordtype}{double} min\_y = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00226}00226         std::vector<std::size\_t> ids;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00227}00227         ids.reserve(n);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00228}00228 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00229}00229         \textcolor{keywordflow}{for} (std::size\_t i = 0; i < n; i++) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00230}00230             \textcolor{keyword}{const} \textcolor{keywordtype}{double} x = coords[2 * i];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00231}00231             \textcolor{keyword}{const} \textcolor{keywordtype}{double} y = coords[2 * i + 1];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00232}00232 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00233}00233             \textcolor{keywordflow}{if} (x < min\_x) min\_x = x;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00234}00234             \textcolor{keywordflow}{if} (y < min\_y) min\_y = y;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00235}00235             \textcolor{keywordflow}{if} (x > max\_x) max\_x = x;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00236}00236             \textcolor{keywordflow}{if} (y > max\_y) max\_y = y;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00237}00237 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00238}00238             ids.push\_back(i);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00239}00239         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00240}00240         \textcolor{keyword}{const} \textcolor{keywordtype}{double} cx = (min\_x + max\_x) / 2;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00241}00241         \textcolor{keyword}{const} \textcolor{keywordtype}{double} cy = (min\_y + max\_y) / 2;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00242}00242         \textcolor{keywordtype}{double} min\_dist = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00243}00243 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00244}00244         std::size\_t i0 = INVALID\_INDEX;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00245}00245         std::size\_t i1 = INVALID\_INDEX;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00246}00246         std::size\_t i2 = INVALID\_INDEX;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00247}00247 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00248}00248         \textcolor{comment}{// pick a seed point close to the centroid}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00249}00249         \textcolor{keywordflow}{for} (std::size\_t i = 0; i < n; i++) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00250}00250             \textcolor{keyword}{const} \textcolor{keywordtype}{double} d = dist(cx, cy, coords[2 * i], coords[2 * i + 1]);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00251}00251             \textcolor{keywordflow}{if} (d < min\_dist) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00252}00252                 i0 = i;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00253}00253                 min\_dist = d;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00254}00254             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00255}00255         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00256}00256 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00257}00257         \textcolor{keyword}{const} \textcolor{keywordtype}{double} i0x = coords[2 * i0];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00258}00258         \textcolor{keyword}{const} \textcolor{keywordtype}{double} i0y = coords[2 * i0 + 1];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00259}00259 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00260}00260         min\_dist = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00261}00261 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00262}00262         \textcolor{comment}{// find the point closest to the seed}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00263}00263         \textcolor{keywordflow}{for} (std::size\_t i = 0; i < n; i++) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00264}00264             \textcolor{keywordflow}{if} (i == i0) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00265}00265             \textcolor{keyword}{const} \textcolor{keywordtype}{double} d = dist(i0x, i0y, coords[2 * i], coords[2 * i + 1]);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00266}00266             \textcolor{keywordflow}{if} (d < min\_dist \&\& d > 0.0) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00267}00267                 i1 = i;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00268}00268                 min\_dist = d;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00269}00269             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00270}00270         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00271}00271 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00272}00272         \textcolor{keywordtype}{double} i1x = coords[2 * i1];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00273}00273         \textcolor{keywordtype}{double} i1y = coords[2 * i1 + 1];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00274}00274 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00275}00275         \textcolor{keywordtype}{double} min\_radius = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00276}00276 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00277}00277         \textcolor{comment}{// find the third point which forms the smallest circumcircle with the first two}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00278}00278         \textcolor{keywordflow}{for} (std::size\_t i = 0; i < n; i++) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00279}00279             \textcolor{keywordflow}{if} (i == i0 || i == i1) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00280}00280 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00281}00281             \textcolor{keyword}{const} \textcolor{keywordtype}{double} r = circumradius(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00282}00282                     i0x, i0y, i1x, i1y, coords[2 * i], coords[2 * i + 1]);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00283}00283 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00284}00284             \textcolor{keywordflow}{if} (r < min\_radius) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00285}00285                 i2 = i;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00286}00286                 min\_radius = r;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00287}00287             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00288}00288         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00289}00289 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00290}00290         \textcolor{keywordflow}{if} (!(min\_radius < std::numeric\_limits<double>::max())) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00291}00291             \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}not triangulation"{}});}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00292}00292         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00293}00293 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00294}00294         \textcolor{keywordtype}{double} i2x = coords[2 * i2];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00295}00295         \textcolor{keywordtype}{double} i2y = coords[2 * i2 + 1];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00296}00296 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00297}00297         \textcolor{keywordflow}{if} (orient(i0x, i0y, i1x, i1y, i2x, i2y)) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00298}00298             std::swap(i1, i2);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00299}00299             std::swap(i1x, i2x);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00300}00300             std::swap(i1y, i2y);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00301}00301         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00302}00302 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00303}00303         std::tie(m\_center\_x, m\_center\_y) = circumcenter(i0x, i0y, i1x, i1y, i2x, i2y);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00304}00304 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00305}00305         \textcolor{comment}{// sort the points by distance from the seed triangle circumcenter}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00306}00306         std::sort(ids.begin(), ids.end(), compare\{ coords, m\_center\_x, m\_center\_y \});}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00307}00307 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00308}00308         \textcolor{comment}{// initialize a hash table for storing edges of the advancing convex hull}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00309}00309         m\_hash\_size = \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::llround(std::ceil(std::sqrt(n))));}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00310}00310         m\_hash.resize(m\_hash\_size);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00311}00311         std::fill(m\_hash.begin(), m\_hash.end(), INVALID\_INDEX);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00312}00312 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00313}00313         \textcolor{comment}{// initialize arrays for tracking the edges of the advancing convex hull}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00314}00314         hull\_prev.resize(n);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00315}00315         hull\_next.resize(n);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00316}00316         hull\_tri.resize(n);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00317}00317 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00318}00318         hull\_start = i0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00319}00319 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00320}00320         \textcolor{keywordtype}{size\_t} hull\_size = 3;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00321}00321 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00322}00322         hull\_next[i0] = hull\_prev[i2] = i1;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00323}00323         hull\_next[i1] = hull\_prev[i0] = i2;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00324}00324         hull\_next[i2] = hull\_prev[i1] = i0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00325}00325 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00326}00326         hull\_tri[i0] = 0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00327}00327         hull\_tri[i1] = 1;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00328}00328         hull\_tri[i2] = 2;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00329}00329 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00330}00330         m\_hash[hash\_key(i0x, i0y)] = i0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00331}00331         m\_hash[hash\_key(i1x, i1y)] = i1;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00332}00332         m\_hash[hash\_key(i2x, i2y)] = i2;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00333}00333 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00334}00334         std::size\_t max\_triangles = n < 3 ? 1 : 2 * n -\/ 5;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00335}00335         triangles.reserve(max\_triangles * 3);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00336}00336         halfedges.reserve(max\_triangles * 3);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00337}00337         add\_triangle(i0, i1, i2, INVALID\_INDEX, INVALID\_INDEX, INVALID\_INDEX);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00338}00338         \textcolor{keywordtype}{double} xp = std::numeric\_limits<double>::quiet\_NaN();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00339}00339         \textcolor{keywordtype}{double} yp = std::numeric\_limits<double>::quiet\_NaN();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00340}00340         \textcolor{keywordflow}{for} (std::size\_t k = 0; k < n; k++) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00341}00341             \textcolor{keyword}{const} std::size\_t i = ids[k];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00342}00342             \textcolor{keyword}{const} \textcolor{keywordtype}{double} x = coords[2 * i];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00343}00343             \textcolor{keyword}{const} \textcolor{keywordtype}{double} y = coords[2 * i + 1];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00344}00344 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00345}00345             \textcolor{comment}{// skip near-\/duplicate points}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00346}00346             \textcolor{keywordflow}{if} (k > 0 \&\& check\_pts\_equal(x, y, xp, yp)) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00347}00347             xp = x;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00348}00348             yp = y;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00349}00349 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00350}00350             \textcolor{comment}{// skip seed triangle points}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00351}00351             \textcolor{keywordflow}{if} (}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00352}00352                     check\_pts\_equal(x, y, i0x, i0y) ||}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00353}00353                     check\_pts\_equal(x, y, i1x, i1y) ||}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00354}00354                     check\_pts\_equal(x, y, i2x, i2y)) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00355}00355 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00356}00356             \textcolor{comment}{// find a visible edge on the convex hull using edge hash}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00357}00357             std::size\_t start = 0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00358}00358 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00359}00359             \textcolor{keywordtype}{size\_t} key = hash\_key(x, y);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00360}00360             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < m\_hash\_size; j++) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00361}00361                 start = m\_hash[fast\_mod(key + j, m\_hash\_size)];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00362}00362                 \textcolor{keywordflow}{if} (start != INVALID\_INDEX \&\& start != hull\_next[start]) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00363}00363             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00364}00364 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00365}00365             start = hull\_prev[start];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00366}00366             \textcolor{keywordtype}{size\_t} e = start;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00367}00367             \textcolor{keywordtype}{size\_t} q;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00368}00368 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00369}00369             \textcolor{keywordflow}{while} (q = hull\_next[e], !orient(x, y, coords[2 * e], coords[2 * e + 1], coords[2 * q], coords[2 * q + 1])) \{ \textcolor{comment}{//TODO: does it works in a same way as in JS}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00370}00370                 e = q;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00371}00371                 \textcolor{keywordflow}{if} (e == start) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00372}00372                     e = INVALID\_INDEX;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00373}00373                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00374}00374                 \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00375}00375             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00376}00376 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00377}00377             \textcolor{keywordflow}{if} (e == INVALID\_INDEX) \textcolor{keywordflow}{continue}; \textcolor{comment}{// likely a near-\/duplicate point; skip it}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00378}00378 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00379}00379             \textcolor{comment}{// add the first triangle from the point}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00380}00380             std::size\_t t = add\_triangle(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00381}00381                     e,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00382}00382                     i,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00383}00383                     hull\_next[e],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00384}00384                     INVALID\_INDEX,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00385}00385                     INVALID\_INDEX,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00386}00386                     hull\_tri[e]);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00387}00387 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00388}00388             hull\_tri[i] = legalize(t + 2);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00389}00389             hull\_tri[e] = t;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00390}00390             hull\_size++;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00391}00391 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00392}00392             \textcolor{comment}{// walk forward through the hull, adding more triangles and flipping recursively}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00393}00393             std::size\_t next = hull\_next[e];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00394}00394             \textcolor{keywordflow}{while} (}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00395}00395                     q = hull\_next[next],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00396}00396                             orient(x, y, coords[2 * next], coords[2 * next + 1], coords[2 * q], coords[2 * q + 1])) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00397}00397                 t = add\_triangle(next, i, q, hull\_tri[i], INVALID\_INDEX, hull\_tri[next]);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00398}00398                 hull\_tri[i] = legalize(t + 2);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00399}00399                 hull\_next[next] = next; \textcolor{comment}{// mark as removed}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00400}00400                 hull\_size-\/-\/;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00401}00401                 next = q;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00402}00402             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00403}00403 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00404}00404             \textcolor{comment}{// walk backward from the other side, adding more triangles and flipping}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00405}00405             \textcolor{keywordflow}{if} (e == start) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00406}00406                 \textcolor{keywordflow}{while} (}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00407}00407                         q = hull\_prev[e],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00408}00408                                 orient(x, y, coords[2 * q], coords[2 * q + 1], coords[2 * e], coords[2 * e + 1])) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00409}00409                     t = add\_triangle(q, i, e, INVALID\_INDEX, hull\_tri[e], hull\_tri[q]);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00410}00410                     legalize(t + 2);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00411}00411                     hull\_tri[q] = t;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00412}00412                     hull\_next[e] = e; \textcolor{comment}{// mark as removed}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00413}00413                     hull\_size-\/-\/;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00414}00414                     e = q;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00415}00415                 \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00416}00416             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00417}00417 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00418}00418             \textcolor{comment}{// update the hull indices}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00419}00419             hull\_prev[i] = e;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00420}00420             hull\_start = e;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00421}00421             hull\_prev[next] = i;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00422}00422             hull\_next[e] = i;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00423}00423             hull\_next[i] = next;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00424}00424 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00425}00425             m\_hash[hash\_key(x, y)] = i;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00426}00426             m\_hash[hash\_key(coords[2 * e], coords[2 * e + 1])] = e;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00427}00427         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00428}00428     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00429}00429 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00430}00430     \textcolor{keywordtype}{double} Delaunator::get\_hull\_area() \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00431}00431         std::vector<double> hull\_area;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00432}00432         \textcolor{keywordtype}{size\_t} e = hull\_start;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00433}00433         \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00434}00434             hull\_area.push\_back((coords[2 * e] -\/ coords[2 * hull\_prev[e]]) * (coords[2 * e + 1] + coords[2 * hull\_prev[e] + 1]));}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00435}00435             e = hull\_next[e];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00436}00436         \} \textcolor{keywordflow}{while} (e != hull\_start);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00437}00437         \textcolor{keywordflow}{return} sum(hull\_area);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00438}00438     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00439}00439 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00440}00440     std::size\_t Delaunator::legalize(std::size\_t a) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00441}00441         std::size\_t i = 0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00442}00442         std::size\_t ar = 0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00443}00443         m\_edge\_stack.clear();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00444}00444 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00445}00445         \textcolor{comment}{// recursion eliminated with a fixed-\/size stack}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00446}00446         \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00447}00447             \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} b = halfedges[a];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00448}00448 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00449}00449             \textcolor{comment}{/* if the pair of triangles doesn't satisfy the Delaunay condition}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00450}00450 \textcolor{comment}{            * (p1 is inside the circumcircle of [p0, pl, pr]), flip them,}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00451}00451 \textcolor{comment}{            * then do the same check/flip recursively for the new pair of triangles}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00452}00452 \textcolor{comment}{            *}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00453}00453 \textcolor{comment}{            *           pl                    pl}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00454}00454 \textcolor{comment}{            *          /||\(\backslash\)                  /  \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00455}00455 \textcolor{comment}{            *       al/ || \(\backslash\)bl            al/    \(\backslash\)a}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00456}00456 \textcolor{comment}{            *        /  ||  \(\backslash\)              /      \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00457}00457 \textcolor{comment}{            *       /  a||b  \(\backslash\)    flip    /\_\_\_ar\_\_\_\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00458}00458 \textcolor{comment}{            *     p0\(\backslash\)   ||   /p1   =>   p0\(\backslash\)-\/-\/-\/bl-\/-\/-\//p1}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00459}00459 \textcolor{comment}{            *        \(\backslash\)  ||  /              \(\backslash\)      /}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00460}00460 \textcolor{comment}{            *       ar\(\backslash\) || /br             b\(\backslash\)    /br}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00461}00461 \textcolor{comment}{            *          \(\backslash\)||/                  \(\backslash\)  /}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00462}00462 \textcolor{comment}{            *           pr                    pr}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00463}00463 \textcolor{comment}{            */}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00464}00464             \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} a0 = 3 * (a / 3);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00465}00465             ar = a0 + (a + 2) \% 3;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00466}00466 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00467}00467             \textcolor{keywordflow}{if} (b == INVALID\_INDEX) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00468}00468                 \textcolor{keywordflow}{if} (i > 0) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00469}00469                     i-\/-\/;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00470}00470                     a = m\_edge\_stack[i];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00471}00471                     \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00472}00472                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00473}00473                     \textcolor{comment}{//i = INVALID\_INDEX;}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00474}00474                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00475}00475                 \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00476}00476             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00477}00477 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00478}00478             \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} b0 = 3 * (b / 3);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00479}00479             \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} al = a0 + (a + 1) \% 3;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00480}00480             \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} bl = b0 + (b + 2) \% 3;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00481}00481 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00482}00482             \textcolor{keyword}{const} std::size\_t p0 = triangles[ar];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00483}00483             \textcolor{keyword}{const} std::size\_t pr = triangles[a];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00484}00484             \textcolor{keyword}{const} std::size\_t pl = triangles[al];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00485}00485             \textcolor{keyword}{const} std::size\_t p1 = triangles[bl];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00486}00486 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00487}00487             \textcolor{keyword}{const} \textcolor{keywordtype}{bool} illegal = in\_circle(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00488}00488                     coords[2 * p0],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00489}00489                     coords[2 * p0 + 1],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00490}00490                     coords[2 * pr],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00491}00491                     coords[2 * pr + 1],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00492}00492                     coords[2 * pl],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00493}00493                     coords[2 * pl + 1],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00494}00494                     coords[2 * p1],}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00495}00495                     coords[2 * p1 + 1]);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00496}00496 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00497}00497             \textcolor{keywordflow}{if} (illegal) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00498}00498                 triangles[a] = p1;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00499}00499                 triangles[b] = p0;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00500}00500 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00501}00501                 \textcolor{keyword}{auto} hbl = halfedges[bl];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00502}00502 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00503}00503                 \textcolor{comment}{// edge swapped on the other side of the hull (rare); fix the halfedge reference}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00504}00504                 \textcolor{keywordflow}{if} (hbl == INVALID\_INDEX) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00505}00505                     std::size\_t e = hull\_start;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00506}00506                     \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00507}00507                         \textcolor{keywordflow}{if} (hull\_tri[e] == bl) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00508}00508                             hull\_tri[e] = a;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00509}00509                             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00510}00510                         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00511}00511                         e = hull\_next[e];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00512}00512                     \} \textcolor{keywordflow}{while} (e != hull\_start);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00513}00513                 \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00514}00514                 link(a, hbl);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00515}00515                 link(b, halfedges[ar]);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00516}00516                 link(ar, bl);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00517}00517                 std::size\_t br = b0 + (b + 1) \% 3;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00518}00518 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00519}00519                 \textcolor{keywordflow}{if} (i < m\_edge\_stack.size()) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00520}00520                     m\_edge\_stack[i] = br;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00521}00521                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00522}00522                     m\_edge\_stack.push\_back(br);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00523}00523                 \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00524}00524                 i++;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00525}00525 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00526}00526             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00527}00527                 \textcolor{keywordflow}{if} (i > 0) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00528}00528                     i-\/-\/;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00529}00529                     a = m\_edge\_stack[i];}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00530}00530                     \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00531}00531                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00532}00532                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00533}00533                 \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00534}00534             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00535}00535         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00536}00536         \textcolor{keywordflow}{return} ar;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00537}00537     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00538}00538 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00539}00539     \textcolor{keyword}{inline} std::size\_t Delaunator::hash\_key(\textcolor{keyword}{const} \textcolor{keywordtype}{double} x, \textcolor{keyword}{const} \textcolor{keywordtype}{double} y)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00540}00540         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dx = x -\/ m\_center\_x;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00541}00541         \textcolor{keyword}{const} \textcolor{keywordtype}{double} dy = y -\/ m\_center\_y;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00542}00542         \textcolor{keywordflow}{return} fast\_mod(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00543}00543                 \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::llround(std::floor(pseudo\_angle(dx, dy) * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(m\_hash\_size)))),}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00544}00544                 m\_hash\_size);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00545}00545     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00546}00546 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00547}00547     std::size\_t Delaunator::add\_triangle(}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00548}00548             std::size\_t i0,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00549}00549             std::size\_t i1,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00550}00550             std::size\_t i2,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00551}00551             std::size\_t a,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00552}00552             std::size\_t b,}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00553}00553             std::size\_t c) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00554}00554         std::size\_t t = triangles.size();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00555}00555         triangles.push\_back(i0);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00556}00556         triangles.push\_back(i1);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00557}00557         triangles.push\_back(i2);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00558}00558         link(t, a);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00559}00559         link(t + 1, b);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00560}00560         link(t + 2, c);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00561}00561         \textcolor{keywordflow}{return} t;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00562}00562     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00563}00563 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00564}00564     \textcolor{keywordtype}{void} Delaunator::link(\textcolor{keyword}{const} std::size\_t a, \textcolor{keyword}{const} std::size\_t b) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00565}00565         std::size\_t s = halfedges.size();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00566}00566         \textcolor{keywordflow}{if} (a == s) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00567}00567             halfedges.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00568}00568         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (a < s) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00569}00569             halfedges[a] = b;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00570}00570         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00571}00571             \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Cannot link edge"{}});}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00572}00572         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00573}00573         \textcolor{keywordflow}{if} (b != INVALID\_INDEX) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00574}00574             std::size\_t s2 = halfedges.size();}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00575}00575             \textcolor{keywordflow}{if} (b == s2) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00576}00576                 halfedges.push\_back(a);}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00577}00577             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (b < s2) \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00578}00578                 halfedges[b] = a;}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00579}00579             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00580}00580                 \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Cannot link edge"{}});}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00581}00581             \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00582}00582         \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00583}00583     \}}
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00584}00584 }
+\DoxyCodeLine{\Hypertarget{delaunator_8hpp_source_l00585}00585 \} \textcolor{comment}{//namespace delaunator}}
+
+\end{DoxyCode}

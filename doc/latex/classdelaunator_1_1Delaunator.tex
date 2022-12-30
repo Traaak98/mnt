@@ -1,0 +1,375 @@
+\hypertarget{classdelaunator_1_1Delaunator}{}\doxysection{Référence de la classe delaunator\+::Delaunator}
+\label{classdelaunator_1_1Delaunator}\index{delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdelaunator_1_1Delaunator_a094e288531f1695ca64437f0c04128c8}{Delaunator}} (std\+::vector$<$ double $>$ const \&in\+\_\+coords)
+\item 
+double \mbox{\hyperlink{classdelaunator_1_1Delaunator_ae6ee753d08679728afd4b603eab7d1ab}{get\+\_\+hull\+\_\+area}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ double $>$ const  \& \mbox{\hyperlink{classdelaunator_1_1Delaunator_ac48ad29af151d66885120872bf46f750}{coords}}
+\item 
+std\+::vector$<$ std\+::size\+\_\+t $>$ \mbox{\hyperlink{classdelaunator_1_1Delaunator_a6b613da33302f09aaea8fd74663d61cb}{triangles}}
+\item 
+std\+::vector$<$ std\+::size\+\_\+t $>$ \mbox{\hyperlink{classdelaunator_1_1Delaunator_aff04629e1166358e4f2d43ed1e6524ef}{halfedges}}
+\item 
+std\+::vector$<$ std\+::size\+\_\+t $>$ \mbox{\hyperlink{classdelaunator_1_1Delaunator_a9d0f92cb1eee39f5ac80f65495d543c3}{hull\+\_\+prev}}
+\item 
+std\+::vector$<$ std\+::size\+\_\+t $>$ \mbox{\hyperlink{classdelaunator_1_1Delaunator_a8e6c50f7a0ff8c8b1f6e62c92004f57c}{hull\+\_\+next}}
+\item 
+std\+::vector$<$ std\+::size\+\_\+t $>$ \mbox{\hyperlink{classdelaunator_1_1Delaunator_af9da27b2b5f8dc5b916b474078dd093a}{hull\+\_\+tri}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classdelaunator_1_1Delaunator_a28717862d3ea8ae531ee2dc7fb57b639}{hull\+\_\+start}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00173}{173}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_a094e288531f1695ca64437f0c04128c8}\label{classdelaunator_1_1Delaunator_a094e288531f1695ca64437f0c04128c8}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!Delaunator@{Delaunator}}
+\index{Delaunator@{Delaunator}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{Delaunator()}{Delaunator()}}
+{\footnotesize\ttfamily delaunator\+::\+Delaunator\+::\+Delaunator (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ const \&}]{in\+\_\+coords }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00207}{207}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00208             : coords(in\_coords),}
+\DoxyCodeLine{00209               triangles(),}
+\DoxyCodeLine{00210               halfedges(),}
+\DoxyCodeLine{00211               hull\_prev(),}
+\DoxyCodeLine{00212               hull\_next(),}
+\DoxyCodeLine{00213               hull\_tri(),}
+\DoxyCodeLine{00214               hull\_start(),}
+\DoxyCodeLine{00215               m\_hash(),}
+\DoxyCodeLine{00216               m\_center\_x(),}
+\DoxyCodeLine{00217               m\_center\_y(),}
+\DoxyCodeLine{00218               m\_hash\_size(),}
+\DoxyCodeLine{00219               m\_edge\_stack() \{}
+\DoxyCodeLine{00220         std::size\_t n = coords.size() >> 1;}
+\DoxyCodeLine{00221 }
+\DoxyCodeLine{00222         \textcolor{keywordtype}{double} max\_x = std::numeric\_limits<double>::min();}
+\DoxyCodeLine{00223         \textcolor{keywordtype}{double} max\_y = std::numeric\_limits<double>::min();}
+\DoxyCodeLine{00224         \textcolor{keywordtype}{double} min\_x = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{00225         \textcolor{keywordtype}{double} min\_y = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{00226         std::vector<std::size\_t> ids;}
+\DoxyCodeLine{00227         ids.reserve(n);}
+\DoxyCodeLine{00228 }
+\DoxyCodeLine{00229         \textcolor{keywordflow}{for} (std::size\_t i = 0; i < n; i++) \{}
+\DoxyCodeLine{00230             \textcolor{keyword}{const} \textcolor{keywordtype}{double} x = coords[2 * i];}
+\DoxyCodeLine{00231             \textcolor{keyword}{const} \textcolor{keywordtype}{double} y = coords[2 * i + 1];}
+\DoxyCodeLine{00232 }
+\DoxyCodeLine{00233             \textcolor{keywordflow}{if} (x < min\_x) min\_x = x;}
+\DoxyCodeLine{00234             \textcolor{keywordflow}{if} (y < min\_y) min\_y = y;}
+\DoxyCodeLine{00235             \textcolor{keywordflow}{if} (x > max\_x) max\_x = x;}
+\DoxyCodeLine{00236             \textcolor{keywordflow}{if} (y > max\_y) max\_y = y;}
+\DoxyCodeLine{00237 }
+\DoxyCodeLine{00238             ids.push\_back(i);}
+\DoxyCodeLine{00239         \}}
+\DoxyCodeLine{00240         \textcolor{keyword}{const} \textcolor{keywordtype}{double} cx = (min\_x + max\_x) / 2;}
+\DoxyCodeLine{00241         \textcolor{keyword}{const} \textcolor{keywordtype}{double} cy = (min\_y + max\_y) / 2;}
+\DoxyCodeLine{00242         \textcolor{keywordtype}{double} min\_dist = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{00243 }
+\DoxyCodeLine{00244         std::size\_t i0 = INVALID\_INDEX;}
+\DoxyCodeLine{00245         std::size\_t i1 = INVALID\_INDEX;}
+\DoxyCodeLine{00246         std::size\_t i2 = INVALID\_INDEX;}
+\DoxyCodeLine{00247 }
+\DoxyCodeLine{00248         \textcolor{comment}{// pick a seed point close to the centroid}}
+\DoxyCodeLine{00249         \textcolor{keywordflow}{for} (std::size\_t i = 0; i < n; i++) \{}
+\DoxyCodeLine{00250             \textcolor{keyword}{const} \textcolor{keywordtype}{double} d = dist(cx, cy, coords[2 * i], coords[2 * i + 1]);}
+\DoxyCodeLine{00251             \textcolor{keywordflow}{if} (d < min\_dist) \{}
+\DoxyCodeLine{00252                 i0 = i;}
+\DoxyCodeLine{00253                 min\_dist = d;}
+\DoxyCodeLine{00254             \}}
+\DoxyCodeLine{00255         \}}
+\DoxyCodeLine{00256 }
+\DoxyCodeLine{00257         \textcolor{keyword}{const} \textcolor{keywordtype}{double} i0x = coords[2 * i0];}
+\DoxyCodeLine{00258         \textcolor{keyword}{const} \textcolor{keywordtype}{double} i0y = coords[2 * i0 + 1];}
+\DoxyCodeLine{00259 }
+\DoxyCodeLine{00260         min\_dist = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{00261 }
+\DoxyCodeLine{00262         \textcolor{comment}{// find the point closest to the seed}}
+\DoxyCodeLine{00263         \textcolor{keywordflow}{for} (std::size\_t i = 0; i < n; i++) \{}
+\DoxyCodeLine{00264             \textcolor{keywordflow}{if} (i == i0) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00265             \textcolor{keyword}{const} \textcolor{keywordtype}{double} d = dist(i0x, i0y, coords[2 * i], coords[2 * i + 1]);}
+\DoxyCodeLine{00266             \textcolor{keywordflow}{if} (d < min\_dist \&\& d > 0.0) \{}
+\DoxyCodeLine{00267                 i1 = i;}
+\DoxyCodeLine{00268                 min\_dist = d;}
+\DoxyCodeLine{00269             \}}
+\DoxyCodeLine{00270         \}}
+\DoxyCodeLine{00271 }
+\DoxyCodeLine{00272         \textcolor{keywordtype}{double} i1x = coords[2 * i1];}
+\DoxyCodeLine{00273         \textcolor{keywordtype}{double} i1y = coords[2 * i1 + 1];}
+\DoxyCodeLine{00274 }
+\DoxyCodeLine{00275         \textcolor{keywordtype}{double} min\_radius = std::numeric\_limits<double>::max();}
+\DoxyCodeLine{00276 }
+\DoxyCodeLine{00277         \textcolor{comment}{// find the third point which forms the smallest circumcircle with the first two}}
+\DoxyCodeLine{00278         \textcolor{keywordflow}{for} (std::size\_t i = 0; i < n; i++) \{}
+\DoxyCodeLine{00279             \textcolor{keywordflow}{if} (i == i0 || i == i1) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00280 }
+\DoxyCodeLine{00281             \textcolor{keyword}{const} \textcolor{keywordtype}{double} r = circumradius(}
+\DoxyCodeLine{00282                     i0x, i0y, i1x, i1y, coords[2 * i], coords[2 * i + 1]);}
+\DoxyCodeLine{00283 }
+\DoxyCodeLine{00284             \textcolor{keywordflow}{if} (r < min\_radius) \{}
+\DoxyCodeLine{00285                 i2 = i;}
+\DoxyCodeLine{00286                 min\_radius = r;}
+\DoxyCodeLine{00287             \}}
+\DoxyCodeLine{00288         \}}
+\DoxyCodeLine{00289 }
+\DoxyCodeLine{00290         \textcolor{keywordflow}{if} (!(min\_radius < std::numeric\_limits<double>::max())) \{}
+\DoxyCodeLine{00291             \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}not triangulation"{}});}
+\DoxyCodeLine{00292         \}}
+\DoxyCodeLine{00293 }
+\DoxyCodeLine{00294         \textcolor{keywordtype}{double} i2x = coords[2 * i2];}
+\DoxyCodeLine{00295         \textcolor{keywordtype}{double} i2y = coords[2 * i2 + 1];}
+\DoxyCodeLine{00296 }
+\DoxyCodeLine{00297         \textcolor{keywordflow}{if} (orient(i0x, i0y, i1x, i1y, i2x, i2y)) \{}
+\DoxyCodeLine{00298             std::swap(i1, i2);}
+\DoxyCodeLine{00299             std::swap(i1x, i2x);}
+\DoxyCodeLine{00300             std::swap(i1y, i2y);}
+\DoxyCodeLine{00301         \}}
+\DoxyCodeLine{00302 }
+\DoxyCodeLine{00303         std::tie(m\_center\_x, m\_center\_y) = circumcenter(i0x, i0y, i1x, i1y, i2x, i2y);}
+\DoxyCodeLine{00304 }
+\DoxyCodeLine{00305         \textcolor{comment}{// sort the points by distance from the seed triangle circumcenter}}
+\DoxyCodeLine{00306         std::sort(ids.begin(), ids.end(), compare\{ coords, m\_center\_x, m\_center\_y \});}
+\DoxyCodeLine{00307 }
+\DoxyCodeLine{00308         \textcolor{comment}{// initialize a hash table for storing edges of the advancing convex hull}}
+\DoxyCodeLine{00309         m\_hash\_size = \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::llround(std::ceil(std::sqrt(n))));}
+\DoxyCodeLine{00310         m\_hash.resize(m\_hash\_size);}
+\DoxyCodeLine{00311         std::fill(m\_hash.begin(), m\_hash.end(), INVALID\_INDEX);}
+\DoxyCodeLine{00312 }
+\DoxyCodeLine{00313         \textcolor{comment}{// initialize arrays for tracking the edges of the advancing convex hull}}
+\DoxyCodeLine{00314         hull\_prev.resize(n);}
+\DoxyCodeLine{00315         hull\_next.resize(n);}
+\DoxyCodeLine{00316         hull\_tri.resize(n);}
+\DoxyCodeLine{00317 }
+\DoxyCodeLine{00318         hull\_start = i0;}
+\DoxyCodeLine{00319 }
+\DoxyCodeLine{00320         \textcolor{keywordtype}{size\_t} hull\_size = 3;}
+\DoxyCodeLine{00321 }
+\DoxyCodeLine{00322         hull\_next[i0] = hull\_prev[i2] = i1;}
+\DoxyCodeLine{00323         hull\_next[i1] = hull\_prev[i0] = i2;}
+\DoxyCodeLine{00324         hull\_next[i2] = hull\_prev[i1] = i0;}
+\DoxyCodeLine{00325 }
+\DoxyCodeLine{00326         hull\_tri[i0] = 0;}
+\DoxyCodeLine{00327         hull\_tri[i1] = 1;}
+\DoxyCodeLine{00328         hull\_tri[i2] = 2;}
+\DoxyCodeLine{00329 }
+\DoxyCodeLine{00330         m\_hash[hash\_key(i0x, i0y)] = i0;}
+\DoxyCodeLine{00331         m\_hash[hash\_key(i1x, i1y)] = i1;}
+\DoxyCodeLine{00332         m\_hash[hash\_key(i2x, i2y)] = i2;}
+\DoxyCodeLine{00333 }
+\DoxyCodeLine{00334         std::size\_t max\_triangles = n < 3 ? 1 : 2 * n -\/ 5;}
+\DoxyCodeLine{00335         triangles.reserve(max\_triangles * 3);}
+\DoxyCodeLine{00336         halfedges.reserve(max\_triangles * 3);}
+\DoxyCodeLine{00337         add\_triangle(i0, i1, i2, INVALID\_INDEX, INVALID\_INDEX, INVALID\_INDEX);}
+\DoxyCodeLine{00338         \textcolor{keywordtype}{double} xp = std::numeric\_limits<double>::quiet\_NaN();}
+\DoxyCodeLine{00339         \textcolor{keywordtype}{double} yp = std::numeric\_limits<double>::quiet\_NaN();}
+\DoxyCodeLine{00340         \textcolor{keywordflow}{for} (std::size\_t k = 0; k < n; k++) \{}
+\DoxyCodeLine{00341             \textcolor{keyword}{const} std::size\_t i = ids[k];}
+\DoxyCodeLine{00342             \textcolor{keyword}{const} \textcolor{keywordtype}{double} x = coords[2 * i];}
+\DoxyCodeLine{00343             \textcolor{keyword}{const} \textcolor{keywordtype}{double} y = coords[2 * i + 1];}
+\DoxyCodeLine{00344 }
+\DoxyCodeLine{00345             \textcolor{comment}{// skip near-\/duplicate points}}
+\DoxyCodeLine{00346             \textcolor{keywordflow}{if} (k > 0 \&\& check\_pts\_equal(x, y, xp, yp)) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00347             xp = x;}
+\DoxyCodeLine{00348             yp = y;}
+\DoxyCodeLine{00349 }
+\DoxyCodeLine{00350             \textcolor{comment}{// skip seed triangle points}}
+\DoxyCodeLine{00351             \textcolor{keywordflow}{if} (}
+\DoxyCodeLine{00352                     check\_pts\_equal(x, y, i0x, i0y) ||}
+\DoxyCodeLine{00353                     check\_pts\_equal(x, y, i1x, i1y) ||}
+\DoxyCodeLine{00354                     check\_pts\_equal(x, y, i2x, i2y)) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00355 }
+\DoxyCodeLine{00356             \textcolor{comment}{// find a visible edge on the convex hull using edge hash}}
+\DoxyCodeLine{00357             std::size\_t start = 0;}
+\DoxyCodeLine{00358 }
+\DoxyCodeLine{00359             \textcolor{keywordtype}{size\_t} key = hash\_key(x, y);}
+\DoxyCodeLine{00360             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < m\_hash\_size; j++) \{}
+\DoxyCodeLine{00361                 start = m\_hash[fast\_mod(key + j, m\_hash\_size)];}
+\DoxyCodeLine{00362                 \textcolor{keywordflow}{if} (start != INVALID\_INDEX \&\& start != hull\_next[start]) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00363             \}}
+\DoxyCodeLine{00364 }
+\DoxyCodeLine{00365             start = hull\_prev[start];}
+\DoxyCodeLine{00366             \textcolor{keywordtype}{size\_t} e = start;}
+\DoxyCodeLine{00367             \textcolor{keywordtype}{size\_t} q;}
+\DoxyCodeLine{00368 }
+\DoxyCodeLine{00369             \textcolor{keywordflow}{while} (q = hull\_next[e], !orient(x, y, coords[2 * e], coords[2 * e + 1], coords[2 * q], coords[2 * q + 1])) \{ \textcolor{comment}{//TODO: does it works in a same way as in JS}}
+\DoxyCodeLine{00370                 e = q;}
+\DoxyCodeLine{00371                 \textcolor{keywordflow}{if} (e == start) \{}
+\DoxyCodeLine{00372                     e = INVALID\_INDEX;}
+\DoxyCodeLine{00373                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00374                 \}}
+\DoxyCodeLine{00375             \}}
+\DoxyCodeLine{00376 }
+\DoxyCodeLine{00377             \textcolor{keywordflow}{if} (e == INVALID\_INDEX) \textcolor{keywordflow}{continue}; \textcolor{comment}{// likely a near-\/duplicate point; skip it}}
+\DoxyCodeLine{00378 }
+\DoxyCodeLine{00379             \textcolor{comment}{// add the first triangle from the point}}
+\DoxyCodeLine{00380             std::size\_t t = add\_triangle(}
+\DoxyCodeLine{00381                     e,}
+\DoxyCodeLine{00382                     i,}
+\DoxyCodeLine{00383                     hull\_next[e],}
+\DoxyCodeLine{00384                     INVALID\_INDEX,}
+\DoxyCodeLine{00385                     INVALID\_INDEX,}
+\DoxyCodeLine{00386                     hull\_tri[e]);}
+\DoxyCodeLine{00387 }
+\DoxyCodeLine{00388             hull\_tri[i] = legalize(t + 2);}
+\DoxyCodeLine{00389             hull\_tri[e] = t;}
+\DoxyCodeLine{00390             hull\_size++;}
+\DoxyCodeLine{00391 }
+\DoxyCodeLine{00392             \textcolor{comment}{// walk forward through the hull, adding more triangles and flipping recursively}}
+\DoxyCodeLine{00393             std::size\_t next = hull\_next[e];}
+\DoxyCodeLine{00394             \textcolor{keywordflow}{while} (}
+\DoxyCodeLine{00395                     q = hull\_next[next],}
+\DoxyCodeLine{00396                             orient(x, y, coords[2 * next], coords[2 * next + 1], coords[2 * q], coords[2 * q + 1])) \{}
+\DoxyCodeLine{00397                 t = add\_triangle(next, i, q, hull\_tri[i], INVALID\_INDEX, hull\_tri[next]);}
+\DoxyCodeLine{00398                 hull\_tri[i] = legalize(t + 2);}
+\DoxyCodeLine{00399                 hull\_next[next] = next; \textcolor{comment}{// mark as removed}}
+\DoxyCodeLine{00400                 hull\_size-\/-\/;}
+\DoxyCodeLine{00401                 next = q;}
+\DoxyCodeLine{00402             \}}
+\DoxyCodeLine{00403 }
+\DoxyCodeLine{00404             \textcolor{comment}{// walk backward from the other side, adding more triangles and flipping}}
+\DoxyCodeLine{00405             \textcolor{keywordflow}{if} (e == start) \{}
+\DoxyCodeLine{00406                 \textcolor{keywordflow}{while} (}
+\DoxyCodeLine{00407                         q = hull\_prev[e],}
+\DoxyCodeLine{00408                                 orient(x, y, coords[2 * q], coords[2 * q + 1], coords[2 * e], coords[2 * e + 1])) \{}
+\DoxyCodeLine{00409                     t = add\_triangle(q, i, e, INVALID\_INDEX, hull\_tri[e], hull\_tri[q]);}
+\DoxyCodeLine{00410                     legalize(t + 2);}
+\DoxyCodeLine{00411                     hull\_tri[q] = t;}
+\DoxyCodeLine{00412                     hull\_next[e] = e; \textcolor{comment}{// mark as removed}}
+\DoxyCodeLine{00413                     hull\_size-\/-\/;}
+\DoxyCodeLine{00414                     e = q;}
+\DoxyCodeLine{00415                 \}}
+\DoxyCodeLine{00416             \}}
+\DoxyCodeLine{00417 }
+\DoxyCodeLine{00418             \textcolor{comment}{// update the hull indices}}
+\DoxyCodeLine{00419             hull\_prev[i] = e;}
+\DoxyCodeLine{00420             hull\_start = e;}
+\DoxyCodeLine{00421             hull\_prev[next] = i;}
+\DoxyCodeLine{00422             hull\_next[e] = i;}
+\DoxyCodeLine{00423             hull\_next[i] = next;}
+\DoxyCodeLine{00424 }
+\DoxyCodeLine{00425             m\_hash[hash\_key(x, y)] = i;}
+\DoxyCodeLine{00426             m\_hash[hash\_key(coords[2 * e], coords[2 * e + 1])] = e;}
+\DoxyCodeLine{00427         \}}
+\DoxyCodeLine{00428     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_ae6ee753d08679728afd4b603eab7d1ab}\label{classdelaunator_1_1Delaunator_ae6ee753d08679728afd4b603eab7d1ab}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!get\_hull\_area@{get\_hull\_area}}
+\index{get\_hull\_area@{get\_hull\_area}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{get\_hull\_area()}{get\_hull\_area()}}
+{\footnotesize\ttfamily double delaunator\+::\+Delaunator\+::get\+\_\+hull\+\_\+area (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00430}{430}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00430                                      \{}
+\DoxyCodeLine{00431         std::vector<double> hull\_area;}
+\DoxyCodeLine{00432         \textcolor{keywordtype}{size\_t} e = hull\_start;}
+\DoxyCodeLine{00433         \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{00434             hull\_area.push\_back((coords[2 * e] -\/ coords[2 * hull\_prev[e]]) * (coords[2 * e + 1] + coords[2 * hull\_prev[e] + 1]));}
+\DoxyCodeLine{00435             e = hull\_next[e];}
+\DoxyCodeLine{00436         \} \textcolor{keywordflow}{while} (e != hull\_start);}
+\DoxyCodeLine{00437         \textcolor{keywordflow}{return} sum(hull\_area);}
+\DoxyCodeLine{00438     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_ac48ad29af151d66885120872bf46f750}\label{classdelaunator_1_1Delaunator_ac48ad29af151d66885120872bf46f750}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!coords@{coords}}
+\index{coords@{coords}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{coords}{coords}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ const\& delaunator\+::\+Delaunator\+::coords}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00176}{176}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_aff04629e1166358e4f2d43ed1e6524ef}\label{classdelaunator_1_1Delaunator_aff04629e1166358e4f2d43ed1e6524ef}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!halfedges@{halfedges}}
+\index{halfedges@{halfedges}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{halfedges}{halfedges}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::size\+\_\+t$>$ delaunator\+::\+Delaunator\+::halfedges}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00178}{178}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_a8e6c50f7a0ff8c8b1f6e62c92004f57c}\label{classdelaunator_1_1Delaunator_a8e6c50f7a0ff8c8b1f6e62c92004f57c}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!hull\_next@{hull\_next}}
+\index{hull\_next@{hull\_next}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{hull\_next}{hull\_next}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::size\+\_\+t$>$ delaunator\+::\+Delaunator\+::hull\+\_\+next}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00180}{180}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_a9d0f92cb1eee39f5ac80f65495d543c3}\label{classdelaunator_1_1Delaunator_a9d0f92cb1eee39f5ac80f65495d543c3}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!hull\_prev@{hull\_prev}}
+\index{hull\_prev@{hull\_prev}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{hull\_prev}{hull\_prev}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::size\+\_\+t$>$ delaunator\+::\+Delaunator\+::hull\+\_\+prev}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00179}{179}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_a28717862d3ea8ae531ee2dc7fb57b639}\label{classdelaunator_1_1Delaunator_a28717862d3ea8ae531ee2dc7fb57b639}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!hull\_start@{hull\_start}}
+\index{hull\_start@{hull\_start}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{hull\_start}{hull\_start}}
+{\footnotesize\ttfamily std\+::size\+\_\+t delaunator\+::\+Delaunator\+::hull\+\_\+start}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00182}{182}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_af9da27b2b5f8dc5b916b474078dd093a}\label{classdelaunator_1_1Delaunator_af9da27b2b5f8dc5b916b474078dd093a}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!hull\_tri@{hull\_tri}}
+\index{hull\_tri@{hull\_tri}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{hull\_tri}{hull\_tri}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::size\+\_\+t$>$ delaunator\+::\+Delaunator\+::hull\+\_\+tri}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00181}{181}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+\mbox{\Hypertarget{classdelaunator_1_1Delaunator_a6b613da33302f09aaea8fd74663d61cb}\label{classdelaunator_1_1Delaunator_a6b613da33302f09aaea8fd74663d61cb}} 
+\index{delaunator::Delaunator@{delaunator::Delaunator}!triangles@{triangles}}
+\index{triangles@{triangles}!delaunator::Delaunator@{delaunator::Delaunator}}
+\doxysubsubsection{\texorpdfstring{triangles}{triangles}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::size\+\_\+t$>$ delaunator\+::\+Delaunator\+::triangles}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00177}{177}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+delaunator.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,406 @@
+\hypertarget{classMy__delaunay}{}\doxysection{Référence de la classe My\+\_\+delaunay}
+\label{classMy__delaunay}\index{My\_delaunay@{My\_delaunay}}
+
+
+{\ttfamily \#include $<$My\+\_\+delaunay.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}}
+\begin{DoxyCompactList}\small\item\em Strcuture de class \+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMy__delaunay_aa6938c42566105bc81c0c78037f6908c}{My\+\_\+delaunay}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur \+: Sans entree, creer l\textquotesingle{}objet \mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMy__delaunay_a03b7234e31bc2bd340ead209910a24c1}{make\+\_\+delaunator}} (\mbox{\hyperlink{classimage}{image}} \&img)
+\begin{DoxyCompactList}\small\item\em Fonction \+: A partir d\textquotesingle{}une image, et en particulier de l\textquotesingle{}attribut point de image, effectue une triangulation. La classe delaunator est utiliser pour faire cette triangulation. Voir \+: \href{https://github.com/delfrrr/delaunator-cpp}{\texttt{ https\+://github.\+com/delfrrr/delaunator-\/cpp}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMy__delaunay_a74cd669a3e094bdbc8d3ac39afc1b062}{find\+\_\+plane}} (double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3, double \&a, double \&b, double \&c, double \&d)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Identifie les paramètres de l\textquotesingle{}équation de plan associe au triangle d\textquotesingle{}entree. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMy__delaunay_aafe184a8ada9cccf68a986b46c4c3438}{in\+\_\+triangle}} (double px, double py, double x1, double y1, double x2, double y2, double x3, double y3)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Booleen qui exprime si le point se situe dans le triangle ou non. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMy__delaunay_a1379a3ff5b81950d192ca572eb7c26cf}{in\+\_\+intervale}} (\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} \&inter, bool cote, double \&range\+\_\+x, double \&range\+\_\+y, double \&x1, double \&y1, double \&x2, double \&y2, double \&x3, double \&y3)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Bouleen qui exprime si le triangle en entree est dans l\textquotesingle{}intervale choisit. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}{find\+\_\+zone}} (\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} inter, std\+::string \&key, double \&x1, double \&y1, double \&x2, double \&y2, double \&x3, double \&y3, \mbox{\hyperlink{classimage}{image}} \&img, int \&i)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Fonction recursive qui represente l\textquotesingle{}arbre binaire. Associe le triangle d\textquotesingle{}entree à des espaces sur l\textquotesingle{}image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMy__delaunay_abf7640e84b21f85f2478eee685beb5c1}{build\+\_\+map}} (\mbox{\hyperlink{classimage}{image}} \&img)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Creation de la map zones à partir de la fonction find\+\_\+zone pour chaque triangle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{area}} (double x1, double y1, double x2, double y2, double x3, double y3, double \&area)
+\begin{DoxyCompactList}\small\item\em Fonction \+: Calcul l\textquotesingle{}air d\textquotesingle{}un triangle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMy__delaunay_acd8dece2b670af0536b39605169ee06f}{$\sim$\+My\+\_\+delaunay}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur \+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ long unsigned int $>$ \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\+\_\+triangles}}
+\begin{DoxyCompactList}\small\item\em Variable \+: vecteur contenant les indices des triangles. Indice à utiliser avec le vecteur points de l\textquotesingle{}objet image. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::list$<$ long unsigned int $>$ $>$ \mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}
+\begin{DoxyCompactList}\small\item\em Variable \+: map qui pour une zone renvoie les indices des triangles dans cette zone. Elle est construit à partir de l\textquotesingle{}arbre binaire. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+Apolline de Vaulchier du Deschaux 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+08/12/2022
+\end{DoxyDate}
+Permet de creer un objet \mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}} qui comprend la creation d\textquotesingle{}un objet delaunator avec l\textquotesingle{}ajout d\textquotesingle{}autre variable de classe comme hauteurs, vect\+\_\+triangles et zones sans devoir modifier la class delaunator issu de l\textquotesingle{}auteur delfrrr (github). 
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8h_source_l00022}{22}} du fichier \mbox{\hyperlink{My__delaunay_8h_source}{My\+\_\+delaunay.\+h}}.
+
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classMy__delaunay_aa6938c42566105bc81c0c78037f6908c}\label{classMy__delaunay_aa6938c42566105bc81c0c78037f6908c}} 
+\index{My\_delaunay@{My\_delaunay}!My\_delaunay@{My\_delaunay}}
+\index{My\_delaunay@{My\_delaunay}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{My\_delaunay()}{My\_delaunay()}}
+{\footnotesize\ttfamily My\+\_\+delaunay\+::\+My\+\_\+delaunay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur \+: Sans entree, creer l\textquotesingle{}objet \mbox{\hyperlink{classMy__delaunay}{My\+\_\+delaunay}}. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00021}{21}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021 \{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMy__delaunay_acd8dece2b670af0536b39605169ee06f}\label{classMy__delaunay_acd8dece2b670af0536b39605169ee06f}} 
+\index{My\_delaunay@{My\_delaunay}!````~My\_delaunay@{$\sim$My\_delaunay}}
+\index{````~My\_delaunay@{$\sim$My\_delaunay}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{$\sim$My\_delaunay()}{~My\_delaunay()}}
+{\footnotesize\ttfamily My\+\_\+delaunay\+::$\sim$\+My\+\_\+delaunay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur \+: 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00178}{178}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00178 \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}\label{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}} 
+\index{My\_delaunay@{My\_delaunay}!area@{area}}
+\index{area@{area}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{area()}{area()}}
+{\footnotesize\ttfamily void My\+\_\+delaunay\+::area (\begin{DoxyParamCaption}\item[{double}]{x1,  }\item[{double}]{y1,  }\item[{double}]{x2,  }\item[{double}]{y2,  }\item[{double}]{x3,  }\item[{double}]{y3,  }\item[{double \&}]{area }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Calcul l\textquotesingle{}air d\textquotesingle{}un triangle. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00168}{168}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00168                                                                                                     \{}
+\DoxyCodeLine{00169     \textcolor{comment}{// Calcul l'air d'un triangle}}
+\DoxyCodeLine{00170        \textcolor{keywordtype}{double} ab = pow(pow(x2-\/x1,2)+pow(y2-\/y1,2), 0.5);}
+\DoxyCodeLine{00171        \textcolor{keywordtype}{double} bc = pow(pow(x3-\/x2,2)+pow(y3-\/y2,2), 0.5);}
+\DoxyCodeLine{00172        \textcolor{keywordtype}{double} ca = pow(pow(x1-\/x3,2)+pow(y1-\/y3,2), 0.5);}
+\DoxyCodeLine{00173        \textcolor{keywordtype}{double} p = 0.5*(ab+bc+ca);}
+\DoxyCodeLine{00174        \mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{area}} = pow(p*(p-\/ab)*(p-\/bc)*(p-\/ca), 0.5);}
+\DoxyCodeLine{00175 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMy__delaunay_abf7640e84b21f85f2478eee685beb5c1}\label{classMy__delaunay_abf7640e84b21f85f2478eee685beb5c1}} 
+\index{My\_delaunay@{My\_delaunay}!build\_map@{build\_map}}
+\index{build\_map@{build\_map}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{build\_map()}{build\_map()}}
+{\footnotesize\ttfamily void My\+\_\+delaunay\+::build\+\_\+map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classimage}{image}} \&}]{img }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Creation de la map zones à partir de la fonction find\+\_\+zone pour chaque triangle. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00133}{133}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00133                                      \{}
+\DoxyCodeLine{00134     \textcolor{keywordtype}{double} t\_area; \textcolor{comment}{// Aire du triangle etudie}}
+\DoxyCodeLine{00135     cout << endl;}
+\DoxyCodeLine{00136     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}.size(); i+=3) \{}
+\DoxyCodeLine{00137 }
+\DoxyCodeLine{00138         cout<<\textcolor{stringliteral}{"{}\(\backslash\)rCreation arbre binaire pour les triangles :  "{}}<<i<<\textcolor{stringliteral}{"{} / "{}}<<(\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}.size()-\/3)<<\textcolor{stringliteral}{"{} triangles realises"{}}<<flush;}
+\DoxyCodeLine{00139 }
+\DoxyCodeLine{00140         \textcolor{comment}{// Coins du triangle version x,y}}
+\DoxyCodeLine{00141         \textcolor{keywordtype}{double} x1 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i]];}
+\DoxyCodeLine{00142         \textcolor{keywordtype}{double} y1 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i] + 1];}
+\DoxyCodeLine{00143         \textcolor{keywordtype}{double} x2 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i + 1]];}
+\DoxyCodeLine{00144         \textcolor{keywordtype}{double} y2 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i + 1] + 1];}
+\DoxyCodeLine{00145         \textcolor{keywordtype}{double} x3 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i + 2]];}
+\DoxyCodeLine{00146         \textcolor{keywordtype}{double} y3 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i + 2] + 1];}
+\DoxyCodeLine{00147 }
+\DoxyCodeLine{00148         \textcolor{comment}{// Calcul aire du triangle}}
+\DoxyCodeLine{00149         \mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{area}}(x1, y1, x2, y2, x3, y3, t\_area);}
+\DoxyCodeLine{00150 }
+\DoxyCodeLine{00151         \textcolor{comment}{// Si l'aire du triangle n'est pas trop grande, i.e. le triangle est bien dans l'image (effet de bords),}}
+\DoxyCodeLine{00152         \textcolor{comment}{// on cherche la ou les zones ou se situe le triangle.}}
+\DoxyCodeLine{00153         \textcolor{keywordflow}{if}(t\_area<=img.\mbox{\hyperlink{classimage_a1c9c35e1de0b12f1c6f00e281258cbf6}{max\_area}})\{}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155             \textcolor{comment}{// Initialisation de l'intervale de depart}}
+\DoxyCodeLine{00156             intervale inter\_init;}
+\DoxyCodeLine{00157             inter\_init.xmin = img.\mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}};}
+\DoxyCodeLine{00158             inter\_init.xmax = img.\mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}};}
+\DoxyCodeLine{00159             inter\_init.ymin = img.\mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}};}
+\DoxyCodeLine{00160             inter\_init.ymax = img.\mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}};}
+\DoxyCodeLine{00161             inter\_init.nb\_passe = 0;}
+\DoxyCodeLine{00162             \textcolor{keywordtype}{string} key;}
+\DoxyCodeLine{00163 }
+\DoxyCodeLine{00164             \mbox{\hyperlink{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}{find\_zone}}(inter\_init,key, x1, y1, x2, y2, x3, y3, img, i);\}}
+\DoxyCodeLine{00165     \}}
+\DoxyCodeLine{00166 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMy__delaunay_a74cd669a3e094bdbc8d3ac39afc1b062}\label{classMy__delaunay_a74cd669a3e094bdbc8d3ac39afc1b062}} 
+\index{My\_delaunay@{My\_delaunay}!find\_plane@{find\_plane}}
+\index{find\_plane@{find\_plane}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{find\_plane()}{find\_plane()}}
+{\footnotesize\ttfamily void My\+\_\+delaunay\+::find\+\_\+plane (\begin{DoxyParamCaption}\item[{double}]{x1,  }\item[{double}]{y1,  }\item[{double}]{z1,  }\item[{double}]{x2,  }\item[{double}]{y2,  }\item[{double}]{z2,  }\item[{double}]{x3,  }\item[{double}]{y3,  }\item[{double}]{z3,  }\item[{double \&}]{a,  }\item[{double \&}]{b,  }\item[{double \&}]{c,  }\item[{double \&}]{d }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Identifie les paramètres de l\textquotesingle{}équation de plan associe au triangle d\textquotesingle{}entree. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00029}{29}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029                                                                                                                                                                          \{}
+\DoxyCodeLine{00030     \textcolor{comment}{// Trouve les paramètres du plan associé au triangle}}
+\DoxyCodeLine{00031     \textcolor{keywordtype}{double} a1 = x2 -\/ x1;}
+\DoxyCodeLine{00032     \textcolor{keywordtype}{double} b1 = y2 -\/ y1;}
+\DoxyCodeLine{00033     \textcolor{keywordtype}{double} c1 = z2 -\/ z1;}
+\DoxyCodeLine{00034     \textcolor{keywordtype}{double} a2 = x3 -\/ x1;}
+\DoxyCodeLine{00035     \textcolor{keywordtype}{double} b2 = y3 -\/ y1;}
+\DoxyCodeLine{00036     \textcolor{keywordtype}{double} c2 = z3 -\/ z1;}
+\DoxyCodeLine{00037     a = b1 * c2 + b2 * c1;}
+\DoxyCodeLine{00038     b = -\/ a2 * c1 -\/ a1 * c2;}
+\DoxyCodeLine{00039     c = -\/ a1 * b2 + b1 * a2;}
+\DoxyCodeLine{00040     d =  a * x1 + b * y1 -\/ c * z1;}
+\DoxyCodeLine{00041 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}\label{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}} 
+\index{My\_delaunay@{My\_delaunay}!find\_zone@{find\_zone}}
+\index{find\_zone@{find\_zone}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{find\_zone()}{find\_zone()}}
+{\footnotesize\ttfamily bool My\+\_\+delaunay\+::find\+\_\+zone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}}}]{inter,  }\item[{std\+::string \&}]{key,  }\item[{double \&}]{x1,  }\item[{double \&}]{y1,  }\item[{double \&}]{x2,  }\item[{double \&}]{y2,  }\item[{double \&}]{x3,  }\item[{double \&}]{y3,  }\item[{\mbox{\hyperlink{classimage}{image}} \&}]{img,  }\item[{int \&}]{i }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Fonction recursive qui represente l\textquotesingle{}arbre binaire. Associe le triangle d\textquotesingle{}entree à des espaces sur l\textquotesingle{}image. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00052}{52}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052                                                                                                                                                    \{}
+\DoxyCodeLine{00053 }
+\DoxyCodeLine{00054     \textcolor{comment}{//Initialisation de la cle de la map}}
+\DoxyCodeLine{00055     \textcolor{keywordflow}{if}(inter.nb\_passe == 0)\{\textcolor{keywordtype}{string} key = \textcolor{stringliteral}{"{}"{}};\}}
+\DoxyCodeLine{00056 }
+\DoxyCodeLine{00057     \textcolor{comment}{// Variables qui correspond à la partie tronquee de l'intervale}}
+\DoxyCodeLine{00058     \textcolor{keywordtype}{double} range\_x;}
+\DoxyCodeLine{00059     \textcolor{keywordtype}{double} range\_y;}
+\DoxyCodeLine{00060 }
+\DoxyCodeLine{00061     \textcolor{comment}{//Condition arret: si le nombre de passe dans l'arbre est atteinte}}
+\DoxyCodeLine{00062     \textcolor{keywordflow}{if}(img.\mbox{\hyperlink{classimage_afeb453d60d8b59da884f612ff2f304e6}{nb\_zone}} == inter.nb\_passe)\{}
+\DoxyCodeLine{00063         \textcolor{comment}{//Si la cle existe deja dans la map on complete uniquement la liste, sinon on creer la nouvelle cle.}}
+\DoxyCodeLine{00064         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}.count(key))\{\mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key] = list<long unsigned int> \{\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i], \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i+1], \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i+2]\};\}}
+\DoxyCodeLine{00065         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00066             \mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key].push\_back(\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i]);}
+\DoxyCodeLine{00067             \mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key].push\_back(\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i+1]);}
+\DoxyCodeLine{00068             \mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key].push\_back(\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i+2]);}
+\DoxyCodeLine{00069         \}}
+\DoxyCodeLine{00070         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00071     \}}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073     \textcolor{comment}{//Quel cote on coupe : Soit intervale en X, soit intervale en Y}}
+\DoxyCodeLine{00074     \textcolor{keywordflow}{if}(inter.nb\_passe\%2==0)\{range\_x = (inter.xmax-\/inter.xmin)/2; range\_y=0;\}}
+\DoxyCodeLine{00075     \textcolor{keywordflow}{else}\{range\_y = (inter.ymax-\/inter.ymin)/2; range\_x=0;\}}
+\DoxyCodeLine{00076 }
+\DoxyCodeLine{00077     \textcolor{comment}{//On se balade dans l'arbre}}
+\DoxyCodeLine{00078     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} k=0; k<2; k++)\{}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080         \textcolor{comment}{// Indique le cote}}
+\DoxyCodeLine{00081         \textcolor{keywordtype}{bool} cote;}
+\DoxyCodeLine{00082         \textcolor{keywordflow}{if}(k==0)\{cote=\textcolor{keyword}{true};\}}
+\DoxyCodeLine{00083         \textcolor{keywordflow}{if}(k==1)\{cote=\textcolor{keyword}{false};\}}
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085         \textcolor{comment}{// Creation du nouvel intervale}}
+\DoxyCodeLine{00086         intervale new\_int;}
+\DoxyCodeLine{00087         new\_int.xmin = inter.xmin+k*range\_x;}
+\DoxyCodeLine{00088         new\_int.xmax = inter.xmax-\/(1-\/k)*range\_x;}
+\DoxyCodeLine{00089         new\_int.ymin = inter.ymin+k*range\_y;}
+\DoxyCodeLine{00090         new\_int.ymax = inter.ymax-\/(1-\/k)*range\_y;}
+\DoxyCodeLine{00091         new\_int.nb\_passe = inter.nb\_passe+1;}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093         \textcolor{comment}{// Est ce que le triangle se trouve dans le nouvel intervale ?}}
+\DoxyCodeLine{00094         \textcolor{keywordflow}{if}(\mbox{\hyperlink{classMy__delaunay_a1379a3ff5b81950d192ca572eb7c26cf}{in\_intervale}}(new\_int, cote, range\_x, range\_y, x1, y1, x2, y2, x3, y3))\{}
+\DoxyCodeLine{00095             \textcolor{keywordflow}{if}(k==0)\{key.append(\textcolor{stringliteral}{"{}a"{}});\}}
+\DoxyCodeLine{00096             \textcolor{keywordflow}{if}(k==1)\{key.append(\textcolor{stringliteral}{"{}b"{}});\}}
+\DoxyCodeLine{00097             \textcolor{keywordflow}{if}(\mbox{\hyperlink{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}{find\_zone}}(new\_int, key, x1, y1, x2, y2, x3, y3, img, i))\{\}}
+\DoxyCodeLine{00098             key=key.substr(0, key.size()-\/1);}
+\DoxyCodeLine{00099         \}}
+\DoxyCodeLine{00100     \}}
+\DoxyCodeLine{00101     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00102 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMy__delaunay_a1379a3ff5b81950d192ca572eb7c26cf}\label{classMy__delaunay_a1379a3ff5b81950d192ca572eb7c26cf}} 
+\index{My\_delaunay@{My\_delaunay}!in\_intervale@{in\_intervale}}
+\index{in\_intervale@{in\_intervale}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{in\_intervale()}{in\_intervale()}}
+{\footnotesize\ttfamily bool My\+\_\+delaunay\+::in\+\_\+intervale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} \&}]{inter,  }\item[{bool}]{cote,  }\item[{double \&}]{range\+\_\+x,  }\item[{double \&}]{range\+\_\+y,  }\item[{double \&}]{x1,  }\item[{double \&}]{y1,  }\item[{double \&}]{x2,  }\item[{double \&}]{y2,  }\item[{double \&}]{x3,  }\item[{double \&}]{y3 }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Bouleen qui exprime si le triangle en entree est dans l\textquotesingle{}intervale choisit. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00104}{104}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00104                                                                                                                                                                    \{}
+\DoxyCodeLine{00105     \textcolor{comment}{// cote : true -\/> gauche/haut false -\/> droite/bas}}
+\DoxyCodeLine{00106     \textcolor{keywordflow}{if}(range\_x!=0)\{}
+\DoxyCodeLine{00107         \textcolor{keywordflow}{if}(cote)\{}
+\DoxyCodeLine{00108             \textcolor{keywordflow}{if}(x1<=inter.xmax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00109             \textcolor{keywordflow}{if}(x2<=inter.xmax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00110             \textcolor{keywordflow}{if}(x3<=inter.xmax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00111         \}}
+\DoxyCodeLine{00112         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00113             \textcolor{keywordflow}{if}(x1>=inter.xmin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00114             \textcolor{keywordflow}{if}(x2>=inter.xmin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00115             \textcolor{keywordflow}{if}(x3>=inter.xmin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00116         \}}
+\DoxyCodeLine{00117     \}}
+\DoxyCodeLine{00118     \textcolor{keywordflow}{if}(range\_y!=0)\{}
+\DoxyCodeLine{00119         \textcolor{keywordflow}{if}(cote)\{}
+\DoxyCodeLine{00120             \textcolor{keywordflow}{if}(y1<=inter.ymax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00121             \textcolor{keywordflow}{if}(y2<=inter.ymax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00122             \textcolor{keywordflow}{if}(y3<=inter.ymax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00123         \}}
+\DoxyCodeLine{00124         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00125             \textcolor{keywordflow}{if}(y1>=inter.ymin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00126             \textcolor{keywordflow}{if}(y2>=inter.ymin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00127             \textcolor{keywordflow}{if}(y3>=inter.ymin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00128         \}}
+\DoxyCodeLine{00129     \}}
+\DoxyCodeLine{00130     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00131 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMy__delaunay_aafe184a8ada9cccf68a986b46c4c3438}\label{classMy__delaunay_aafe184a8ada9cccf68a986b46c4c3438}} 
+\index{My\_delaunay@{My\_delaunay}!in\_triangle@{in\_triangle}}
+\index{in\_triangle@{in\_triangle}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{in\_triangle()}{in\_triangle()}}
+{\footnotesize\ttfamily bool My\+\_\+delaunay\+::in\+\_\+triangle (\begin{DoxyParamCaption}\item[{double}]{px,  }\item[{double}]{py,  }\item[{double}]{x1,  }\item[{double}]{y1,  }\item[{double}]{x2,  }\item[{double}]{y2,  }\item[{double}]{x3,  }\item[{double}]{y3 }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: Booleen qui exprime si le point se situe dans le triangle ou non. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00043}{43}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043                                                                                                                    \{}
+\DoxyCodeLine{00044     \textcolor{comment}{// Calcul des determinants pour chaque droite afin de savoir de quel cote est le point. Si tous negatifs alors le point est dedans.}}
+\DoxyCodeLine{00045     \textcolor{keywordtype}{double} det1 = (x2-\/px)*(y1-\/py)-\/(y2-\/py)*(x1-\/px);}
+\DoxyCodeLine{00046     \textcolor{keywordtype}{double} det2 = (x3-\/px)*(y2-\/py)-\/(y3-\/py)*(x2-\/px);}
+\DoxyCodeLine{00047     \textcolor{keywordtype}{double} det3 = (x1-\/px)*(y3-\/py)-\/(y1-\/py)*(x3-\/px);}
+\DoxyCodeLine{00048     \textcolor{keywordflow}{if}(det1>= 0 \&\& det2>=0 \&\& det3>=0)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00049     \textcolor{keywordflow}{else}\{\textcolor{keywordflow}{return} \textcolor{keyword}{false};\}}
+\DoxyCodeLine{00050 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMy__delaunay_a03b7234e31bc2bd340ead209910a24c1}\label{classMy__delaunay_a03b7234e31bc2bd340ead209910a24c1}} 
+\index{My\_delaunay@{My\_delaunay}!make\_delaunator@{make\_delaunator}}
+\index{make\_delaunator@{make\_delaunator}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{make\_delaunator()}{make\_delaunator()}}
+{\footnotesize\ttfamily void My\+\_\+delaunay\+::make\+\_\+delaunator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classimage}{image}} \&}]{img }\end{DoxyParamCaption})}
+
+
+
+Fonction \+: A partir d\textquotesingle{}une image, et en particulier de l\textquotesingle{}attribut point de image, effectue une triangulation. La classe delaunator est utiliser pour faire cette triangulation. Voir \+: \href{https://github.com/delfrrr/delaunator-cpp}{\texttt{ https\+://github.\+com/delfrrr/delaunator-\/cpp}}. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8cpp_source_l00023}{23}} du fichier \mbox{\hyperlink{My__delaunay_8cpp_source}{My\+\_\+delaunay.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023                                            \{}
+\DoxyCodeLine{00024     \textcolor{comment}{// Afin de de pas modifier la class delaunator, la partie creation des triangles est utilisée ici.}}
+\DoxyCodeLine{00025     \mbox{\hyperlink{classdelaunator_1_1Delaunator}{delaunator::Delaunator}} d(img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}});}
+\DoxyCodeLine{00026     \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}} = d.triangles;}
+\DoxyCodeLine{00027 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}\label{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}} 
+\index{My\_delaunay@{My\_delaunay}!vect\_triangles@{vect\_triangles}}
+\index{vect\_triangles@{vect\_triangles}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{vect\_triangles}{vect\_triangles}}
+{\footnotesize\ttfamily std\+::vector$<$long unsigned int$>$ My\+\_\+delaunay\+::vect\+\_\+triangles}
+
+
+
+Variable \+: vecteur contenant les indices des triangles. Indice à utiliser avec le vecteur points de l\textquotesingle{}objet image. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8h_source_l00029}{29}} du fichier \mbox{\hyperlink{My__delaunay_8h_source}{My\+\_\+delaunay.\+h}}.
+
+\mbox{\Hypertarget{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}\label{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}} 
+\index{My\_delaunay@{My\_delaunay}!zones@{zones}}
+\index{zones@{zones}!My\_delaunay@{My\_delaunay}}
+\doxysubsubsection{\texorpdfstring{zones}{zones}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::list$<$long unsigned int$>$ $>$ My\+\_\+delaunay\+::zones}
+
+
+
+Variable \+: map qui pour une zone renvoie les indices des triangles dans cette zone. Elle est construit à partir de l\textquotesingle{}arbre binaire. 
+
+
+
+Définition à la ligne \mbox{\hyperlink{My__delaunay_8h_source_l00033}{33}} du fichier \mbox{\hyperlink{My__delaunay_8h_source}{My\+\_\+delaunay.\+h}}.
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+My\+\_\+delaunay.\+h\item 
+My\+\_\+delaunay.\+cpp\end{DoxyCompactItemize}

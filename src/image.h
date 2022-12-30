@@ -1,6 +1,11 @@
-//
-// Created by apolline on 08/12/22.
-//
+/**
+ * \class image
+ * \author Apolline de Vaulchier du Deschaux
+ * \date 08/12/2022
+ *
+ * Permet de creer un objet image. Cet objet permet de travailler plus facilement sur l'image en pixel et de garder les parametres
+ * cles comme les coordonnes des points, le nombre de pixels, les bornes, etc.
+ */
 
 #ifndef PROJET_IMAGE_H
 #define PROJET_IMAGE_H
@@ -15,22 +20,50 @@ class My_delaunay;
 
 class image{
 public:
+    /** \brief Constructeur : Prend en compte les parametres d'entree nombre de pixel en largeur et nombre de passe a realiser dans l'arbre */
     image(int nb_pixels, int nb_zones);
+
+    /** \brief Constructeur : Deuxieme constructeur qui permet d'effectuer les cas tests */
     image(int nb_pixels, int nb_zones, double max_x, double max_y, double min_x, double min_y);
+
+    /** \brief Variable : Nombre de pixel dans la hauteur */
     int nb_pixel_h;
+
+    /** \brief Variable : Nombre de pixel dans la largeur */
     int nb_pixel_l;
+
+    /** \brief Variable : Nombre de passe dans l'arbre */
     int nb_zone;
-    int nb_donnee;
+
+    /** \brief Variable : densite de l'image en pixel/m */
     double densite;
+
+    /** \brief Variable : Borne x sup */
     double max_x;
+    /** \brief Variable : Borne y sup */
     double max_y;
+    /** \brief Variable : Borne x inf */
     double min_x;
+    /** \brief Variable : Borne y inf */
     double min_y;
+    /** \brief Variable : Borne z sup */
     double max_z;
+    /** \brief Variable : Borne z inf */
     double min_z;
+
+    /** \brief Variable : Aire maximale d'un triangle autorisee */
     double max_area;
+
+    /** \brief Variable : Vecteur qui contient les coordonnés des points sans leur information de hauteur de type (X1, Y1, X2, Y2,...) */
     std::vector<double> points;
 
+    /** \brief Variable : vecteur contenant les hauteurs des points */
+    std::vector<double> hauteurs;
+
+    /** \brief Strcuture de class :
+     * - nb passe : ID qui identifie à quel niveau de l'arbre l'intervale se situe
+     * - xmin, xmax, ymin, ymax : borne de l'intervale
+     * NB : En fonction de la découpe dans l'arbre seuls les x ou seuls les y sont utiles*/
     struct intervale{
         int nb_passe;
         double xmin;
@@ -39,21 +72,45 @@ public:
         double ymax;
     };
 
+    /** \brief Fonction : Mise a jour des bornes pour un nouveau trio x, y, z*/
     void update_min_max(double x, double y, double z);
+
+    /** \brief Fonction : Calcul la densite*/
     void update_densite();
-    void update_nb_pixel_l();
-    void projection(double lon, double lat, double z, double &x, double &y, PJ* P);
+
+    /** \brief Fonction : Calcul le nombre de pixel dans la hauteur*/
+    void update_nb_pixel_h();
+
+    /** \brief Fonction : Initialise la projection*/
     PJ* init_proj();
+
+    /** \brief Fonction : Realise la projection sur une longitude et latitue, avec pour entree la projection initialisee.*/
+    void projection(double lon, double lat, double z, double &x, double &y, PJ* P);
+
+    /** \brief Fonction : Lecture du fichier d'entree. Cette fonction effectue la projection et complete les differentes variable de l'image*/
     void read_file(My_delaunay &dt, std::string filename);
+
+    /** \brief Fonction : Pour une hauteur, renvoie les couleurs du pixel dans la colormap haxby*/
     void find_color(double pz, int &val1, int &val2, int &val3, double &shadow);
+
+    /** \brief Fonction : Fonction recursive, permet de trouver la zone d'un point à partir de l'arbre binaire. Une fois la zone trouvé,
+     * on trouve le triangle associé au point et on obtient sa couleur*/
     bool find_zone(intervale inter, std::string &key, double &x1, double &y1, My_delaunay &dt, int &val1, int &val2, int &val3, double &shadow);
+
+    /** \brief Fonction : Booleen qui identifie si le point est dans l'intervale ou non*/
     bool in_intervale(intervale &inter, bool cote, double &range_x, double &range_y, double &x1, double &y1);
+
+    /** \brief Fonction : Fonction qui boucle sur tous les pixels afin de leur associer une couleur à partir des fonctions find_zone et find_color*/
     void build_img(My_delaunay &dt, std::string filename);
+
+    /** \brief Fonction : Calcul le parametre associe à l'ombrage*/
     void find_shadow(double &shadow, double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3);
 
+    /** \brief Destructeur : */
     ~image();
 
 private:
+    /** \brief Color map*/
     double haxby[256][3] = {{0.1451,0.22353,0.68627},
              {0.14556,0.23429,0.69796},
              {0.14602,0.24506,0.70965},

@@ -1,0 +1,174 @@
+\hypertarget{My__delaunay_8cpp_source}{}\doxysection{My\+\_\+delaunay.\+cpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00011}00011 \textcolor{preprocessor}{\#include"{}My\_delaunay.h"{}}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00012}00012 \textcolor{preprocessor}{\#include"{}image.h"{}}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00013}00013 \textcolor{preprocessor}{\#include"{}delaunator.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00014}00014 \textcolor{preprocessor}{\#include<list>}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00015}00015 \textcolor{preprocessor}{\#include<iostream>}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00016}00016 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00018}00018 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00020}00020 \textcolor{comment}{// Constructeur}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00021}\mbox{\hyperlink{classMy__delaunay_aa6938c42566105bc81c0c78037f6908c}{00021}} \mbox{\hyperlink{classMy__delaunay_aa6938c42566105bc81c0c78037f6908c}{My\_delaunay::My\_delaunay}}()\{\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00023}\mbox{\hyperlink{classMy__delaunay_a03b7234e31bc2bd340ead209910a24c1}{00023}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMy__delaunay_a03b7234e31bc2bd340ead209910a24c1}{My\_delaunay::make\_delaunator}}(\mbox{\hyperlink{classimage}{image}} \&img)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00024}00024     \textcolor{comment}{// Afin de de pas modifier la class delaunator, la partie creation des triangles est utilisée ici.}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00025}00025     \mbox{\hyperlink{classdelaunator_1_1Delaunator}{delaunator::Delaunator}} d(img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}});}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00026}00026     \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}} = d.triangles;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00027}00027 \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00029}\mbox{\hyperlink{classMy__delaunay_a74cd669a3e094bdbc8d3ac39afc1b062}{00029}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMy__delaunay_a74cd669a3e094bdbc8d3ac39afc1b062}{My\_delaunay::find\_plane}}(\textcolor{keywordtype}{double} x1, \textcolor{keywordtype}{double} y1, \textcolor{keywordtype}{double} z1, \textcolor{keywordtype}{double} x2, \textcolor{keywordtype}{double} y2, \textcolor{keywordtype}{double} z2, \textcolor{keywordtype}{double} x3, \textcolor{keywordtype}{double} y3, \textcolor{keywordtype}{double} z3, \textcolor{keywordtype}{double} \&a, \textcolor{keywordtype}{double} \&b, \textcolor{keywordtype}{double} \&c, \textcolor{keywordtype}{double} \&d)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00030}00030     \textcolor{comment}{// Trouve les paramètres du plan associé au triangle}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00031}00031     \textcolor{keywordtype}{double} a1 = x2 -\/ x1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00032}00032     \textcolor{keywordtype}{double} b1 = y2 -\/ y1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00033}00033     \textcolor{keywordtype}{double} c1 = z2 -\/ z1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00034}00034     \textcolor{keywordtype}{double} a2 = x3 -\/ x1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00035}00035     \textcolor{keywordtype}{double} b2 = y3 -\/ y1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00036}00036     \textcolor{keywordtype}{double} c2 = z3 -\/ z1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00037}00037     a = b1 * c2 + b2 * c1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00038}00038     b = -\/ a2 * c1 -\/ a1 * c2;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00039}00039     c = -\/ a1 * b2 + b1 * a2;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00040}00040     d =  a * x1 + b * y1 -\/ c * z1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00041}00041 \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00043}\mbox{\hyperlink{classMy__delaunay_aafe184a8ada9cccf68a986b46c4c3438}{00043}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classMy__delaunay_aafe184a8ada9cccf68a986b46c4c3438}{My\_delaunay::in\_triangle}}(\textcolor{keywordtype}{double} px, \textcolor{keywordtype}{double} py, \textcolor{keywordtype}{double} x1, \textcolor{keywordtype}{double} y1, \textcolor{keywordtype}{double} x2, \textcolor{keywordtype}{double} y2, \textcolor{keywordtype}{double} x3, \textcolor{keywordtype}{double} y3)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00044}00044     \textcolor{comment}{// Calcul des determinants pour chaque droite afin de savoir de quel cote est le point. Si tous negatifs alors le point est dedans.}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00045}00045     \textcolor{keywordtype}{double} det1 = (x2-\/px)*(y1-\/py)-\/(y2-\/py)*(x1-\/px);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00046}00046     \textcolor{keywordtype}{double} det2 = (x3-\/px)*(y2-\/py)-\/(y3-\/py)*(x2-\/px);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00047}00047     \textcolor{keywordtype}{double} det3 = (x1-\/px)*(y3-\/py)-\/(y1-\/py)*(x3-\/px);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00048}00048     \textcolor{keywordflow}{if}(det1>= 0 \&\& det2>=0 \&\& det3>=0)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00049}00049     \textcolor{keywordflow}{else}\{\textcolor{keywordflow}{return} \textcolor{keyword}{false};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00050}00050 \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00052}\mbox{\hyperlink{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}{00052}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}{My\_delaunay::find\_zone}}(\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} inter, \textcolor{keywordtype}{string} \&key, \textcolor{keywordtype}{double} \&x1, \textcolor{keywordtype}{double} \&y1, \textcolor{keywordtype}{double} \&x2, \textcolor{keywordtype}{double} \&y2, \textcolor{keywordtype}{double} \&x3, \textcolor{keywordtype}{double} \&y3, \mbox{\hyperlink{classimage}{image}} \&img, \textcolor{keywordtype}{int} \&i)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00054}00054     \textcolor{comment}{//Initialisation de la cle de la map}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00055}00055     \textcolor{keywordflow}{if}(inter.nb\_passe == 0)\{\textcolor{keywordtype}{string} key = \textcolor{stringliteral}{"{}"{}};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00057}00057     \textcolor{comment}{// Variables qui correspond à la partie tronquee de l'intervale}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00058}00058     \textcolor{keywordtype}{double} range\_x;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00059}00059     \textcolor{keywordtype}{double} range\_y;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00061}00061     \textcolor{comment}{//Condition arret: si le nombre de passe dans l'arbre est atteinte}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00062}00062     \textcolor{keywordflow}{if}(img.\mbox{\hyperlink{classimage_afeb453d60d8b59da884f612ff2f304e6}{nb\_zone}} == inter.nb\_passe)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00063}00063         \textcolor{comment}{//Si la cle existe deja dans la map on complete uniquement la liste, sinon on creer la nouvelle cle.}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00064}00064         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}.count(key))\{\mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key] = list<long unsigned int> \{\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i], \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i+1], \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i+2]\};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00065}00065         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00066}00066             \mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key].push\_back(\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i]);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00067}00067             \mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key].push\_back(\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i+1]);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00068}00068             \mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}}[key].push\_back(\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i+2]);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00069}00069         \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00070}00070         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00071}00071     \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00073}00073     \textcolor{comment}{//Quel cote on coupe : Soit intervale en X, soit intervale en Y}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00074}00074     \textcolor{keywordflow}{if}(inter.nb\_passe\%2==0)\{range\_x = (inter.xmax-\/inter.xmin)/2; range\_y=0;\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00075}00075     \textcolor{keywordflow}{else}\{range\_y = (inter.ymax-\/inter.ymin)/2; range\_x=0;\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00077}00077     \textcolor{comment}{//On se balade dans l'arbre}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00078}00078     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} k=0; k<2; k++)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00080}00080         \textcolor{comment}{// Indique le cote}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00081}00081         \textcolor{keywordtype}{bool} cote;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00082}00082         \textcolor{keywordflow}{if}(k==0)\{cote=\textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00083}00083         \textcolor{keywordflow}{if}(k==1)\{cote=\textcolor{keyword}{false};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00085}00085         \textcolor{comment}{// Creation du nouvel intervale}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00086}00086         \mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} new\_int;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00087}00087         new\_int.xmin = inter.xmin+k*range\_x;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00088}00088         new\_int.xmax = inter.xmax-\/(1-\/k)*range\_x;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00089}00089         new\_int.ymin = inter.ymin+k*range\_y;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00090}00090         new\_int.ymax = inter.ymax-\/(1-\/k)*range\_y;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00091}00091         new\_int.nb\_passe = inter.nb\_passe+1;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00093}00093         \textcolor{comment}{// Est ce que le triangle se trouve dans le nouvel intervale ?}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00094}00094         \textcolor{keywordflow}{if}(\mbox{\hyperlink{classMy__delaunay_a1379a3ff5b81950d192ca572eb7c26cf}{in\_intervale}}(new\_int, cote, range\_x, range\_y, x1, y1, x2, y2, x3, y3))\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00095}00095             \textcolor{keywordflow}{if}(k==0)\{key.append(\textcolor{stringliteral}{"{}a"{}});\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00096}00096             \textcolor{keywordflow}{if}(k==1)\{key.append(\textcolor{stringliteral}{"{}b"{}});\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00097}00097             \textcolor{keywordflow}{if}(\mbox{\hyperlink{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}{find\_zone}}(new\_int, key, x1, y1, x2, y2, x3, y3, img, i))\{\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00098}00098             key=key.substr(0, key.size()-\/1);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00099}00099         \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00100}00100     \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00101}00101     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00102}00102 \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00104}\mbox{\hyperlink{classMy__delaunay_a1379a3ff5b81950d192ca572eb7c26cf}{00104}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classMy__delaunay_a1379a3ff5b81950d192ca572eb7c26cf}{My\_delaunay::in\_intervale}}(\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} \&inter, \textcolor{keywordtype}{bool} cote, \textcolor{keywordtype}{double} \&range\_x, \textcolor{keywordtype}{double} \&range\_y, \textcolor{keywordtype}{double} \&x1, \textcolor{keywordtype}{double} \&y1, \textcolor{keywordtype}{double} \&x2, \textcolor{keywordtype}{double} \&y2, \textcolor{keywordtype}{double} \&x3, \textcolor{keywordtype}{double} \&y3)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00105}00105     \textcolor{comment}{// cote : true -\/> gauche/haut false -\/> droite/bas}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00106}00106     \textcolor{keywordflow}{if}(range\_x!=0)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00107}00107         \textcolor{keywordflow}{if}(cote)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00108}00108             \textcolor{keywordflow}{if}(x1<=inter.xmax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00109}00109             \textcolor{keywordflow}{if}(x2<=inter.xmax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00110}00110             \textcolor{keywordflow}{if}(x3<=inter.xmax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00111}00111         \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00112}00112         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00113}00113             \textcolor{keywordflow}{if}(x1>=inter.xmin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00114}00114             \textcolor{keywordflow}{if}(x2>=inter.xmin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00115}00115             \textcolor{keywordflow}{if}(x3>=inter.xmin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00116}00116         \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00117}00117     \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00118}00118     \textcolor{keywordflow}{if}(range\_y!=0)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00119}00119         \textcolor{keywordflow}{if}(cote)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00120}00120             \textcolor{keywordflow}{if}(y1<=inter.ymax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00121}00121             \textcolor{keywordflow}{if}(y2<=inter.ymax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00122}00122             \textcolor{keywordflow}{if}(y3<=inter.ymax)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00123}00123         \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00124}00124         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00125}00125             \textcolor{keywordflow}{if}(y1>=inter.ymin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00126}00126             \textcolor{keywordflow}{if}(y2>=inter.ymin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00127}00127             \textcolor{keywordflow}{if}(y3>=inter.ymin)\{\textcolor{keywordflow}{return} \textcolor{keyword}{true};\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00128}00128         \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00129}00129     \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00130}00130     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00131}00131 \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00132}00132 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00133}\mbox{\hyperlink{classMy__delaunay_abf7640e84b21f85f2478eee685beb5c1}{00133}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMy__delaunay_abf7640e84b21f85f2478eee685beb5c1}{My\_delaunay::build\_map}}(\mbox{\hyperlink{classimage}{image}} \&img)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00134}00134     \textcolor{keywordtype}{double} t\_area; \textcolor{comment}{// Aire du triangle etudie}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00135}00135     cout << endl;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00136}00136     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}.size(); i+=3) \{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00137}00137 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00138}00138         cout<<\textcolor{stringliteral}{"{}\(\backslash\)rCreation arbre binaire pour les triangles :  "{}}<<i<<\textcolor{stringliteral}{"{} / "{}}<<(\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}.size()-\/3)<<\textcolor{stringliteral}{"{} triangles realises"{}}<<flush;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00139}00139 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00140}00140         \textcolor{comment}{// Coins du triangle version x,y}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00141}00141         \textcolor{keywordtype}{double} x1 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i]];}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00142}00142         \textcolor{keywordtype}{double} y1 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i] + 1];}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00143}00143         \textcolor{keywordtype}{double} x2 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i + 1]];}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00144}00144         \textcolor{keywordtype}{double} y2 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i + 1] + 1];}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00145}00145         \textcolor{keywordtype}{double} x3 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i + 2]];}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00146}00146         \textcolor{keywordtype}{double} y3 = img.\mbox{\hyperlink{classimage_a629794e1629f05226265e1eb1ce5bb79}{points}}[2 * \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}}[i + 2] + 1];}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00147}00147 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00148}00148         \textcolor{comment}{// Calcul aire du triangle}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00149}00149         \mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{area}}(x1, y1, x2, y2, x3, y3, t\_area);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00150}00150 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00151}00151         \textcolor{comment}{// Si l'aire du triangle n'est pas trop grande, i.e. le triangle est bien dans l'image (effet de bords),}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00152}00152         \textcolor{comment}{// on cherche la ou les zones ou se situe le triangle.}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00153}00153         \textcolor{keywordflow}{if}(t\_area<=img.\mbox{\hyperlink{classimage_a1c9c35e1de0b12f1c6f00e281258cbf6}{max\_area}})\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00154}00154 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00155}00155             \textcolor{comment}{// Initialisation de l'intervale de depart}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00156}00156             \mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} inter\_init;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00157}00157             inter\_init.xmin = img.\mbox{\hyperlink{classimage_a5d2125a144241d02f0ab08f92c64f4db}{min\_x}};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00158}00158             inter\_init.xmax = img.\mbox{\hyperlink{classimage_aa89d91d278d34a426510d76cfad1279f}{max\_x}};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00159}00159             inter\_init.ymin = img.\mbox{\hyperlink{classimage_a0096384d82da5a5661479c8675c74ea7}{min\_y}};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00160}00160             inter\_init.ymax = img.\mbox{\hyperlink{classimage_a951e942fe62ec24c0443dc05f8c670c7}{max\_y}};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00161}00161             inter\_init.nb\_passe = 0;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00162}00162             \textcolor{keywordtype}{string} key;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00163}00163 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00164}00164             \mbox{\hyperlink{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}{find\_zone}}(inter\_init,key, x1, y1, x2, y2, x3, y3, img, i);\}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00165}00165     \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00166}00166 \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00168}\mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{00168}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{My\_delaunay::area}}(\textcolor{keywordtype}{double} x1, \textcolor{keywordtype}{double} y1, \textcolor{keywordtype}{double} x2, \textcolor{keywordtype}{double} y2, \textcolor{keywordtype}{double} x3, \textcolor{keywordtype}{double} y3, \textcolor{keywordtype}{double} \&area)\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00169}00169     \textcolor{comment}{// Calcul l'air d'un triangle}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00170}00170        \textcolor{keywordtype}{double} ab = pow(pow(x2-\/x1,2)+pow(y2-\/y1,2), 0.5);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00171}00171        \textcolor{keywordtype}{double} bc = pow(pow(x3-\/x2,2)+pow(y3-\/y2,2), 0.5);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00172}00172        \textcolor{keywordtype}{double} ca = pow(pow(x1-\/x3,2)+pow(y1-\/y3,2), 0.5);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00173}00173        \textcolor{keywordtype}{double} p = 0.5*(ab+bc+ca);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00174}00174        \mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{area}} = pow(p*(p-\/ab)*(p-\/bc)*(p-\/ca), 0.5);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00175}00175 \}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00176}00176 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00177}00177 \textcolor{comment}{// Destructeur}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8cpp_source_l00178}\mbox{\hyperlink{classMy__delaunay_acd8dece2b670af0536b39605169ee06f}{00178}} \mbox{\hyperlink{classMy__delaunay_acd8dece2b670af0536b39605169ee06f}{My\_delaunay::\string~My\_delaunay}}() \{\}}
+
+\end{DoxyCode}

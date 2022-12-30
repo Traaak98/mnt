@@ -1,0 +1,51 @@
+\hypertarget{My__delaunay_8h_source}{}\doxysection{My\+\_\+delaunay.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00011}00011 \textcolor{preprocessor}{\#ifndef PROJET\_MY\_DELAUNAY\_H}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00012}00012 \textcolor{preprocessor}{\#define PROJET\_MY\_DELAUNAY\_H}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00014}00014 \textcolor{preprocessor}{\#include<vector>}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00015}00015 \textcolor{preprocessor}{\#include<map>}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00016}00016 \textcolor{preprocessor}{\#include"{}image.h"{}}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00017}00017 \textcolor{preprocessor}{\#include<list>}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00018}00018 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00020}00020 \textcolor{keyword}{class }\mbox{\hyperlink{classimage}{image}};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00022}\mbox{\hyperlink{classMy__delaunay}{00022}} \textcolor{keyword}{class }\mbox{\hyperlink{classMy__delaunay}{My\_delaunay}}\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00024}00024 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00026}00026     \mbox{\hyperlink{classMy__delaunay_aa6938c42566105bc81c0c78037f6908c}{My\_delaunay}}();}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00029}\mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{00029}}     std::vector<long unsigned int> \mbox{\hyperlink{classMy__delaunay_a53984f2172e43502a62eea53b680b7e4}{vect\_triangles}};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00033}\mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{00033}}     std::map<std::string, std::list<long unsigned int>> \mbox{\hyperlink{classMy__delaunay_aecd13d9eb937cddbf43cbb7d44b30aa9}{zones}};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00039}\mbox{\hyperlink{structMy__delaunay_1_1intervale}{00039}}     \textcolor{keyword}{struct }\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}}\{}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00040}00040         \textcolor{keywordtype}{int} nb\_passe;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00041}00041         \textcolor{keywordtype}{double} xmin;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00042}00042         \textcolor{keywordtype}{double} xmax;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00043}00043         \textcolor{keywordtype}{double} ymin;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00044}00044         \textcolor{keywordtype}{double} ymax;}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00045}00045     \};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00050}00050     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMy__delaunay_a03b7234e31bc2bd340ead209910a24c1}{make\_delaunator}}(\mbox{\hyperlink{classimage}{image}} \&img);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00053}00053     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMy__delaunay_a74cd669a3e094bdbc8d3ac39afc1b062}{find\_plane}}(\textcolor{keywordtype}{double} x1, \textcolor{keywordtype}{double} y1, \textcolor{keywordtype}{double} z1, \textcolor{keywordtype}{double} x2, \textcolor{keywordtype}{double} y2, \textcolor{keywordtype}{double} z2, \textcolor{keywordtype}{double} x3, \textcolor{keywordtype}{double} y3, \textcolor{keywordtype}{double} z3, \textcolor{keywordtype}{double} \&a, \textcolor{keywordtype}{double} \&b, \textcolor{keywordtype}{double} \&c, \textcolor{keywordtype}{double} \&d);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00056}00056     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classMy__delaunay_aafe184a8ada9cccf68a986b46c4c3438}{in\_triangle}}(\textcolor{keywordtype}{double} px, \textcolor{keywordtype}{double} py, \textcolor{keywordtype}{double} x1, \textcolor{keywordtype}{double} y1, \textcolor{keywordtype}{double} x2, \textcolor{keywordtype}{double} y2, \textcolor{keywordtype}{double} x3, \textcolor{keywordtype}{double} y3);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00059}00059     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classMy__delaunay_a1379a3ff5b81950d192ca572eb7c26cf}{in\_intervale}}(\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} \&inter, \textcolor{keywordtype}{bool} cote, \textcolor{keywordtype}{double} \&range\_x, \textcolor{keywordtype}{double} \&range\_y, \textcolor{keywordtype}{double} \&x1, \textcolor{keywordtype}{double} \&y1, \textcolor{keywordtype}{double} \&x2, \textcolor{keywordtype}{double} \&y2, \textcolor{keywordtype}{double} \&x3, \textcolor{keywordtype}{double} \&y3);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00062}00062     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classMy__delaunay_a153e423053c1d7c55622bdbc7953a793}{find\_zone}}(\mbox{\hyperlink{structMy__delaunay_1_1intervale}{intervale}} inter, std::string \&key, \textcolor{keywordtype}{double} \&x1, \textcolor{keywordtype}{double} \&y1, \textcolor{keywordtype}{double} \&x2, \textcolor{keywordtype}{double} \&y2, \textcolor{keywordtype}{double} \&x3, \textcolor{keywordtype}{double} \&y3, \mbox{\hyperlink{classimage}{image}} \&img, \textcolor{keywordtype}{int} \&i);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00065}00065     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMy__delaunay_abf7640e84b21f85f2478eee685beb5c1}{build\_map}}(\mbox{\hyperlink{classimage}{image}} \&img);}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00068}00068     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{area}}(\textcolor{keywordtype}{double} x1, \textcolor{keywordtype}{double} y1, \textcolor{keywordtype}{double} x2, \textcolor{keywordtype}{double} y2, \textcolor{keywordtype}{double} x3, \textcolor{keywordtype}{double} y3, \textcolor{keywordtype}{double} \&\mbox{\hyperlink{classMy__delaunay_a349f4e87d9e7a9748c4438ca3fad615e}{area}});}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00071}00071     \mbox{\hyperlink{classMy__delaunay_acd8dece2b670af0536b39605169ee06f}{\string~My\_delaunay}}();}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00072}00072 \};}
+\DoxyCodeLine{\Hypertarget{My__delaunay_8h_source_l00073}00073 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJET\_MY\_DELAUNAY\_H}}
+
+\end{DoxyCode}

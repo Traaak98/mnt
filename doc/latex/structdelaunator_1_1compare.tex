@@ -1,0 +1,93 @@
+\hypertarget{structdelaunator_1_1compare}{}\doxysection{Référence de la structure delaunator\+::compare}
+\label{structdelaunator_1_1compare}\index{delaunator::compare@{delaunator::compare}}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structdelaunator_1_1compare_a78b94657ec7bad085353f318365fa20a}{operator()}} (std\+::size\+\_\+t i, std\+::size\+\_\+t j)
+\end{DoxyCompactItemize}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ double $>$ const  \& \mbox{\hyperlink{structdelaunator_1_1compare_a28fe3e7cd51ef236ac051fb47421321a}{coords}}
+\item 
+double \mbox{\hyperlink{structdelaunator_1_1compare_a71238f2868c76ee8048cdd72d58da65c}{cx}}
+\item 
+double \mbox{\hyperlink{structdelaunator_1_1compare_ad8f7ce42823fff74a6062e439f93682d}{cy}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00101}{101}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{structdelaunator_1_1compare_a78b94657ec7bad085353f318365fa20a}\label{structdelaunator_1_1compare_a78b94657ec7bad085353f318365fa20a}} 
+\index{delaunator::compare@{delaunator::compare}!operator()@{operator()}}
+\index{operator()@{operator()}!delaunator::compare@{delaunator::compare}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily bool delaunator\+::compare\+::operator() (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{i,  }\item[{std\+::size\+\_\+t}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00107}{107}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107                                                   \{}
+\DoxyCodeLine{00108             \textcolor{keyword}{const} \textcolor{keywordtype}{double} d1 = dist(coords[2 * i], coords[2 * i + 1], cx, cy);}
+\DoxyCodeLine{00109             \textcolor{keyword}{const} \textcolor{keywordtype}{double} d2 = dist(coords[2 * j], coords[2 * j + 1], cx, cy);}
+\DoxyCodeLine{00110             \textcolor{keyword}{const} \textcolor{keywordtype}{double} diff1 = d1 -\/ d2;}
+\DoxyCodeLine{00111             \textcolor{keyword}{const} \textcolor{keywordtype}{double} diff2 = coords[2 * i] -\/ coords[2 * j];}
+\DoxyCodeLine{00112             \textcolor{keyword}{const} \textcolor{keywordtype}{double} diff3 = coords[2 * i + 1] -\/ coords[2 * j + 1];}
+\DoxyCodeLine{00113 }
+\DoxyCodeLine{00114             \textcolor{keywordflow}{if} (diff1 > 0.0 || diff1 < 0.0) \{}
+\DoxyCodeLine{00115                 \textcolor{keywordflow}{return} diff1 < 0;}
+\DoxyCodeLine{00116             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (diff2 > 0.0 || diff2 < 0.0) \{}
+\DoxyCodeLine{00117                 \textcolor{keywordflow}{return} diff2 < 0;}
+\DoxyCodeLine{00118             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00119                 \textcolor{keywordflow}{return} diff3 < 0;}
+\DoxyCodeLine{00120             \}}
+\DoxyCodeLine{00121         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{structdelaunator_1_1compare_a28fe3e7cd51ef236ac051fb47421321a}\label{structdelaunator_1_1compare_a28fe3e7cd51ef236ac051fb47421321a}} 
+\index{delaunator::compare@{delaunator::compare}!coords@{coords}}
+\index{coords@{coords}!delaunator::compare@{delaunator::compare}}
+\doxysubsubsection{\texorpdfstring{coords}{coords}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ const\& delaunator\+::compare\+::coords}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00103}{103}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+\mbox{\Hypertarget{structdelaunator_1_1compare_a71238f2868c76ee8048cdd72d58da65c}\label{structdelaunator_1_1compare_a71238f2868c76ee8048cdd72d58da65c}} 
+\index{delaunator::compare@{delaunator::compare}!cx@{cx}}
+\index{cx@{cx}!delaunator::compare@{delaunator::compare}}
+\doxysubsubsection{\texorpdfstring{cx}{cx}}
+{\footnotesize\ttfamily double delaunator\+::compare\+::cx}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00104}{104}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+\mbox{\Hypertarget{structdelaunator_1_1compare_ad8f7ce42823fff74a6062e439f93682d}\label{structdelaunator_1_1compare_ad8f7ce42823fff74a6062e439f93682d}} 
+\index{delaunator::compare@{delaunator::compare}!cy@{cy}}
+\index{cy@{cy}!delaunator::compare@{delaunator::compare}}
+\doxysubsubsection{\texorpdfstring{cy}{cy}}
+{\footnotesize\ttfamily double delaunator\+::compare\+::cy}
+
+
+
+Définition à la ligne \mbox{\hyperlink{delaunator_8hpp_source_l00105}{105}} du fichier \mbox{\hyperlink{delaunator_8hpp_source}{delaunator.\+hpp}}.
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+delaunator.\+hpp\end{DoxyCompactItemize}

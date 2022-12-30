@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Create_raster:  Fichier source de image.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Create_raster<span id="projectnumber">&#160;1</span>
+   </div>
+   <div id="projectbrief">Programme qui permet de generer une image 2D representant, par niveau de couleurs, les differentes altitudes d&#39;un terrain 2.5D.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">image.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef PROJET_IMAGE_H</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define PROJET_IMAGE_H</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include&quot;My_delaunay.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include&lt;string&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;proj.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">class </span><a class="code hl_class" href="classMy__delaunay.html">My_delaunay</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classimage.html">   21</a></span><span class="keyword">class </span><a class="code hl_class" href="classimage.html">image</a>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="classimage.html">image</a>(<span class="keywordtype">int</span> nb_pixels, <span class="keywordtype">int</span> nb_zones);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_class" href="classimage.html">image</a>(<span class="keywordtype">int</span> nb_pixels, <span class="keywordtype">int</span> nb_zones, <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#aa89d91d278d34a426510d76cfad1279f">max_x</a>, <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a951e942fe62ec24c0443dc05f8c670c7">max_y</a>, <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a5d2125a144241d02f0ab08f92c64f4db">min_x</a>, <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a0096384d82da5a5661479c8675c74ea7">min_y</a>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classimage.html#a968f5dcdd8d5a269bf85745843cd23f5">   30</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classimage.html#a968f5dcdd8d5a269bf85745843cd23f5">nb_pixel_h</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classimage.html#a627b1c5fd7cf66c189e4b1c00160468e">   33</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classimage.html#a627b1c5fd7cf66c189e4b1c00160468e">nb_pixel_l</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classimage.html#afeb453d60d8b59da884f612ff2f304e6">   36</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classimage.html#afeb453d60d8b59da884f612ff2f304e6">nb_zone</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classimage.html#aedeec5f1e01789c80d447accbbc0ae4c">   39</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#aedeec5f1e01789c80d447accbbc0ae4c">densite</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classimage.html#aa89d91d278d34a426510d76cfad1279f">   42</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#aa89d91d278d34a426510d76cfad1279f">max_x</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classimage.html#a951e942fe62ec24c0443dc05f8c670c7">   44</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a951e942fe62ec24c0443dc05f8c670c7">max_y</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classimage.html#a5d2125a144241d02f0ab08f92c64f4db">   46</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a5d2125a144241d02f0ab08f92c64f4db">min_x</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classimage.html#a0096384d82da5a5661479c8675c74ea7">   48</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a0096384d82da5a5661479c8675c74ea7">min_y</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classimage.html#a74f987ff1c12981e2b0d89b278e1e924">   50</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a74f987ff1c12981e2b0d89b278e1e924">max_z</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classimage.html#a2f21ec9afb1542b043a16437d9ccd5c8">   52</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a2f21ec9afb1542b043a16437d9ccd5c8">min_z</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classimage.html#a1c9c35e1de0b12f1c6f00e281258cbf6">   55</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classimage.html#a1c9c35e1de0b12f1c6f00e281258cbf6">max_area</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classimage.html#a629794e1629f05226265e1eb1ce5bb79">   58</a></span>    std::vector&lt;double&gt; <a class="code hl_variable" href="classimage.html#a629794e1629f05226265e1eb1ce5bb79">points</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classimage.html#a8ee23c9661a6277b2613934b74fde8a8">   61</a></span>    std::vector&lt;double&gt; <a class="code hl_variable" href="classimage.html#a8ee23c9661a6277b2613934b74fde8a8">hauteurs</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structimage_1_1intervale.html">   67</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structimage_1_1intervale.html">intervale</a>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordtype">int</span> nb_passe;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordtype">double</span> xmin;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordtype">double</span> xmax;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordtype">double</span> ymin;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordtype">double</span> ymax;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    };</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a6184aa7e2fad66431568899069fa455b">update_min_max</a>(<span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y, <span class="keywordtype">double</span> z);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a05d3ca010caeba0efde47ec3912f275b">update_densite</a>();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#ad7e696cfa174729e06d500f9aaf5edf6">update_nb_pixel_h</a>();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    PJ* <a class="code hl_function" href="classimage.html#ad1aa302fc1ab6aa548d5c4475d46dadf">init_proj</a>();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a1215029e85c64aec53079897a3cba41f">projection</a>(<span class="keywordtype">double</span> lon, <span class="keywordtype">double</span> lat, <span class="keywordtype">double</span> z, <span class="keywordtype">double</span> &amp;x, <span class="keywordtype">double</span> &amp;y, PJ* P);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a9d15720a20e7e0d7d9fedf5268ba7630">read_file</a>(<a class="code hl_class" href="classMy__delaunay.html">My_delaunay</a> &amp;dt, std::string filename);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#acd44762b73d4d695feba28f1cc0613f3">find_color</a>(<span class="keywordtype">double</span> pz, <span class="keywordtype">int</span> &amp;val1, <span class="keywordtype">int</span> &amp;val2, <span class="keywordtype">int</span> &amp;val3, <span class="keywordtype">double</span> &amp;shadow);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classimage.html#a50ae20e4cec68b6fef02cba7d49f07c1">find_zone</a>(<a class="code hl_struct" href="structimage_1_1intervale.html">intervale</a> inter, std::string &amp;key, <span class="keywordtype">double</span> &amp;x1, <span class="keywordtype">double</span> &amp;y1, <a class="code hl_class" href="classMy__delaunay.html">My_delaunay</a> &amp;dt, <span class="keywordtype">int</span> &amp;val1, <span class="keywordtype">int</span> &amp;val2, <span class="keywordtype">int</span> &amp;val3, <span class="keywordtype">double</span> &amp;shadow);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classimage.html#a3313e6aa98705206845a4ef069247be2">in_intervale</a>(<a class="code hl_struct" href="structimage_1_1intervale.html">intervale</a> &amp;inter, <span class="keywordtype">bool</span> cote, <span class="keywordtype">double</span> &amp;range_x, <span class="keywordtype">double</span> &amp;range_y, <span class="keywordtype">double</span> &amp;x1, <span class="keywordtype">double</span> &amp;y1);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a2a2092747195b60c5056533c9bce2bb1">build_img</a>(<a class="code hl_class" href="classMy__delaunay.html">My_delaunay</a> &amp;dt, std::string filename);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a4f0cc423bd8854759adf9bd7ba526034">find_shadow</a>(<span class="keywordtype">double</span> &amp;shadow, <span class="keywordtype">double</span> x1, <span class="keywordtype">double</span> y1, <span class="keywordtype">double</span> z1, <span class="keywordtype">double</span> x2, <span class="keywordtype">double</span> y2, <span class="keywordtype">double</span> z2, <span class="keywordtype">double</span> x3, <span class="keywordtype">double</span> y3, <span class="keywordtype">double</span> z3);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_function" href="classimage.html#aee5ce698112b4d75cfc1b2a3b354c1c5">~image</a>();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">double</span> haxby[256][3] = {{0.1451,0.22353,0.68627},</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>             {0.14556,0.23429,0.69796},</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>             {0.14602,0.24506,0.70965},</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>             {0.14648,0.25582,0.72134},</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>             {0.14694,0.26659,0.73303},</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>             {0.1474,0.27735,0.74471},</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>             {0.14787,0.28812,0.7564},</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>             {0.14833,0.29889,0.76809},</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>             {0.14879,0.30965,0.77978},</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>             {0.14925,0.32042,0.79146},</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>             {0.14971,0.33118,0.80315},</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>             {0.15017,0.34195,0.81484},</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>             {0.15063,0.35271,0.82653},</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>             {0.1511,0.36348,0.83822},</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>             {0.15156,0.37424,0.8499},</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>             {0.15202,0.38501,0.86159},</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>             {0.15248,0.39577,0.87328},</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>             {0.15294,0.40654,0.88497},</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>             {0.1534,0.4173,0.89666},</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>             {0.15386,0.42807,0.90834},</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>             {0.15433,0.43883,0.92003},</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>             {0.15479,0.4496,0.93172},</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>             {0.15525,0.46036,0.94341},</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>             {0.15571,0.47113,0.95509},</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>             {0.15617,0.48189,0.96678},</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>             {0.15663,0.49266,0.97847},</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>             {0.15763,0.50288,0.98462},</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>             {0.15917,0.51257,0.98524},{0.16071,0.52226,0.98585},{0.16225,0.53195,0.98647},{0.16378,0.54164,0.98708},{0.16532,0.55133,0.9877},</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>             {0.16686,0.56101,0.98831},{0.1684,0.5707,0.98893},{0.16993,0.58039,0.98954},{0.17147,0.59008,0.99016},{0.17301,0.59977,0.99077},{0.17455,0.60946,0.99139},{0.17609,0.61915,0.992},{0.17762,0.62884,0.99262},{0.17916,0.63852,0.99323},{0.1807,0.64821,0.99385},{0.18224,0.6579,0.99446},{0.18378,0.66759,0.99508},{0.18531,0.67728,0.99569},{0.18685,0.68697,0.99631},{0.18839,0.69666,0.99692},{0.18993,0.70634,0.99754},{0.19146,0.71603,0.99815},{0.193,0.72572,0.99877},{0.19454,0.73541,0.99938},{0.19608,0.7451,1},{0.20469,0.75202,1.},{0.2133,0.75894,1.},{0.22191,0.76586,1.},{0.23053,0.77278,1.},{0.23914,0.7797,1.},{0.24775,0.78662,1.},{0.25636,0.79354,1.},{0.26498,0.80046,1.},{0.27359,0.80738,1.},{0.2822,0.8143,1.},{0.29081,0.82122,1.},{0.29942,0.82814,1.},</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>             {0.30804,0.83506,1.},{0.31665,0.84198,1.},{0.32526,0.8489,1.},{0.33387,0.85582,1.},{0.34248,0.86275,1.},{0.3511,0.86967,1.},{0.35971,0.87659,1.},{0.36832,0.88351,1.},{0.37693,0.89043,1.},{0.38554,0.89735,1.},{0.39416,0.90427,1.},{0.40277,0.91119,1.},{0.41138,0.91811,1.},{0.41815,0.92165,0.99377},{0.42307,0.9218,0.98131},{0.42799,0.92195,0.96886},{0.43291,0.92211,0.9564},{0.43783,0.92226,0.94394},{0.44275,0.92241,0.93149},{0.44767,0.92257,0.91903},{0.4526,0.92272,0.90657},{0.45752,0.92288,0.89412},{0.46244,0.92303,0.88166},{0.46736,0.92318,0.8692},{0.47228,0.92334,0.85675},{0.4772,0.92349,0.84429},{0.48212,0.92364,0.83183},{0.48704,0.9238,0.81938},{0.49196,0.92395,0.80692},{0.49689,0.92411,0.79446},{0.50181,0.92426,0.78201},{0.50673,0.92441,0.76955},{0.51165,0.92457,0.75709},</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>             {0.51657,0.92472,0.74464},{0.52149,0.92488,0.73218},{0.52641,0.92503,0.71972},{0.53133,0.92518,0.70727},{0.53626,0.92534,0.69481},{0.54118,0.92549,0.68235},{0.55148,0.92841,0.68051},{0.56178,0.93133,0.67866},{0.57209,0.93426,0.67682},{0.58239,0.93718,0.67497},{0.5927,0.9401,0.67313},{0.603,0.94302,0.67128},{0.6133,0.94594,0.66943},{0.62361,0.94887,0.66759},{0.63391,0.95179,0.66574},{0.64421,0.95471,0.6639},{0.65452,0.95763,0.66205},{0.66482,0.96055,0.66021},{0.67512,0.96348,0.65836},{0.68543,0.9664,0.65652},{0.69573,0.96932,0.65467},{0.70604,0.97224,0.65283},{0.71634,0.97516,0.65098},{0.72664,0.97809,0.64913},{0.73695,0.98101,0.64729},{0.74725,0.98393,0.6454},{0.75755,0.98685,0.6436},{0.76786,0.98977,0.64175},{0.77816,0.9927,0.63991},{0.78847,0.99562,0.63806},{0.79877,0.99854,0.63622},</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>             {0.80661,0.99854,0.63214},{0.812,0.99562,0.62584},{0.81738,0.9927,0.61953},{0.82276,0.98977,0.61323},{0.82814,0.98685,0.60692},{0.83353,0.98393,0.60062},{0.83891,0.98101,0.59431},{0.84429,0.97809,0.588},{0.84967,0.97516,0.5817},{0.85506,0.97224,0.57539},{0.86044,0.96932,0.56909},{0.86582,0.9664,0.56278},{0.8712,0.96348,0.55648},{0.87659,0.96055,0.55017},{0.88197,0.95763,0.54387},{0.88735,0.95471,0.53756},{0.89273,0.95179,0.53126},{0.89812,0.94887,0.52495},{0.9035,0.94594,0.51865},{0.90888,0.94302,0.51234},{0.91426,0.9401,0.50604},{0.91965,0.93718,0.49973},{0.92503,0.93426,0.49343},{0.93041,0.93133,0.48712},{0.93579,0.92841,0.48082},{0.94118,0.92549,0.47451},{0.94348,0.91826,0.46928},{0.94579,0.91103,0.46405},{0.9481,0.90381,0.45882},{0.9504,0.89658,0.45359},{0.95271,0.88935,0.44837},{0.95502,0.88212,0.44314},{0.95732,0.87489,0.43791},{0.95963,0.86767,0.43268},{0.96194,0.86044,0.42745},{0.96424,0.85321,0.42222},{0.96655,0.84598,0.41699},{0.96886,0.83875,0.41176},{0.97116,0.83153,0.40654},{0.97347,0.8243,0.40131},{0.97578,0.81707,0.39608},{0.97809,0.80984,0.39085},{0.98039,0.80261,0.38562},{0.9827,0.79539,0.38039},{0.98501,0.78816,0.37516},{0.98731,0.78093,0.36993},{0.98962,0.7737,0.36471},{0.99193,0.76647,0.35948},{0.99423,0.75925,0.35425},{0.99654,0.75202,0.34902},{0.99885,0.74479,0.34379},{1.,0.73902,0.33972},{1.,0.73472,0.33679},{1.,0.73041,0.33387},{1.,0.72611,0.33095},{1.,0.7218,0.32803},{1.,0.71749,0.32511},{1.,0.71319,0.32218},{1.,0.70888,0.31926},{1.,0.70458,0.31634},{1.,0.70027,0.31342},{1.,0.69596,0.3105},{1.,0.69166,0.30757},{1.,0.68735,0.30465},{1.,0.68304,0.30173},{1.,0.67874,0.29881},{1.,0.67443,0.29589},{1.,0.67013,0.29296},{1.,0.66582,0.29004},{1.,0.66151,0.28712},{1.,0.65721,0.2842},{1.,0.6529,0.28128},{1.,0.6486,0.27835},{1.,0.64429,0.27543},{1.,0.63998,0.27251},{1.,0.63568,0.26959},{1.,0.63137,0.26667},{1.,0.63522,0.27666},{1.,0.63906,0.28666},{1.,0.64291,0.29666},{1.,0.64675,0.30665},{1.,0.6506,0.31665},{1.,0.65444,0.32664},{1.,0.65829,0.33664},{1.,0.66213,0.34664},{1.,0.66597,0.35663},{1.,0.66982,0.36663},{1.,0.67366,0.37662},{1.,0.67751,0.38662},{1.,0.68135,0.39662},{1.,0.6852,0.40661},{1.,0.68904,0.41661},{1.,0.69289,0.42661},{1.,0.69673,0.4366},{1.,0.70058,0.4466},{1.,0.70442,0.45659},{1.,0.70827,0.46659},{1.,0.71211,0.47659},{1.,0.71596,0.48658},{1.,0.7198,0.49658},{1.,0.72364,0.50657},{1.,0.72749,0.51657},{1.,0.73472,0.53095},{1.,0.74533,0.54971},{1.,0.75594,0.56847},{1.,0.76655,0.58724},{1.,0.77716,0.606},{1.,0.78777,0.62476},{1.,0.79839,0.64352},{1.,0.809,0.66228},{1.,0.81961,0.68105},{1.,0.83022,0.69981},{1.,0.84083,0.71857},{1.,0.85144,0.73733},{1.,0.86205,0.75609},{1.,0.87266,0.77486},{1.,0.88328,0.79362},{1.,0.89389,0.81238},{1.,0.9045,0.83114},{1.,0.91511,0.8499},{1.,0.92572,0.86867},{1.,0.93633,0.88743},{1.,0.94694,0.90619},{1.,0.95755,0.92495},{1.,0.96817,0.94371},{1.,0.97878,0.96248},{1.,0.98939,0.98124},{1.,1.,1.}};</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>};</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">#endif </span><span class="comment">//PROJET_IMAGE_H</span></div>
+<div class="ttc" id="aclassMy__delaunay_html"><div class="ttname"><a href="classMy__delaunay.html">My_delaunay</a></div><div class="ttdef"><b>Definition:</b> <a href="My__delaunay_8h_source.html#l00022">My_delaunay.h:22</a></div></div>
+<div class="ttc" id="aclassimage_html"><div class="ttname"><a href="classimage.html">image</a></div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00021">image.h:21</a></div></div>
+<div class="ttc" id="aclassimage_html_a0096384d82da5a5661479c8675c74ea7"><div class="ttname"><a href="classimage.html#a0096384d82da5a5661479c8675c74ea7">image::min_y</a></div><div class="ttdeci">double min_y</div><div class="ttdoc">Variable : Borne y inf.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00048">image.h:48</a></div></div>
+<div class="ttc" id="aclassimage_html_a05d3ca010caeba0efde47ec3912f275b"><div class="ttname"><a href="classimage.html#a05d3ca010caeba0efde47ec3912f275b">image::update_densite</a></div><div class="ttdeci">void update_densite()</div><div class="ttdoc">Fonction : Calcul la densite.</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00056">image.cpp:56</a></div></div>
+<div class="ttc" id="aclassimage_html_a1215029e85c64aec53079897a3cba41f"><div class="ttname"><a href="classimage.html#a1215029e85c64aec53079897a3cba41f">image::projection</a></div><div class="ttdeci">void projection(double lon, double lat, double z, double &amp;x, double &amp;y, PJ *P)</div><div class="ttdoc">Fonction : Realise la projection sur une longitude et latitue, avec pour entree la projection initial...</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00083">image.cpp:83</a></div></div>
+<div class="ttc" id="aclassimage_html_a1c9c35e1de0b12f1c6f00e281258cbf6"><div class="ttname"><a href="classimage.html#a1c9c35e1de0b12f1c6f00e281258cbf6">image::max_area</a></div><div class="ttdeci">double max_area</div><div class="ttdoc">Variable : Aire maximale d'un triangle autorisee.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00055">image.h:55</a></div></div>
+<div class="ttc" id="aclassimage_html_a2a2092747195b60c5056533c9bce2bb1"><div class="ttname"><a href="classimage.html#a2a2092747195b60c5056533c9bce2bb1">image::build_img</a></div><div class="ttdeci">void build_img(My_delaunay &amp;dt, std::string filename)</div><div class="ttdoc">Fonction : Fonction qui boucle sur tous les pixels afin de leur associer une couleur à partir des fon...</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00277">image.cpp:277</a></div></div>
+<div class="ttc" id="aclassimage_html_a2f21ec9afb1542b043a16437d9ccd5c8"><div class="ttname"><a href="classimage.html#a2f21ec9afb1542b043a16437d9ccd5c8">image::min_z</a></div><div class="ttdeci">double min_z</div><div class="ttdoc">Variable : Borne z inf.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00052">image.h:52</a></div></div>
+<div class="ttc" id="aclassimage_html_a3313e6aa98705206845a4ef069247be2"><div class="ttname"><a href="classimage.html#a3313e6aa98705206845a4ef069247be2">image::in_intervale</a></div><div class="ttdeci">bool in_intervale(intervale &amp;inter, bool cote, double &amp;range_x, double &amp;range_y, double &amp;x1, double &amp;y1)</div><div class="ttdoc">Fonction : Booleen qui identifie si le point est dans l'intervale ou non.</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00264">image.cpp:264</a></div></div>
+<div class="ttc" id="aclassimage_html_a4f0cc423bd8854759adf9bd7ba526034"><div class="ttname"><a href="classimage.html#a4f0cc423bd8854759adf9bd7ba526034">image::find_shadow</a></div><div class="ttdeci">void find_shadow(double &amp;shadow, double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3)</div><div class="ttdoc">Fonction : Calcul le parametre associe à l'ombrage.</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00326">image.cpp:326</a></div></div>
+<div class="ttc" id="aclassimage_html_a50ae20e4cec68b6fef02cba7d49f07c1"><div class="ttname"><a href="classimage.html#a50ae20e4cec68b6fef02cba7d49f07c1">image::find_zone</a></div><div class="ttdeci">bool find_zone(intervale inter, std::string &amp;key, double &amp;x1, double &amp;y1, My_delaunay &amp;dt, int &amp;val1, int &amp;val2, int &amp;val3, double &amp;shadow)</div><div class="ttdoc">Fonction : Fonction recursive, permet de trouver la zone d'un point à partir de l'arbre binaire....</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00170">image.cpp:170</a></div></div>
+<div class="ttc" id="aclassimage_html_a5d2125a144241d02f0ab08f92c64f4db"><div class="ttname"><a href="classimage.html#a5d2125a144241d02f0ab08f92c64f4db">image::min_x</a></div><div class="ttdeci">double min_x</div><div class="ttdoc">Variable : Borne x inf.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00046">image.h:46</a></div></div>
+<div class="ttc" id="aclassimage_html_a6184aa7e2fad66431568899069fa455b"><div class="ttname"><a href="classimage.html#a6184aa7e2fad66431568899069fa455b">image::update_min_max</a></div><div class="ttdeci">void update_min_max(double x, double y, double z)</div><div class="ttdoc">Fonction : Mise a jour des bornes pour un nouveau trio x, y, z.</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00045">image.cpp:45</a></div></div>
+<div class="ttc" id="aclassimage_html_a627b1c5fd7cf66c189e4b1c00160468e"><div class="ttname"><a href="classimage.html#a627b1c5fd7cf66c189e4b1c00160468e">image::nb_pixel_l</a></div><div class="ttdeci">int nb_pixel_l</div><div class="ttdoc">Variable : Nombre de pixel dans la largeur.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00033">image.h:33</a></div></div>
+<div class="ttc" id="aclassimage_html_a629794e1629f05226265e1eb1ce5bb79"><div class="ttname"><a href="classimage.html#a629794e1629f05226265e1eb1ce5bb79">image::points</a></div><div class="ttdeci">std::vector&lt; double &gt; points</div><div class="ttdoc">Variable : Vecteur qui contient les coordonnés des points sans leur information de hauteur de type (X...</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00058">image.h:58</a></div></div>
+<div class="ttc" id="aclassimage_html_a74f987ff1c12981e2b0d89b278e1e924"><div class="ttname"><a href="classimage.html#a74f987ff1c12981e2b0d89b278e1e924">image::max_z</a></div><div class="ttdeci">double max_z</div><div class="ttdoc">Variable : Borne z sup.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00050">image.h:50</a></div></div>
+<div class="ttc" id="aclassimage_html_a8ee23c9661a6277b2613934b74fde8a8"><div class="ttname"><a href="classimage.html#a8ee23c9661a6277b2613934b74fde8a8">image::hauteurs</a></div><div class="ttdeci">std::vector&lt; double &gt; hauteurs</div><div class="ttdoc">Variable : vecteur contenant les hauteurs des points.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00061">image.h:61</a></div></div>
+<div class="ttc" id="aclassimage_html_a951e942fe62ec24c0443dc05f8c670c7"><div class="ttname"><a href="classimage.html#a951e942fe62ec24c0443dc05f8c670c7">image::max_y</a></div><div class="ttdeci">double max_y</div><div class="ttdoc">Variable : Borne y sup.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00044">image.h:44</a></div></div>
+<div class="ttc" id="aclassimage_html_a968f5dcdd8d5a269bf85745843cd23f5"><div class="ttname"><a href="classimage.html#a968f5dcdd8d5a269bf85745843cd23f5">image::nb_pixel_h</a></div><div class="ttdeci">int nb_pixel_h</div><div class="ttdoc">Variable : Nombre de pixel dans la hauteur.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00030">image.h:30</a></div></div>
+<div class="ttc" id="aclassimage_html_a9d15720a20e7e0d7d9fedf5268ba7630"><div class="ttname"><a href="classimage.html#a9d15720a20e7e0d7d9fedf5268ba7630">image::read_file</a></div><div class="ttdeci">void read_file(My_delaunay &amp;dt, std::string filename)</div><div class="ttdoc">Fonction : Lecture du fichier d'entree. Cette fonction effectue la projection et complete les differe...</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00100">image.cpp:100</a></div></div>
+<div class="ttc" id="aclassimage_html_aa89d91d278d34a426510d76cfad1279f"><div class="ttname"><a href="classimage.html#aa89d91d278d34a426510d76cfad1279f">image::max_x</a></div><div class="ttdeci">double max_x</div><div class="ttdoc">Variable : Borne x sup.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00042">image.h:42</a></div></div>
+<div class="ttc" id="aclassimage_html_acd44762b73d4d695feba28f1cc0613f3"><div class="ttname"><a href="classimage.html#acd44762b73d4d695feba28f1cc0613f3">image::find_color</a></div><div class="ttdeci">void find_color(double pz, int &amp;val1, int &amp;val2, int &amp;val3, double &amp;shadow)</div><div class="ttdoc">Fonction : Pour une hauteur, renvoie les couleurs du pixel dans la colormap haxby.</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00161">image.cpp:161</a></div></div>
+<div class="ttc" id="aclassimage_html_ad1aa302fc1ab6aa548d5c4475d46dadf"><div class="ttname"><a href="classimage.html#ad1aa302fc1ab6aa548d5c4475d46dadf">image::init_proj</a></div><div class="ttdeci">PJ * init_proj()</div><div class="ttdoc">Fonction : Initialise la projection.</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00068">image.cpp:68</a></div></div>
+<div class="ttc" id="aclassimage_html_ad7e696cfa174729e06d500f9aaf5edf6"><div class="ttname"><a href="classimage.html#ad7e696cfa174729e06d500f9aaf5edf6">image::update_nb_pixel_h</a></div><div class="ttdeci">void update_nb_pixel_h()</div><div class="ttdoc">Fonction : Calcul le nombre de pixel dans la hauteur.</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00062">image.cpp:62</a></div></div>
+<div class="ttc" id="aclassimage_html_aedeec5f1e01789c80d447accbbc0ae4c"><div class="ttname"><a href="classimage.html#aedeec5f1e01789c80d447accbbc0ae4c">image::densite</a></div><div class="ttdeci">double densite</div><div class="ttdoc">Variable : densite de l'image en pixel/m.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00039">image.h:39</a></div></div>
+<div class="ttc" id="aclassimage_html_aee5ce698112b4d75cfc1b2a3b354c1c5"><div class="ttname"><a href="classimage.html#aee5ce698112b4d75cfc1b2a3b354c1c5">image::~image</a></div><div class="ttdeci">~image()</div><div class="ttdoc">Destructeur :</div><div class="ttdef"><b>Definition:</b> <a href="image_8cpp_source.html#l00346">image.cpp:346</a></div></div>
+<div class="ttc" id="aclassimage_html_afeb453d60d8b59da884f612ff2f304e6"><div class="ttname"><a href="classimage.html#afeb453d60d8b59da884f612ff2f304e6">image::nb_zone</a></div><div class="ttdeci">int nb_zone</div><div class="ttdoc">Variable : Nombre de passe dans l'arbre.</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00036">image.h:36</a></div></div>
+<div class="ttc" id="astructimage_1_1intervale_html"><div class="ttname"><a href="structimage_1_1intervale.html">image::intervale</a></div><div class="ttdoc">Strcuture de class :</div><div class="ttdef"><b>Definition:</b> <a href="image_8h_source.html#l00067">image.h:67</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>
