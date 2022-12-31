@@ -1,3 +1,10 @@
 /home/apolline/Documents/M1/C/Projet/build/CMakeFiles/create_raster.dir
+/home/apolline/Documents/M1/C/Projet/build/CMakeFiles/test.dir
 /home/apolline/Documents/M1/C/Projet/build/CMakeFiles/edit_cache.dir
 /home/apolline/Documents/M1/C/Projet/build/CMakeFiles/rebuild_cache.dir
+/home/apolline/Documents/M1/C/Projet/build/tests/CMakeFiles/test_constructeur_image_1.dir
+/home/apolline/Documents/M1/C/Projet/build/tests/CMakeFiles/test_update_min_max.dir
+/home/apolline/Documents/M1/C/Projet/build/tests/CMakeFiles/test_update_densite.dir
+/home/apolline/Documents/M1/C/Projet/build/tests/CMakeFiles/test.dir
+/home/apolline/Documents/M1/C/Projet/build/tests/CMakeFiles/edit_cache.dir
+/home/apolline/Documents/M1/C/Projet/build/tests/CMakeFiles/rebuild_cache.dir

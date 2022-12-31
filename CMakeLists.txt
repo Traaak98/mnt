@@ -18,3 +18,6 @@ add_executable( # création de l’exécutable binaire du projet
         )
 
 target_link_libraries(${PROJECT_NAME} proj)
+
+ENABLE_TESTING()
+ADD_SUBDIRECTORY(tests)

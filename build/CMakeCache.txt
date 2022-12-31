@@ -227,6 +227,51 @@ create_raster_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 create_raster_SOURCE_DIR:STATIC=/home/apolline/Documents/M1/C/Projet
 
+//Value Computed by CMake
+test_BINARY_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/build/tests
+
+//Value Computed by CMake
+test_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+test_SOURCE_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/tests
+
+//Value Computed by CMake
+test_constructeur_image_1_BINARY_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/build/tests
+
+//Value Computed by CMake
+test_constructeur_image_1_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+test_constructeur_image_1_SOURCE_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/tests
+
+//Value Computed by CMake
+test_raster_BINARY_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/build/tests
+
+//Value Computed by CMake
+test_raster_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+test_raster_SOURCE_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/tests
+
+//Value Computed by CMake
+test_update_densite_BINARY_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/build/tests
+
+//Value Computed by CMake
+test_update_densite_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+test_update_densite_SOURCE_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/tests
+
+//Value Computed by CMake
+test_update_min_max_BINARY_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/build/tests
+
+//Value Computed by CMake
+test_update_min_max_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+test_update_min_max_SOURCE_DIR:STATIC=/home/apolline/Documents/M1/C/Projet/tests
+
 
 ########################
 # INTERNAL cache entries
@@ -332,7 +377,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

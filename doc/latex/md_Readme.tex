@@ -1,0 +1,19 @@
+\hypertarget{md_Readme_autotoc_md0}{}\doxysection{Create\+\_\+\+Raster}\label{md_Readme_autotoc_md0}
+Programme qui permet de générer une image 2D représentant, par niveau de couleurs, les différentes altitudes d\textquotesingle{}un terrain 2.\+5D.\hypertarget{md_Readme_autotoc_md1}{}\doxysection{Requirements}\label{md_Readme_autotoc_md1}
+
+\begin{DoxyItemize}
+\item Proj 9.\+1.\+1
+\end{DoxyItemize}\hypertarget{md_Readme_autotoc_md2}{}\doxysection{Démarrage}\label{md_Readme_autotoc_md2}
+Une fois le dossier récupéré, executer le {\ttfamily ./build.sh} puis ouvrir le dossier build dans un terminal.\hypertarget{md_Readme_autotoc_md3}{}\doxysubsection{Exécuter le programme}\label{md_Readme_autotoc_md3}
+Pour exécuter le programme, lancer la commande dans le dossier build \+: {\ttfamily ./create\+\_\+rester \texorpdfstring{$<$}{<}file\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}img\+\_\+width\texorpdfstring{$>$}{>}}\hypertarget{md_Readme_autotoc_md4}{}\doxysubsection{Fichier d\textquotesingle{}entrée}\label{md_Readme_autotoc_md4}
+Le format du fichier d\textquotesingle{}entrée doit être de la forme latitude, longitude et hauteur tel que 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{48.29762887 -\/004.41737340 14.334}
+\DoxyCodeLine{48.29762971 -\/004.41735997 14.379}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+ NB \+: Le fichier ne doit pas avoir de ligne vide à la fin \hypertarget{md_Readme_autotoc_md5}{}\doxysubsection{Fichier de sortie}\label{md_Readme_autotoc_md5}
+Se trouve dans le dossier build avec comme nom {\ttfamily \texorpdfstring{$<$}{<}nom\+\_\+fichier\+\_\+entree\texorpdfstring{$>$}{>}.ppm}. C\textquotesingle{}est une image de type PPM codé en binaire.\hypertarget{md_Readme_autotoc_md6}{}\doxysection{Note}\label{md_Readme_autotoc_md6}
+\begin{quote}
+Written with \href{https://stackedit.io/}{\texttt{ Stack\+Edit}}. \end{quote}

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Create_raster: Page principale</title>
+<title>Create_raster: Create_raster</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,6 @@
   <td id="projectalign">
    <div id="projectname">Create_raster<span id="projectnumber">&#160;1</span>
    </div>
-   <div id="projectbrief">Programme qui permet de generer une image 2D representant, par niveau de couleurs, les differentes altitudes d&#39;un terrain 2.5D.</div>
   </td>
  </tr>
  </tbody>
@@ -69,10 +68,40 @@ $(function() {
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Create_raster Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Create_raster </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__home_apolline_Documents_M1_C_Projet_Readme"></a><img src="image/img_readme.png" alt="Rade de Brest" style="float: right;" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Create_Raster</h1>
+<p>Programme qui permet de générer une image 2D représentant, par niveau de couleurs, les différentes altitudes d'un terrain 2.5D.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Requirements</h1>
+<ul>
+<li>Proj 9.1.1</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Démarrage</h1>
+<p>Une fois le dossier récupéré, executer le <code>./build.sh</code> puis ouvrir le dossier build dans un terminal.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Exécuter le programme</h2>
+<p>Pour exécuter le programme, lancer la commande dans le dossier build : <code>./create_rester &lt;file&gt; &lt;img_width&gt;</code></p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Fichier d'entrée</h2>
+<p>Le format du fichier d'entrée doit être de la forme latitude, longitude et hauteur tel que </p><div class="fragment"><div class="line">48.29762887 -004.41737340 14.334</div>
+<div class="line">48.29762971 -004.41735997 14.379</div>
+<div class="line">...</div>
+</div><!-- fragment --><p> NB : Le fichier ne doit pas avoir de ligne vide à la fin </p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Fichier de sortie</h2>
+<p>Se trouve dans le dossier build avec comme nom <code>&lt;nom_fichier_entree&gt;.ppm</code>. C'est une image de type PPM codé en binaire.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Note</h1>
+<blockquote class="doxtable">
+<p>&zwj;Written with <a href="https://stackedit.io/">StackEdit</a>. </p>
+</blockquote>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

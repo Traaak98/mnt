@@ -1,0 +1,5 @@
+test_raster 3 0.00885861
+test_constructeur_image_1 4 0.00244354
+test_update_min_max 2 0.0061063
+test_update_densite 1 0.00945717
+---

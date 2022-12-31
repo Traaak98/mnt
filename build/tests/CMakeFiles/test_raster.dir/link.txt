@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -g CMakeFiles/test_raster.dir/__/src/My_delaunay.cpp.o CMakeFiles/test_raster.dir/__/src/image.cpp.o CMakeFiles/test_raster.dir/main_test.cpp.o -o test_raster  -lproj 

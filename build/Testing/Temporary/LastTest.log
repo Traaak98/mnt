@@ -1,0 +1,48 @@
+Start testing: Dec 31 11:12 CET
+----------------------------------------------------------
+1/3 Testing: test_constructeur_image_1
+1/3 Test: test_constructeur_image_1
+Command: "/home/apolline/Documents/M1/C/Projet/build/tests/test_constructeur_image_1"
+Directory: /home/apolline/Documents/M1/C/Projet/build/tests
+"test_constructeur_image_1" start time: Dec 31 11:12 CET
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_constructeur_image_1" end time: Dec 31 11:12 CET
+"test_constructeur_image_1" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: test_update_min_max
+2/3 Test: test_update_min_max
+Command: "/home/apolline/Documents/M1/C/Projet/build/tests/test_update_min_max"
+Directory: /home/apolline/Documents/M1/C/Projet/build/tests
+"test_update_min_max" start time: Dec 31 11:12 CET
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_update_min_max" end time: Dec 31 11:12 CET
+"test_update_min_max" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: test_update_densite
+3/3 Test: test_update_densite
+Command: "/home/apolline/Documents/M1/C/Projet/build/tests/test_update_densite"
+Directory: /home/apolline/Documents/M1/C/Projet/build/tests
+"test_update_densite" start time: Dec 31 11:12 CET
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_update_densite" end time: Dec 31 11:12 CET
+"test_update_densite" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 31 11:12 CET

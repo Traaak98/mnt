@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /home/apolline/Documents/M1/C/Projet/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -128,6 +138,45 @@ create_raster: cmake_check_build_system
 create_raster/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_raster.dir/build.make CMakeFiles/create_raster.dir/build
 .PHONY : create_raster/fast
+
+#=============================================================================
+# Target rules for targets named test_constructeur_image_1
+
+# Build rule for target.
+test_constructeur_image_1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_constructeur_image_1
+.PHONY : test_constructeur_image_1
+
+# fast build rule for target.
+test_constructeur_image_1/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_constructeur_image_1.dir/build.make tests/CMakeFiles/test_constructeur_image_1.dir/build
+.PHONY : test_constructeur_image_1/fast
+
+#=============================================================================
+# Target rules for targets named test_update_min_max
+
+# Build rule for target.
+test_update_min_max: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_update_min_max
+.PHONY : test_update_min_max
+
+# fast build rule for target.
+test_update_min_max/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_update_min_max.dir/build.make tests/CMakeFiles/test_update_min_max.dir/build
+.PHONY : test_update_min_max/fast
+
+#=============================================================================
+# Target rules for targets named test_update_densite
+
+# Build rule for target.
+test_update_densite: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_update_densite
+.PHONY : test_update_densite
+
+# fast build rule for target.
+test_update_densite/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_update_densite.dir/build.make tests/CMakeFiles/test_update_densite.dir/build
+.PHONY : test_update_densite/fast
 
 src/My_delaunay.o: src/My_delaunay.cpp.o
 .PHONY : src/My_delaunay.o
@@ -209,7 +258,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... create_raster"
+	@echo "... test_constructeur_image_1"
+	@echo "... test_update_densite"
+	@echo "... test_update_min_max"
 	@echo "... src/My_delaunay.o"
 	@echo "... src/My_delaunay.i"
 	@echo "... src/My_delaunay.s"

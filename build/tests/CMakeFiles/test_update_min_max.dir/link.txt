@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -g CMakeFiles/test_update_min_max.dir/__/src/My_delaunay.cpp.o CMakeFiles/test_update_min_max.dir/__/src/image.cpp.o CMakeFiles/test_update_min_max.dir/test_update_min_max.cpp.o -o test_update_min_max  -lproj 
